@@ -2,5 +2,11 @@ machine:
   java:
     version: openjdk8
     
-general:
-  build_dir:build
+
+checkout:
+  post:
+    - git submodule sync
+    - git submodule update --init
+    - mvn clean
+    - mvn package
+    - cp -R ./target/firma-1.0-SNAPSHOT.jar $CIRCLE_ARTIFACTS
