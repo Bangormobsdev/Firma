@@ -5,9 +5,15 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
+import net.minecraft.world.WorldSavedData;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.storage.MapStorage;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import uk.co.aperistudios.firma.ClientProxy;
 import uk.co.aperistudios.firma.CommonProxy;
+
+import uk.co.aperistudios.firma.FirmaMod;
+import uk.co.aperistudios.firma.TimeData;
 import uk.co.aperistudios.firma.Util;
 
 public class FirmaWorldProvider extends WorldProvider {
@@ -74,5 +80,21 @@ public class FirmaWorldProvider extends WorldProvider {
 	@Override
 	public long getSeed() {
 		return world.getWorldInfo().getSeed();
+	}
+	
+	@Override
+	public float calculateCelestialAngle(long worldTime, float partialTicks) {
+		worldTime = worldTime % Util.ticksInDay;
+		worldTime = (long) (((worldTime*1f) / (Util.ticksInDay*1f)) * 24000f); //Break day length into 0f-1f and then * by old day length for scale 
+		return super.calculateCelestialAngle(worldTime, 0f);
+	}
+	
+	@Override
+	public int getMoonPhase(long worldTime) {
+		TimeData td = ClientProxy.staticDate;
+		//MapStorage st = this.world.getPerWorldStorage();
+		//TimeData td = (TimeData) st.getOrLoadData(TimeData.class, "firmatime");
+		if(td==null){ return 0; }
+		return td.getMoonPhase();
 	}
 }

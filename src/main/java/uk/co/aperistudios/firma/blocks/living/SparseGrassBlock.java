@@ -110,7 +110,7 @@ public class SparseGrassBlock extends BaseBlock {
 
                         if (Util.isDirt(iblockstate1.getBlock()) && worldIn.getLightFromNeighbors(blockpos.up()) >= 4 && iblockstate.getLightOpacity(worldIn, pos.up()) <= 2)
                         {
-                            worldIn.setBlockState(blockpos, Util.getGrass(iblockstate1));
+                            worldIn.setBlockState(blockpos, Util.getSparseGrass(iblockstate1));
                         }
                     }
                 }

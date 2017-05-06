@@ -60,4 +60,9 @@ public class TimeData extends WorldSavedData {
 	public String toString() {
 		return "(CE "+day+"/"+month+"/"+year+" )";
 	}
+	
+	public int getMoonPhase() {
+//		System.out.println((int) (((day*1f) / (Util.daysInMonth*1f))*8f));
+		return (int) (((day*1f) / (Util.daysInMonth*1f))*8f);
+	}
 }

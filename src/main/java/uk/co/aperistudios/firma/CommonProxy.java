@@ -280,6 +280,9 @@ public abstract class CommonProxy {
 			td.addDay();
 			event.world.setWorldTime(time - Util.ticksInDay);
 			td.setDirty(true);
+			SetDayPacket sdp = new SetDayPacket(td);
+			FirmaMod.dispatcher.sendToDimension(sdp, event.world.provider.getDimension());
+			//new Exception().printStackTrace();
 			System.out.println("Day inceremented on Server " + td.toString());
 		}
 	}

@@ -12,8 +12,8 @@ import uk.co.aperistudios.firma.types.RockEnum;
 import uk.co.aperistudios.firma.types.RockEnum2;
 
 public class Util {
-	static int daysInMonth=28, monthsInYear=12, daysInYear = daysInMonth * monthsInYear;
-	static int ticksInDay=24000;
+	public static int daysInMonth=28, monthsInYear=12, daysInYear = daysInMonth * monthsInYear;
+	public static int ticksInDay=24000;
 
 	public static boolean isGrass(Block b) {
 		return b == FirmaMod.grass || b == FirmaMod.grass2  || b == FirmaMod.grasss || b == FirmaMod.grasss2;

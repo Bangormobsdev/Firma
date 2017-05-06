@@ -3,7 +3,11 @@
 	"defaults": {
 		"model": "forge:fluid",
 		"fluid": "normal",
-		"transform": "forge:default-item"
+		"transform": "forge:default-item",
+		"custom": {
+			"fluid": "saltwater",
+			"tintindex": 255
+		}
 	},
 	"variants": {
 		"fluid": [

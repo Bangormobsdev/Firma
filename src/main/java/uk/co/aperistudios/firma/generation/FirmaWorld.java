@@ -42,6 +42,5 @@ public class FirmaWorld extends WorldType {
     public void onGUICreateWorldPress() {
 
     }
-    
 
 }

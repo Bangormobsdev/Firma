@@ -108,7 +108,7 @@ public class ClientProxy extends CommonProxy {
 			ItemMeshDefinition imd = new ItemMeshDefinition() {
 				@Override
 				public ModelResourceLocation getModelLocation(ItemStack stack) {
-					return new ModelResourceLocation(f.getModelPath(), "fluid"); // ((IFluidBlock) f.getFluidBlock()).getFluid().getName()
+					return new ModelResourceLocation(f.getModelPath(), ((IFluidBlock) f.getFluidBlock()).getFluid().getName());
 				}
 			};
 			ModelLoader.setCustomMeshDefinition(item, imd);
@@ -116,7 +116,7 @@ public class ClientProxy extends CommonProxy {
 			ModelLoader.setCustomStateMapper(f.getFluidBlock(), new StateMapperBase() {
 				@Override
 				protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
-					return new ModelResourceLocation(f.getModelPath(), "fluid"); // ((IFluidBlock) f.getFluidBlock()).getFluid().getName()
+					return new ModelResourceLocation(f.getModelPath(), ((IFluidBlock) f.getFluidBlock()).getFluid().getName()); 
 				}
 			});
 		}
