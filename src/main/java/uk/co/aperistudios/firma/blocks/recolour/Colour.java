@@ -85,12 +85,12 @@ public class Colour {
 		float r = c1.r * notInfluence + c2.r * influence;
 		float g = c1.g * notInfluence + c2.g * influence;
 		float b = c1.b * notInfluence + c2.b * influence;
-		return new Colour(r,g,b);
-		
+		return new Colour(r, g, b);
+
 	}
 
 	public int toInt() {
-		return ((int)(r * 255) << 16) + ((int)(g * 255) << 8) + (int)(b *255);
+		return ((int) (r * 255) << 16) + ((int) (g * 255) << 8) + (int) (b * 255);
 	}
 
 }

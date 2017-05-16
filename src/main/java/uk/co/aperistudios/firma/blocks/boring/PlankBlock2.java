@@ -64,7 +64,7 @@ public class PlankBlock2 extends BaseBlock {
 		}
 		return names;
 	}
-	
+
 	@Override
 	public String getMetaName(int meta) {
 		return WoodEnum2.getName(meta);

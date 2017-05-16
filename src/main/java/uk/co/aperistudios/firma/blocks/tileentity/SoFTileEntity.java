@@ -18,17 +18,17 @@ public class SoFTileEntity extends TileEntity {
 	public ItemStack getItem() {
 		return itemstack;
 	}
-	
+
 	@Override
 	public boolean canRenderBreaking() {
 		return false;
 	}
-	
+
 	@Override
 	public boolean hasFastRenderer() {
 		return true;
 	}
-	
+
 	@Override
 	public boolean shouldRefresh(World inWorld, BlockPos inPos, IBlockState oldState, IBlockState newState) {
 		return oldState.getBlock() != newState.getBlock();
@@ -39,9 +39,9 @@ public class SoFTileEntity extends TileEntity {
 		super.readFromNBT(compound);
 		String id = compound.getString("shitid");
 		int meta = compound.getInteger("meta");
-		itemstack = new ItemStack(Item.getByNameOrId(id),1,meta);
+		itemstack = new ItemStack(Item.getByNameOrId(id), 1, meta);
 	}
-	
+
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
 		super.writeToNBT(compound);
@@ -49,24 +49,22 @@ public class SoFTileEntity extends TileEntity {
 		compound.setInteger("meta", itemstack.getItemDamage());
 		return compound;
 	}
-	
+
 	@Override
 	public double getMaxRenderDistanceSquared() {
 		return 1024;
 	}
-	
-    @Override
-	@Nullable
-    public SPacketUpdateTileEntity getUpdatePacket()
-    {
-        return new SPacketUpdateTileEntity(this.pos, 0, this.getUpdateTag());
-    }
 
-    @Override
-	public NBTTagCompound getUpdateTag()
-    {
-        return this.writeToNBT(new NBTTagCompound());
-    }
+	@Override
+	@Nullable
+	public SPacketUpdateTileEntity getUpdatePacket() {
+		return new SPacketUpdateTileEntity(this.pos, 0, this.getUpdateTag());
+	}
+
+	@Override
+	public NBTTagCompound getUpdateTag() {
+		return this.writeToNBT(new NBTTagCompound());
+	}
 
 	public void setItem(ItemStack itemForArea) {
 		itemstack = itemForArea;

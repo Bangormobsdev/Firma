@@ -133,12 +133,12 @@ public class ToolItem extends FirmaItem {
 	public ToolType getToolType() {
 		return toolType;
 	}
-	
+
 	public ToolMaterials getToolMaterial() {
 		return toolMaterial;
 	}
-	
-	public boolean isToolType(ToolType tt){
+
+	public boolean isToolType(ToolType tt) {
 		return this.toolType == tt;
 	}
 }

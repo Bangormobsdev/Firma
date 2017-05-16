@@ -1,7 +1,6 @@
 package uk.co.aperistudios.firma;
 
 import java.util.ArrayList;
-import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
@@ -48,6 +47,7 @@ import uk.co.aperistudios.firma.blocks.living.SaplingBlock2;
 import uk.co.aperistudios.firma.blocks.living.SparseGrassBlock;
 import uk.co.aperistudios.firma.blocks.living.SparseGrassBlock2;
 import uk.co.aperistudios.firma.blocks.machine.AnvilBlock;
+import uk.co.aperistudios.firma.blocks.machine.FloorStorage;
 import uk.co.aperistudios.firma.crafting.CraftingManager;
 import uk.co.aperistudios.firma.items.BrickItem;
 import uk.co.aperistudios.firma.items.ClayItem;
@@ -56,11 +56,11 @@ import uk.co.aperistudios.firma.items.FirmaItem;
 import uk.co.aperistudios.firma.items.GemItem;
 import uk.co.aperistudios.firma.items.HideItem;
 import uk.co.aperistudios.firma.items.IngotItem;
-import uk.co.aperistudios.firma.items.ToolHeads;
 import uk.co.aperistudios.firma.items.MetalSheetItem;
 import uk.co.aperistudios.firma.items.OreItem;
 import uk.co.aperistudios.firma.items.PebbleItem;
 import uk.co.aperistudios.firma.items.ScrapMetalItem;
+import uk.co.aperistudios.firma.items.ToolHeads;
 import uk.co.aperistudios.firma.items.ToolItem;
 import uk.co.aperistudios.firma.items.UnfiredClay;
 
@@ -133,8 +133,7 @@ public class FirmaMod {
 	public static OreBlock ore;
 	public static SparseGrassBlock2 grasss2;
 	public static SparseGrassBlock grasss;
-	
-
+	public static FloorStorage floorStorage;
 
 	public FirmaMod() {
 		instance = this;

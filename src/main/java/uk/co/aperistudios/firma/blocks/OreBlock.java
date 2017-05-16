@@ -93,42 +93,44 @@ public class OreBlock extends BaseBlock implements ITileEntityProvider {
 		TileEntity tileentity = worldIn.getTileEntity(pos);
 		return tileentity == null ? false : tileentity.receiveClientEvent(id, param);
 	}
-	
+
 	@Override
 	public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer) {
 		return layer == BlockRenderLayer.CUTOUT;
 	}
-	
+
 	@Override
 	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
-	//	Mouse.setGrabbed(false);
+		// Mouse.setGrabbed(false);
 		FirmaOreTileEntity te = (FirmaOreTileEntity) worldIn.getTileEntity(pos);
-		if(te!=null && te.ore != null && te.rock!=null){
+		if (te != null && te.ore != null && te.rock != null) {
 			return super.getActualState(state, worldIn, pos).withProperty(oreLayer, te.ore).withProperty(rockLayer, te.rock);
 		}
 		return super.getActualState(state, worldIn, pos);
 	}
-	
+
 	@Override
 	protected BlockStateContainer createBlockState() {
 		return new BlockStateContainer(this, properties, oreLayer, rockLayer);
 	}
-	
+
 	@Override
 	public int getMetaFromState(IBlockState state) {
 		return 0;
 	}
-	
+
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX,
 			float hitY, float hitZ) {
 		FirmaOreTileEntity te = (FirmaOreTileEntity) worldIn.getTileEntity(pos);
-		if(te!=null && te.ore != null && te.rock!=null){ // TODO Prospectors pick
-			playerIn.sendMessage(new TextComponentString(te.ore+" "+te.rock));
+		if (te != null && te.ore != null && te.rock != null) { // TODO
+																// Prospectors
+																// pick
+			playerIn.sendMessage(new TextComponentString(te.ore + " " + te.rock));
 		}
 		return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
 	}
-	
+
 	@Override
 	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
 		return super.getDrops(world, pos, state, fortune);

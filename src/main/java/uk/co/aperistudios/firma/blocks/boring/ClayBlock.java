@@ -72,7 +72,7 @@ public class ClayBlock extends BaseBlock {
 	public String getMetaName(int meta) {
 		return RockEnum.getName(meta);
 	}
-	
+
 	@Override
 	public boolean canCreatureSpawn(IBlockState state, IBlockAccess world, BlockPos pos, SpawnPlacementType type) {
 		return super.canCreatureSpawn(state, world, pos, type);

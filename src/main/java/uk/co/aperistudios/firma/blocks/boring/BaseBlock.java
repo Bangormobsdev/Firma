@@ -29,10 +29,12 @@ public abstract class BaseBlock extends Block {
 		this.name = name;
 		this.setUnlocalizedName(FirmaMod.MODID + ":" + name);
 		this.setRegistryName(name);
-		this.lightValue=0;
-		this.lightOpacity=15; // Fuck Sake. Don't document something as 0-255 if it causes huge world-gen lag > 15 and assumes 0-15.
-		this.fullBlock=true;
-		this.translucent=false;
+		this.lightValue = 0;
+		this.lightOpacity = 15; // Fuck Sake. Don't document something as 0-255
+								// if it causes huge world-gen lag > 15 and
+								// assumes 0-15.
+		this.fullBlock = true;
+		this.translucent = false;
 		this.setDefaultState(this.getStateFromMeta(0));
 		FirmaMod.allBlocks.add(this);
 	}
@@ -86,54 +88,54 @@ public abstract class BaseBlock extends Block {
 	public String getName() {
 		return name;
 	}
-	
+
 	public abstract String getMetaName(int meta);
-	
+
 	@Override
-	public boolean canBeReplacedByLeaves(IBlockState state, IBlockAccess world, BlockPos pos){
+	public boolean canBeReplacedByLeaves(IBlockState state, IBlockAccess world, BlockPos pos) {
 		return false;
 	}
-	
+
 	@Override
 	public boolean doesSideBlockRendering(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing face) {
 		return true;
 	}
-	
+
 	@Override
 	public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer) {
 		return layer == BlockRenderLayer.SOLID;
 	}
-	
+
 	@Override
 	public boolean isBlockNormalCube(IBlockState state) {
 		return true;
 	}
-	
+
 	@Override
 	public int getLightOpacity(IBlockState state, IBlockAccess world, BlockPos pos) {
 		return this.lightOpacity;
 	}
-	
+
 	@Override
 	public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
 		return this.lightValue;
 	}
-	
+
 	@Override
 	public boolean isFullBlock(IBlockState state) {
 		return true;
 	}
-	
+
 	@Override
 	public boolean isFullCube(IBlockState state) {
 		return true;
 	}
-	
+
 	@Override
 	public boolean isFullyOpaque(IBlockState state) {
 		return true;
 	}
-	
+
 	@Override
 	public boolean isOpaqueCube(IBlockState state) {
 		return true;

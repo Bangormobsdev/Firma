@@ -10,7 +10,7 @@ public class ToolHeads extends MetaItem {
 	public ToolHeads(String name) {
 		super(name);
 		ArrayList<String> list = new ArrayList<String>();
-		for (ToolType type: ToolType.values()) {
+		for (ToolType type : ToolType.values()) {
 			for (ToolMaterials metals : ToolMaterials.values()) {
 				list.add(metals.getName() + type.getName());
 			}

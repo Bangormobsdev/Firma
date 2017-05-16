@@ -102,10 +102,14 @@ public class Recipe {
 	}
 
 	public boolean payPrice(TileEntity tileEntity) {
-		if(material == CraftMat.ANVIL){
+		if (material == CraftMat.ANVIL) {
 			AnvilTileEntity ate = (AnvilTileEntity) tileEntity;
 			ItemStack is1 = ate.getStackInSlot(0);
-			if(is1.getItem() == FirmaMod.ingot && FirmaMod.ingot.getSubName(is1.getMetadata()).equals(metaSub)){ // Ingot of the right sub
+			if (is1.getItem() == FirmaMod.ingot && FirmaMod.ingot.getSubName(is1.getMetadata()).equals(metaSub)) { // Ingot
+																													// of
+																													// the
+																													// right
+																													// sub
 				ate.setInventorySlotContents(0, ItemStack.EMPTY);
 				return true;
 			}

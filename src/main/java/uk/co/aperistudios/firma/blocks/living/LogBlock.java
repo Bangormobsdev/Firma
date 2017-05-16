@@ -65,14 +65,14 @@ public class LogBlock extends BaseBlock {
 		}
 		return names;
 	}
-	
+
 	@Override
 	public String getMetaName(int meta) {
 		return WoodEnum.getName(meta);
 	}
-	
+
 	@Override
-	public boolean canBeReplacedByLeaves(IBlockState state, net.minecraft.world.IBlockAccess world, net.minecraft.util.math.BlockPos pos){
+	public boolean canBeReplacedByLeaves(IBlockState state, net.minecraft.world.IBlockAccess world, net.minecraft.util.math.BlockPos pos) {
 		return false;
 	}
 

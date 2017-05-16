@@ -73,9 +73,9 @@ public class IceBlock extends BaseBlock {
 	}
 
 	public IBlockState getState(Block block) {
-		if(block == FirmaMod.freshwater.getBlock()){
+		if (block == FirmaMod.freshwater.getBlock()) {
 			return getDefaultState().withProperty(properties, IceEnum.FRESH);
-		}else if(block == FirmaMod.saltwater.getBlock()){
+		} else if (block == FirmaMod.saltwater.getBlock()) {
 			return getDefaultState().withProperty(properties, IceEnum.SALT);
 		}
 		return null;

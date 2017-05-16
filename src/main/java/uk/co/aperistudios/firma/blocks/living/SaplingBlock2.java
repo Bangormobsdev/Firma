@@ -77,7 +77,7 @@ public class SaplingBlock2 extends BaseBlock {
 		}
 		return names;
 	}
-	
+
 	@Override
 	public AxisAlignedBB getCollisionBoundingBox(IBlockState bState, IBlockAccess worldIn, BlockPos pos) {
 		return null;
@@ -87,30 +87,29 @@ public class SaplingBlock2 extends BaseBlock {
 	public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer) {
 		return BlockRenderLayer.CUTOUT == layer;
 	}
-	
+
 	@Override
 	public boolean isNormalCube(IBlockState state, IBlockAccess world, BlockPos pos) {
 		return false;
 	}
-	
+
 	@Override
 	public boolean doesSideBlockRendering(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing face) {
 		return false;
 	}
-	
+
 	@Override
 	public String getMetaName(int meta) {
 		return WoodEnum2.getName(meta);
 	}
-	
-	public void growTree(World world, BlockPos bp, Random rand)
-	{
+
+	public void growTree(World world, BlockPos bp, Random rand) {
 		IBlockState state = world.getBlockState(bp);
 		int meta = this.getMetaFromState(state);
 		String name = this.getMetaName(meta);
 		world.setBlockToAir(bp);
 		FirmaTree worldGen = FirmaBiome.getTreeGen(name);
-		if (worldGen != null){
+		if (worldGen != null) {
 			worldGen.set(FirmaMod.log2.getStateFromMeta(meta), FirmaMod.leaf2.getStateFromMeta(meta));
 			worldGen.generate(world, rand, bp);
 		}
@@ -121,11 +120,11 @@ public class SaplingBlock2 extends BaseBlock {
 		super.randomTick(worldIn, pos, state, random);
 		growTree(worldIn, pos, random);
 	}
-	
+
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX,
 			float hitY, float hitZ) {
-		
+
 		growTree(worldIn, pos, new Random());
 		return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
 	}

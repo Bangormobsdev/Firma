@@ -5,25 +5,21 @@ import net.minecraft.world.gen.layer.IntCache;
 import uk.co.aperistudios.firma.generation.FirmaBiome;
 
 public class GenLayerDeepOcean extends FirmaGenLayer {
-	public GenLayerDeepOcean(long seed, FirmaGenLayer parent)
-	{
+	public GenLayerDeepOcean(long seed, FirmaGenLayer parent) {
 		super(seed);
 		this.parent = parent;
 	}
 
 	@Override
-	public int[] getInts(int parX, int parZ, int parXSize, int parZSize)
-	{
+	public int[] getInts(int parX, int parZ, int parXSize, int parZSize) {
 		int xSize = parXSize + 2;
 		int zSize = parZSize + 2;
 		int thisID;
 		int[] parentIDs = this.parent.getInts(parX - 1, parZ - 1, xSize, zSize);
 		int[] outCache = IntCache.getIntCache(parXSize * parZSize);
 
-		for (int z = 0; z < parZSize; ++z)
-		{
-			for (int x = 0; x < parXSize; ++x)
-			{
+		for (int z = 0; z < parZSize; ++z) {
+			for (int x = 0; x < parXSize; ++x) {
 				int northID = parentIDs[x + 1 + z * xSize];
 				int rightID = parentIDs[x + 2 + (z + 1) * xSize];
 				int leftID = parentIDs[x + (z + 1) * xSize];
@@ -32,32 +28,25 @@ public class GenLayerDeepOcean extends FirmaGenLayer {
 				int oceanCount = 0;
 				int outIndex = x + z * parXSize;
 
-				if (isOceanic(northID))
-				{
+				if (isOceanic(northID)) {
 					++oceanCount;
 				}
 
-				if (isOceanic(rightID))
-				{
+				if (isOceanic(rightID)) {
 					++oceanCount;
 				}
 
-				if (isOceanic(leftID))
-				{
+				if (isOceanic(leftID)) {
 					++oceanCount;
 				}
 
-				if (isOceanic(southID))
-				{
+				if (isOceanic(southID)) {
 					++oceanCount;
 				}
 
-				if (isOceanic(thisID) && oceanCount > 3)
-				{
-					outCache[outIndex] = Layer.DOCEAN;//Biome.getIdForBiome(FirmaBiome.DEEPOCEAN);
-				}
-				else
-				{
+				if (isOceanic(thisID) && oceanCount > 3) {
+					outCache[outIndex] = Layer.DOCEAN;// Biome.getIdForBiome(FirmaBiome.DEEPOCEAN);
+				} else {
 					outCache[outIndex] = thisID;
 				}
 			}

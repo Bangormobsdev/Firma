@@ -1,15 +1,13 @@
 package uk.co.aperistudios.firma.generation.layers;
 
 public class FirmaGenLayerZoom extends FirmaGenLayer {
-	public FirmaGenLayerZoom(long seed, FirmaGenLayer par3GenLayer)
-	{
+	public FirmaGenLayerZoom(long seed, FirmaGenLayer par3GenLayer) {
 		super(seed);
 		super.parent = par3GenLayer;
 	}
 
 	@Override
-	public int[] getInts(int xPos, int zPos, int xSize, int zSize)
-	{
+	public int[] getInts(int xPos, int zPos, int xSize, int zSize) {
 		int xCoord = xPos >> 1;
 		int zCoord = zPos >> 1;
 		int newXSize = (xSize >> 1) + 2;
@@ -21,14 +19,12 @@ public class FirmaGenLayerZoom extends FirmaGenLayer {
 		int[] out = new int[i2 * j2];
 		int l2;
 
-		for (int z = 0; z < newZSize - 1; ++z)
-		{
+		for (int z = 0; z < newZSize - 1; ++z) {
 			l2 = (z << 1) * i2;
 			int i3 = 0;
 			int thisID = parentCache[i3 + 0 + (z + 0) * newXSize];
 
-			for (int x = parentCache[i3 + 0 + (z + 1) * newXSize]; i3 < newXSize - 1; ++i3)
-			{
+			for (int x = parentCache[i3 + 0 + (z + 1) * newXSize]; i3 < newXSize - 1; ++i3) {
 				this.initChunkSeed(i3 + xCoord << 1, z + zCoord << 1);
 				int rightID = parentCache[i3 + 1 + (z + 0) * newXSize];
 				int upRightID = parentCache[i3 + 1 + (z + 1) * newXSize];
@@ -43,9 +39,8 @@ public class FirmaGenLayerZoom extends FirmaGenLayer {
 
 		int[] outCache = new int[xSize * zSize];
 
-		for (int zoom = 0; zoom < zSize; ++zoom)
-		{
-			int srcPos = (zoom + (zPos & 1)) * i2 + (xPos & 1); //NOPMD
+		for (int zoom = 0; zoom < zSize; ++zoom) {
+			int srcPos = (zoom + (zPos & 1)) * i2 + (xPos & 1); // NOPMD
 			System.arraycopy(out, srcPos, outCache, zoom * xSize, xSize);
 		}
 		return outCache;
@@ -54,13 +49,11 @@ public class FirmaGenLayerZoom extends FirmaGenLayer {
 	/**
 	 * Chooses one of the two inputs randomly.
 	 */
-	protected int choose(int par1, int par2)
-	{
+	protected int choose(int par1, int par2) {
 		return this.nextInt(2) == 0 ? par1 : par2;
 	}
 
-	protected int choose4(int id0, int id1, int id2, int id3)
-	{
+	protected int choose4(int id0, int id1, int id2, int id3) {
 		if (id1 == id2 && id2 == id3)
 			return id1;
 		else if (id0 == id1 && id0 == id2)
@@ -93,15 +86,13 @@ public class FirmaGenLayerZoom extends FirmaGenLayer {
 			return id2;
 		else if (id3 == id2 && id0 != id1)
 			return id2;
-		else
-		{
+		else {
 			int rand = this.nextInt(4);
 			return rand == 0 ? id0 : rand == 1 ? id1 : rand == 2 ? id2 : id3;
 		}
 	}
 
-	public static FirmaGenLayer magnify(long par0, FirmaGenLayer parent, int par3)
-	{
+	public static FirmaGenLayer magnify(long par0, FirmaGenLayer parent, int par3) {
 		FirmaGenLayer iter = parent;
 		for (int var5 = 0; var5 < par3; ++var5)
 			iter = new FirmaGenLayerZoom(par0 + var5, iter);

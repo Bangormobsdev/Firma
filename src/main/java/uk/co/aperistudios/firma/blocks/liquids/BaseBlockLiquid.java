@@ -12,7 +12,7 @@ public class BaseBlockLiquid extends BlockFluidClassic {
 	public BaseBlockLiquid(Fluid fluid, Material material) {
 		super(fluid, material);
 	}
-	
+
 	@Override
 	public boolean canBeReplacedByLeaves(IBlockState state, IBlockAccess world, BlockPos pos) {
 		return false;

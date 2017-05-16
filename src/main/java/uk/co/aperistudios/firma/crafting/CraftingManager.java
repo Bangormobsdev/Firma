@@ -10,7 +10,8 @@ import uk.co.aperistudios.firma.types.ToolType;
 
 public class CraftingManager {
 	private static ArrayList<Recipe> list = new ArrayList<Recipe>();
-	public static RecipeShape knifeShape1, knifeShape2,axeShape,hammerShape,hoeShape1,hoeShape2,javelinShape,shovelShape,jugShape,moldShape,chiselShape,maceShape,pickaxeShape,propickaxeShape,sawShape,swordShape,scytheShape,potShape,vesselShape;
+	public static RecipeShape knifeShape1, knifeShape2, axeShape, hammerShape, hoeShape1, hoeShape2, javelinShape, shovelShape, jugShape, moldShape,
+			chiselShape, maceShape, pickaxeShape, propickaxeShape, sawShape, swordShape, scytheShape, potShape, vesselShape;
 	public static final int knapWidth = 5, knapHeight = 5; // Constants for
 															// size of grid.
 															// Maybe we'll want
@@ -39,13 +40,13 @@ public class CraftingManager {
 						if (!r.getSubItemName().equals(subName)) {
 							continue;
 						} // Not the specific sub-item
-						// We're good!
+							// We're good!
 					}
 				}
 				// Only get here once Craft / IS match
 				// Now to check grid
 				RecipeShape rs = r.getShape();
-				if(rs.matches(mat==CraftMat.CLAY, b)){
+				if (rs.matches(mat == CraftMat.CLAY, b)) {
 					return r;
 				}
 			}
@@ -114,11 +115,14 @@ public class CraftingManager {
 		Recipe.makeRecipe(new ItemStack(FirmaMod.unfiredClayBits, 1, FirmaMod.unfiredClayBits.getSubMeta("vessel")), CraftMat.CLAY, normalClayOnly,
 				vesselShape);
 		Recipe.makeRecipe(new ItemStack(FirmaMod.crucible), CraftMat.CLAY, fireClayOnly, potShape);
-		
-		for(ToolType tt : ToolType.values()){
-			for(ToolMaterials tm : ToolMaterials.values()){
-				if(tm == ToolMaterials.Stone){ continue; }
-				Recipe.makeRecipe(new ItemStack(FirmaMod.toolHeads,1,FirmaMod.toolHeads.getSubMeta(tm.getName()+tt.getName())), CraftMat.ANVIL, new ItemStack(FirmaMod.ingot,1,FirmaMod.ingot.getSubMeta(tm.getName())), tt.getShape());
+
+		for (ToolType tt : ToolType.values()) {
+			for (ToolMaterials tm : ToolMaterials.values()) {
+				if (tm == ToolMaterials.Stone) {
+					continue;
+				}
+				Recipe.makeRecipe(new ItemStack(FirmaMod.toolHeads, 1, FirmaMod.toolHeads.getSubMeta(tm.getName() + tt.getName())), CraftMat.ANVIL,
+						new ItemStack(FirmaMod.ingot, 1, FirmaMod.ingot.getSubMeta(tm.getName())), tt.getShape());
 			}
 		}
 	}

@@ -21,7 +21,7 @@ public class FirmaBiomeProvider extends BiomeProvider {
 
 	public FirmaBiomeProvider(long seed, WorldType worldTypeIn, String options) {
 		this.biomeCache = new BiomeCache(this);
-		FirmaBiome[] allowedBiomesFirma = { FirmaBiome.PLAINS, FirmaBiome.HILLS ,FirmaBiome.SWAMP };
+		FirmaBiome[] allowedBiomesFirma = { FirmaBiome.PLAINS, FirmaBiome.HILLS, FirmaBiome.SWAMP };
 		this.biomesToSpawnIn = Lists.newArrayList(allowedBiomesFirma);
 		GenLayer[] agenlayer = FirmaGenLayer.initialize(seed, worldTypeIn);
 		this.genBiomes = agenlayer[0];
@@ -116,8 +116,8 @@ public class FirmaBiomeProvider extends BiomeProvider {
 
 			if (biomes.contains(biome) && (blockpos == null || random.nextInt(k1 + 1) == 0)) {
 				blockpos = new BlockPos(i2, 0, j2);
-				System.out.println("Placing spawn in "+biome.getBiomeName());
-				//return blockpos;
+				System.out.println("Placing spawn in " + biome.getBiomeName());
+				// return blockpos;
 				++k1;
 			}
 		}
@@ -132,29 +132,27 @@ public class FirmaBiomeProvider extends BiomeProvider {
 
 	@Override
 	public Biome getBiome(BlockPos pos) {
-		return this.getBiome(pos,null);
+		return this.getBiome(pos, null);
 	}
 
 	@Override
 	public Biome getBiome(BlockPos pos, Biome defaultBiome) {
 		return this.biomeCache.getBiome(pos.getX(), pos.getZ(), defaultBiome);
 	}
-	
-    @Override
-	public GenLayer[] getModdedBiomeGenerators(WorldType worldType, long seed, GenLayer[] original)
-    {
-        return null;
-    }
-    
-    @Override
-	public void cleanupCache()
-    {
-    	super.cleanupCache();
-        this.biomeCache.cleanupCache();
-    }
-    
-    @Override
-    public boolean isFixedBiome() {
-    	return false;
-    }
+
+	@Override
+	public GenLayer[] getModdedBiomeGenerators(WorldType worldType, long seed, GenLayer[] original) {
+		return null;
+	}
+
+	@Override
+	public void cleanupCache() {
+		super.cleanupCache();
+		this.biomeCache.cleanupCache();
+	}
+
+	@Override
+	public boolean isFixedBiome() {
+		return false;
+	}
 }

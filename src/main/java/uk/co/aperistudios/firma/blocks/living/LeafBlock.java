@@ -28,7 +28,7 @@ public class LeafBlock extends BaseBlock {
 		this.setResistance(10);
 		this.setCreativeTab(FirmaMod.blockTab);
 		this.setDefaultState(this.getStateFromMeta(0));
-		this.needsRandomTick=true;
+		this.needsRandomTick = true;
 	}
 
 	@Override
@@ -96,21 +96,20 @@ public class LeafBlock extends BaseBlock {
 	public boolean isFoliage(IBlockAccess world, BlockPos pos) {
 		return true;
 	}
-	
+
 	@Override
 	public String getMetaName(int meta) {
 		return WoodEnum.getName(meta);
 	}
-	
+
 	@Override
 	public boolean canBeReplacedByLeaves(IBlockState state, IBlockAccess world, BlockPos pos) {
 		return true;
 	}
-	
+
 	@Override
 	public boolean doesSideBlockRendering(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing face) {
 		return false;
 	}
-	
 
 }

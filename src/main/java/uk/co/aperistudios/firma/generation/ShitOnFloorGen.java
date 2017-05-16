@@ -28,8 +28,8 @@ public class ShitOnFloorGen implements IWorldGenerator {
 			int x = random.nextInt(16) + chunkX * 16;
 			int z = random.nextInt(16) + chunkZ * 16;
 			int y = world.getHeight();
-			BlockPos pos = new BlockPos(x,y,z);
-			while(!shitCheck(world, pos)) {
+			BlockPos pos = new BlockPos(x, y, z);
+			while (!shitCheck(world, pos)) {
 				pos = pos.down();
 			}
 			IBlockState b = world.getBlockState(pos);
@@ -44,7 +44,7 @@ public class ShitOnFloorGen implements IWorldGenerator {
 				world.setBlockState(pos, FirmaMod.shitOnFloor.getDefaultState(), 2);
 				SoFTileEntity te = (SoFTileEntity) world.getTileEntity(pos);
 				if (te != null) {
-					te.setItem(getItemForArea(random,meta));
+					te.setItem(getItemForArea(random, meta));
 					te.markDirty();
 				}
 			}
@@ -53,25 +53,25 @@ public class ShitOnFloorGen implements IWorldGenerator {
 
 	private boolean shitCheck(World world, BlockPos pos) {
 		Block shitfuck = world.getBlockState(pos).getBlock();
-		if(shitfuck == FirmaMod.leaf || shitfuck == FirmaMod.leaf2){
-			belowTree=true;
+		if (shitfuck == FirmaMod.leaf || shitfuck == FirmaMod.leaf2) {
+			belowTree = true;
 			return false;
 		}
-		return shitfuck != Blocks.AIR; 
+		return shitfuck != Blocks.AIR;
 	}
-	
-	public ItemStack getItemForArea(Random r,String meta){
-		if(r.nextInt(100)<10){
+
+	public ItemStack getItemForArea(Random r, String meta) {
+		if (r.nextInt(100) < 10) {
 			return new ItemStack(Items.STICK);
 		}
-		if(belowTree && r.nextInt(100)<80){
+		if (belowTree && r.nextInt(100) < 80) {
 			return new ItemStack(Items.STICK);
 		}
-		if(r.nextInt(100)<20){
+		if (r.nextInt(100) < 20) {
 			OresEnum oe = Util.getOreForRock(r, meta);
-			return new ItemStack(FirmaMod.oreItem, 1, FirmaMod.oreItem.getSubMeta(oe.getName()+"poor")); 
+			return new ItemStack(FirmaMod.oreItem, 1, FirmaMod.oreItem.getSubMeta(oe.getName() + "poor"));
 		}
-		return new ItemStack(FirmaMod.pebble,1,FirmaMod.pebble.getSubMeta(meta));
+		return new ItemStack(FirmaMod.pebble, 1, FirmaMod.pebble.getSubMeta(meta));
 	}
 
 }

@@ -73,12 +73,12 @@ public class DirtBlock extends BaseBlock {
 	public String getMetaName(int meta) {
 		return RockEnum.getName(meta);
 	}
-	
+
 	@Override
 	public boolean canCreatureSpawn(IBlockState state, IBlockAccess world, BlockPos pos, SpawnPlacementType type) {
 		return super.canCreatureSpawn(state, world, pos, type);
 	}
-	
+
 	@Override
 	public boolean canHarvestBlock(IBlockAccess world, BlockPos pos, EntityPlayer player) {
 		return super.canHarvestBlock(world, pos, player);

@@ -31,8 +31,8 @@ public class AnvilContainer extends Container {
 
 	@SideOnly(Side.CLIENT)
 	public AnvilContainer(InventoryPlayer playerInv, World worldIn, AnvilTileEntity ate) {
-		this(playerInv, worldIn, BlockPos.ORIGIN,ate);
-		
+		this(playerInv, worldIn, BlockPos.ORIGIN, ate);
+
 	}
 
 	public AnvilContainer(InventoryPlayer playerInv, World worldIn, BlockPos pos, AnvilTileEntity ate) {
@@ -63,8 +63,7 @@ public class AnvilContainer extends Container {
 				return false;
 			}
 		});
-		PlayerInv.buildInventoryLayout(this, playerInv, 8, 108,true, true);
-
+		PlayerInv.buildInventoryLayout(this, playerInv, 8, 108, true, true);
 
 	}
 

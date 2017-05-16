@@ -29,6 +29,6 @@ public class SlotSpecialCraftingOutput extends Slot {
 			((GuiKnapping) Minecraft.getMinecraft().currentScreen).resetButtons(false);
 		}
 		return ItemStack.EMPTY;
-		//return itemstack;
+		// return itemstack;
 	}
 }

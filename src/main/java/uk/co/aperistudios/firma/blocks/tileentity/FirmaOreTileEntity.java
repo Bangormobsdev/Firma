@@ -32,14 +32,14 @@ public class FirmaOreTileEntity extends TileEntity {
 			rock = RocksEnum.get(RockEnum2.getName(meta));
 		}
 	}
-	
+
 	@Override
 	public void readFromNBT(NBTTagCompound compound) {
 		super.readFromNBT(compound);
 		ore = OresEnum.values()[compound.getInteger("ore")];
 		rock = RocksEnum.values()[compound.getInteger("rock")];
 	}
-	
+
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
 		super.writeToNBT(compound);
@@ -47,22 +47,20 @@ public class FirmaOreTileEntity extends TileEntity {
 		compound.setInteger("rock", RocksEnum.indexOf(rock));
 		return compound;
 	}
-	
+
 	@Override
 	public double getMaxRenderDistanceSquared() {
 		return 1024;
 	}
-	
-    @Override
-	@Nullable
-    public SPacketUpdateTileEntity getUpdatePacket()
-    {
-        return new SPacketUpdateTileEntity(this.pos, 0, this.getUpdateTag());
-    }
 
-    @Override
-	public NBTTagCompound getUpdateTag()
-    {
-        return this.writeToNBT(new NBTTagCompound());
-    }
+	@Override
+	@Nullable
+	public SPacketUpdateTileEntity getUpdatePacket() {
+		return new SPacketUpdateTileEntity(this.pos, 0, this.getUpdateTag());
+	}
+
+	@Override
+	public NBTTagCompound getUpdateTag() {
+		return this.writeToNBT(new NBTTagCompound());
+	}
 }

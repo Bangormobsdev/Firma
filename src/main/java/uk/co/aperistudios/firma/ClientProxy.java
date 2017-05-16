@@ -61,7 +61,7 @@ public class ClientProxy extends CommonProxy {
 				return new ItemStack(FirmaMod.toolHeads, 1, 14);
 			}
 		};
-		FirmaMod.toolTab = new CreativeTabs("FirmaTools"){
+		FirmaMod.toolTab = new CreativeTabs("FirmaTools") {
 			@Override
 			public ItemStack getTabIconItem() {
 				return new ItemStack(FirmaMod.bunchOfTools.get(4));
@@ -89,13 +89,13 @@ public class ClientProxy extends CommonProxy {
 					list[f] = res;
 				}
 				ModelBakery.registerItemVariants(mi, list);
-			}else{
+			} else {
 				FirmaItem fi = i;
 				String loc = fi.getBlockStateName();
-				//ResourceLocation rl = new ResourceLocation(loc);
-				ModelResourceLocation mrl = new ModelResourceLocation(loc, "variants="+fi.getVariant());
+				// ResourceLocation rl = new ResourceLocation(loc);
+				ModelResourceLocation mrl = new ModelResourceLocation(loc, "variants=" + fi.getVariant());
 				ModelLoader.setCustomModelResourceLocation(i, 0, mrl);
-				//ModelBakery.registerItemVariants(fi, rl);
+				// ModelBakery.registerItemVariants(fi, rl);
 			}
 		}
 
@@ -116,11 +116,11 @@ public class ClientProxy extends CommonProxy {
 			ModelLoader.setCustomStateMapper(f.getFluidBlock(), new StateMapperBase() {
 				@Override
 				protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
-					return new ModelResourceLocation(f.getModelPath(), ((IFluidBlock) f.getFluidBlock()).getFluid().getName()); 
+					return new ModelResourceLocation(f.getModelPath(), ((IFluidBlock) f.getFluidBlock()).getFluid().getName());
 				}
 			});
 		}
-		
+
 		// Special Renderers
 		ClientRegistry.bindTileEntitySpecialRenderer(SoFTileEntity.class, new ShitOnFloorRenderer());
 		LeafColor.init();
@@ -134,11 +134,15 @@ public class ClientProxy extends CommonProxy {
 		Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(new GrassColor(), FirmaMod.grass2);
 		Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(new GrassColor(), FirmaMod.grasss);
 		Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(new GrassColor(), FirmaMod.grasss2);
-		
-		// More than one way to skin a cat. Moved into fluid like it apparently should have been
-		//Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(new LiquidColor(0xffaaff00), FirmaMod.saltwater.getFluidBlock());
-		//Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(new LiquidColor(0xffaaff00), FirmaMod.freshwater.getFluidBlock());
-		//Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new LiquidItemColor(), FirmaMod.saltwater.getFluidItem());
+
+		// More than one way to skin a cat. Moved into fluid like it apparently
+		// should have been
+		// Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(new
+		// LiquidColor(0xffaaff00), FirmaMod.saltwater.getFluidBlock());
+		// Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(new
+		// LiquidColor(0xffaaff00), FirmaMod.freshwater.getFluidBlock());
+		// Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new
+		// LiquidItemColor(), FirmaMod.saltwater.getFluidItem());
 		super.init(e);
 	}
 

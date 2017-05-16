@@ -88,8 +88,8 @@ public class PlayerData {
 	public World getWorld() {
 		return world;
 	}
-	
-	public BlockPos getPosition(){
+
+	public BlockPos getPosition() {
 		return pos;
 	}
 }

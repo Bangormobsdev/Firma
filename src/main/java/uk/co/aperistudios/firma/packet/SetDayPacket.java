@@ -10,11 +10,11 @@ public class SetDayPacket implements IMessage {
 
 	private TimeData td;
 
-	public SetDayPacket(){
-		
+	public SetDayPacket() {
+
 	}
-	
-	public SetDayPacket(TimeData td){
+
+	public SetDayPacket(TimeData td) {
 		this.td = td;
 	}
 

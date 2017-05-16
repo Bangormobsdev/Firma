@@ -46,6 +46,7 @@ public class FirmaChunkGen implements IChunkGenerator {
 	double[] depthRegion;
 	private float[] biomeWeights;
 	private double[] heightMap;
+
 	public FirmaChunkGen(World worldIn, boolean mapFeaturesEnabledIn) {
 		this.world = worldIn;
 		this.mapFeaturesEnabled = mapFeaturesEnabledIn;
@@ -53,7 +54,7 @@ public class FirmaChunkGen implements IChunkGenerator {
 		this.rockStrataNoise = new VoronoiNoise(world.getSeed(), (short) 0);
 
 		String customSetting = worldIn.getWorldInfo().getGeneratorOptions();
-		if(customSetting.length()==0){
+		if (customSetting.length() == 0) {
 			customSetting = "{\"baseSize\":20.0,\"heightScale\":2.0,\"seaLevel\":151}";
 		}
 		this.settings = ChunkProviderSettings.Factory.jsonToFactory(customSetting).build();
@@ -99,14 +100,14 @@ public class FirmaChunkGen implements IChunkGenerator {
 		int cx, cy, cz, top, lt, lb, lm;
 		for (cx = 0; cx < 16; cx++) {
 			for (cz = 0; cz < 16; cz++) {
-				FirmaBiome biome = (FirmaBiome) biomesForBiomeGen[(cz + 1)*18 + (cx + 1) ];
+				FirmaBiome biome = (FirmaBiome) biomesForBiomeGen[(cz + 1) * 18 + (cx + 1)];
 				if (isDirtBiome(biome)) {
 					dirt = Util.getDirt(topRock);
-					int heat = Util.getEquatorialHeat(z*16);
-					if(heat > 21){
+					int heat = Util.getEquatorialHeat(z * 16);
+					if (heat > 21) {
 						grass = Util.getSparseGrass(topRock);
-					}else{
-						grass = Util.getGrass(topRock);	
+					} else {
+						grass = Util.getGrass(topRock);
 					}
 				} else if (isSandBiome(biome)) {
 					dirt = Util.getSand(topRock);
@@ -124,17 +125,17 @@ public class FirmaChunkGen implements IChunkGenerator {
 				}
 				top = 255;
 				for (top = 255; top > 0; top--) {
-					b=primer.getBlockState(cx, top, cz).getBlock();
-					if (b == STONE.getBlock() || b==OCEAN.getBlock()) {
+					b = primer.getBlockState(cx, top, cz).getBlock();
+					if (b == STONE.getBlock() || b == OCEAN.getBlock()) {
 						break;
 					}
 				}
 				int dirtDepth = biome.getDirtDepth();
-				dirtDepth += ((FirmaBiome) biomesForBiomeGen[(cz+2)*18+(cx+1)]).getDirtDepth();
-				dirtDepth += ((FirmaBiome) biomesForBiomeGen[(cz)*18+(cx+1)]).getDirtDepth();
-				dirtDepth += ((FirmaBiome) biomesForBiomeGen[(cz+1)*18+(cx+2)]).getDirtDepth();
-				dirtDepth += ((FirmaBiome) biomesForBiomeGen[(cz+1)*18+(cx)]).getDirtDepth();
-				dirtDepth = (int) ((dirtDepth * 1f)/5f);
+				dirtDepth += ((FirmaBiome) biomesForBiomeGen[(cz + 2) * 18 + (cx + 1)]).getDirtDepth();
+				dirtDepth += ((FirmaBiome) biomesForBiomeGen[(cz) * 18 + (cx + 1)]).getDirtDepth();
+				dirtDepth += ((FirmaBiome) biomesForBiomeGen[(cz + 1) * 18 + (cx + 2)]).getDirtDepth();
+				dirtDepth += ((FirmaBiome) biomesForBiomeGen[(cz + 1) * 18 + (cx)]).getDirtDepth();
+				dirtDepth = (int) ((dirtDepth * 1f) / 5f);
 				lt = top - dirtDepth;
 				lb = lt / 3; // Lower layers below dirt layer
 				lm = lb * 2;
@@ -209,9 +210,9 @@ public class FirmaChunkGen implements IChunkGenerator {
 	@Override
 	public void populate(int x, int z) {
 		BlockFalling.fallInstantly = true;
-		//int i = x * 16;
-		//int j = z * 16;
-		//BlockPos blockpos = new BlockPos(i, 0, j);
+		// int i = x * 16;
+		// int j = z * 16;
+		// BlockPos blockpos = new BlockPos(i, 0, j);
 		// Biome biome = this.world.getBiome(blockpos.add(16, 0, 16));
 		this.rand.setSeed(this.world.getSeed());
 		long k = this.rand.nextLong() / 2L * 2L + 1L;
@@ -250,7 +251,6 @@ public class FirmaChunkGen implements IChunkGenerator {
 			}
 		}
 
-		
 		net.minecraftforge.event.ForgeEventFactory.onChunkPopulate(false, this, this.world, this.rand, x, z, false);
 
 		BlockFalling.fallInstantly = false;
@@ -351,8 +351,8 @@ public class FirmaChunkGen implements IChunkGenerator {
 	}
 
 	private void generateHeightmap(int x, int y, int z) {
-		this.depthRegion = this.depthNoise.generateNoiseOctaves(this.depthRegion, x, z, 5, 5, this.settings.depthNoiseScaleX,
-				 this.settings.depthNoiseScaleZ, this.settings.depthNoiseScaleExponent);
+		this.depthRegion = this.depthNoise.generateNoiseOctaves(this.depthRegion, x, z, 5, 5, this.settings.depthNoiseScaleX, this.settings.depthNoiseScaleZ,
+				this.settings.depthNoiseScaleExponent);
 		float f = this.settings.coordinateScale;
 		float f1 = this.settings.heightScale;
 		this.mainNoiseRegion = this.mainPerlinNoise.generateNoiseOctaves(this.mainNoiseRegion, x, y, z, 5, 33, 5, f / this.settings.mainNoiseScaleX,

@@ -67,7 +67,7 @@ public class GravelBlock extends BaseBlock {
 		}
 		return names;
 	}
-	
+
 	@Override
 	public String getMetaName(int meta) {
 		return RockEnum.getName(meta);

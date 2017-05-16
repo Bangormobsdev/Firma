@@ -2,8 +2,6 @@ package uk.co.aperistudios.firma.blocks.tileentity;
 
 import javax.annotation.Nullable;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
@@ -15,14 +13,66 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
-import net.minecraft.world.IInteractionObject;
-import uk.co.aperistudios.firma.container.AnvilContainer;
-import uk.co.aperistudios.firma.gui.GuiHandler;
 
-public class AnvilTileEntity extends TileEntity implements IInventory {
-
+public class FloorStorageTileEntity extends TileEntity implements IInventory {
+	private NonNullList<ItemStack> inventory = NonNullList.<ItemStack>withSize(4, ItemStack.EMPTY);
 	String customName;
-	private NonNullList<ItemStack> inventory = NonNullList.<ItemStack>withSize(3, ItemStack.EMPTY);
+
+	@Override
+	public void readFromNBT(NBTTagCompound nbt) {
+		super.readFromNBT(nbt);
+
+		NBTTagList list = nbt.getTagList("Items", 10);
+		for (int i = 0; i < list.tagCount(); ++i) {
+			NBTTagCompound stackTag = list.getCompoundTagAt(i);
+			int slot = stackTag.getByte("Slot") & 255;
+			this.setInventorySlotContents(slot, new ItemStack(stackTag));
+		}
+
+		if (nbt.hasKey("CustomName", 8)) {
+			this.setCustomName(nbt.getString("CustomName"));
+		}
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+		super.writeToNBT(nbt);
+
+		NBTTagList list = new NBTTagList();
+		for (int i = 0; i < this.getSizeInventory(); ++i) {
+			if (this.getStackInSlot(i) != null) {
+				NBTTagCompound stackTag = new NBTTagCompound();
+				stackTag.setByte("Slot", (byte) i);
+				this.getStackInSlot(i).writeToNBT(stackTag);
+				list.appendTag(stackTag);
+			}
+		}
+		nbt.setTag("Items", list);
+
+		if (this.hasCustomName()) {
+			nbt.setString("CustomName", this.getCustomName());
+		}
+		return nbt;
+	}
+
+	@Override
+	public void setInventorySlotContents(int index, ItemStack stack) {
+		this.inventory.set(index, stack);
+
+		if (stack.getCount() > this.getInventoryStackLimit()) {
+			stack.setCount(this.getInventoryStackLimit());
+		}
+
+	}
+
+	private void setCustomName(String string) {
+		this.customName = string;
+	}
+
+	@Override
+	public ItemStack getStackInSlot(int index) {
+		return this.inventory.get(index);
+	}
 
 	@Override
 	public String getName() {
@@ -36,7 +86,7 @@ public class AnvilTileEntity extends TileEntity implements IInventory {
 
 	@Override
 	public int getSizeInventory() {
-		return 3;
+		return 4;
 	}
 
 	@Override
@@ -87,61 +137,12 @@ public class AnvilTileEntity extends TileEntity implements IInventory {
 	}
 
 	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
-		super.writeToNBT(nbt);
-
-		NBTTagList list = new NBTTagList();
-		for (int i = 0; i < this.getSizeInventory(); ++i) {
-			if (this.getStackInSlot(i) != null) {
-				NBTTagCompound stackTag = new NBTTagCompound();
-				stackTag.setByte("Slot", (byte) i);
-				this.getStackInSlot(i).writeToNBT(stackTag);
-				list.appendTag(stackTag);
-			}
-		}
-		nbt.setTag("Items", list);
-
-		if (this.hasCustomName()) {
-			nbt.setString("CustomName", this.getCustomName());
-		}
-		return nbt;
-	}
-
-	@Override
 	public ITextComponent getDisplayName() {
 		return this.hasCustomName() ? new TextComponentString(this.getName()) : new TextComponentTranslation(this.getName(), new Object[0]);
 	}
 
 	private String getCustomName() {
 		return customName;
-	}
-
-	@Override
-	public void readFromNBT(NBTTagCompound nbt) {
-		super.readFromNBT(nbt);
-
-		NBTTagList list = nbt.getTagList("Items", 10);
-		for (int i = 0; i < list.tagCount(); ++i) {
-			NBTTagCompound stackTag = list.getCompoundTagAt(i);
-			int slot = stackTag.getByte("Slot") & 255;
-			this.setInventorySlotContents(slot, new ItemStack(stackTag));
-		}
-
-		if (nbt.hasKey("CustomName", 8)) {
-			this.setCustomName(nbt.getString("CustomName"));
-		}
-	}
-
-	private void setCustomName(String string) {
-		this.customName = string;
-	}
-
-	/**
-	 * Returns the stack in the given slot.
-	 */
-	@Override
-	public ItemStack getStackInSlot(int index) {
-		return this.inventory.get(index);
 	}
 
 	/**
@@ -161,20 +162,6 @@ public class AnvilTileEntity extends TileEntity implements IInventory {
 		return ItemStackHelper.getAndRemove(this.inventory, index);
 	}
 
-	/**
-	 * Sets the given item stack to the specified slot in the inventory (can be
-	 * crafting or armor sections).
-	 */
-	@Override
-	public void setInventorySlotContents(int index, ItemStack stack) {
-		this.inventory.set(index, stack);
-
-		if (stack.getCount() > this.getInventoryStackLimit()) {
-			stack.setCount(this.getInventoryStackLimit());
-		}
-
-	}
-
 	@Override
 	@Nullable
 	public SPacketUpdateTileEntity getUpdatePacket() {
@@ -185,5 +172,4 @@ public class AnvilTileEntity extends TileEntity implements IInventory {
 	public NBTTagCompound getUpdateTag() {
 		return this.writeToNBT(new NBTTagCompound());
 	}
-
 }

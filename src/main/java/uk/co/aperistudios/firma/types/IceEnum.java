@@ -3,13 +3,13 @@ package uk.co.aperistudios.firma.types;
 import net.minecraft.util.IStringSerializable;
 
 public enum IceEnum implements IStringSerializable {
-	FRESH(0,"fresh"),SALT(1,"salt");
-	
+	FRESH(0, "fresh"), SALT(1, "salt");
+
 	private int num;
 	private String name;
 
-	IceEnum(int i, String name){
-		this.num=i;
+	IceEnum(int i, String name) {
+		this.num = i;
 		this.name = name;
 	}
 
@@ -37,4 +37,5 @@ public enum IceEnum implements IStringSerializable {
 			}
 		}
 		return null;
-	}}
+	}
+}

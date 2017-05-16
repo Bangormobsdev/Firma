@@ -19,7 +19,7 @@ public class ClayItem extends MetaItem {
 		super(name);
 		setSubs(new String[] { "clay", "fireclay" });
 	}
-	
+
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer player, EnumHand handIn) {
 		Mouse.setGrabbed(false); // TODO Remove debug

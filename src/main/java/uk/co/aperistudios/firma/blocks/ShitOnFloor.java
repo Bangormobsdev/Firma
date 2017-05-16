@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 import uk.co.aperistudios.firma.FirmaMod;
 import uk.co.aperistudios.firma.blocks.tileentity.SoFTileEntity;
 
-public class ShitOnFloor extends Block implements ITileEntityProvider  {
+public class ShitOnFloor extends Block implements ITileEntityProvider {
 
 	public ShitOnFloor(Material materialIn) {
 		super(materialIn);
@@ -26,7 +26,7 @@ public class ShitOnFloor extends Block implements ITileEntityProvider  {
 	public boolean isOpaqueCube(IBlockState state) {
 		return false;
 	}
-	
+
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 		return new AxisAlignedBB(0, 0, 0, 1f, 0.1f, 1f);
@@ -36,12 +36,12 @@ public class ShitOnFloor extends Block implements ITileEntityProvider  {
 	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
 		return new AxisAlignedBB(0, 0, 0, 1f, 0.1f, 1f);
 	}
-	
+
 	@Override
 	public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World worldIn, BlockPos pos) {
 		return new AxisAlignedBB(0, 0, 0, 1f, 0.1f, 1f);
 	}
-	
+
 	@Override
 	public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer) {
 		return false;
@@ -51,11 +51,11 @@ public class ShitOnFloor extends Block implements ITileEntityProvider  {
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
 		return new SoFTileEntity();
 	}
-	
+
 	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
 		SoFTileEntity te = (SoFTileEntity) worldIn.getTileEntity(pos);
-		worldIn.spawnEntity(new EntityItem(worldIn, pos.getX()+0.5f,pos.getY()+0.2f, pos.getZ()+0.5f, te.getItem()));
+		worldIn.spawnEntity(new EntityItem(worldIn, pos.getX() + 0.5f, pos.getY() + 0.2f, pos.getZ() + 0.5f, te.getItem()));
 		super.breakBlock(worldIn, pos, state);
 	}
 }

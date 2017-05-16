@@ -4,6 +4,6 @@ public class HideItem extends MetaItem {
 
 	public HideItem(String name) {
 		super(name);
-		setSubs(new String[] { "raw", "soaked", "scraped", "prep", "sheep"});
+		setSubs(new String[] { "raw", "soaked", "scraped", "prep", "sheep" });
 	}
 }

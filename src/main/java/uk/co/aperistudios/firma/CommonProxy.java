@@ -1,7 +1,5 @@
 package uk.co.aperistudios.firma;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
@@ -54,9 +52,10 @@ import uk.co.aperistudios.firma.blocks.living.SaplingBlock2;
 import uk.co.aperistudios.firma.blocks.living.SparseGrassBlock;
 import uk.co.aperistudios.firma.blocks.living.SparseGrassBlock2;
 import uk.co.aperistudios.firma.blocks.machine.AnvilBlock;
-import uk.co.aperistudios.firma.blocks.recolour.LeafColor;
+import uk.co.aperistudios.firma.blocks.machine.FloorStorage;
 import uk.co.aperistudios.firma.blocks.tileentity.AnvilTileEntity;
 import uk.co.aperistudios.firma.blocks.tileentity.FirmaOreTileEntity;
+import uk.co.aperistudios.firma.blocks.tileentity.FloorStorageTileEntity;
 import uk.co.aperistudios.firma.blocks.tileentity.SoFTileEntity;
 import uk.co.aperistudios.firma.crafting.CraftingManager;
 import uk.co.aperistudios.firma.generation.FirmaBiome;
@@ -68,7 +67,7 @@ import uk.co.aperistudios.firma.generation.ShitOnFloorGen;
 import uk.co.aperistudios.firma.generation.layers.Layer;
 import uk.co.aperistudios.firma.generation.tree.FirmaTree;
 import uk.co.aperistudios.firma.gui.GuiHandler;
-import uk.co.aperistudios.firma.handler.JoinHandler;
+import uk.co.aperistudios.firma.handler.FirmaHandler;
 import uk.co.aperistudios.firma.items.BrickItem;
 import uk.co.aperistudios.firma.items.ClayItem;
 import uk.co.aperistudios.firma.items.DoubleIngotItem;
@@ -77,11 +76,11 @@ import uk.co.aperistudios.firma.items.GemItem;
 import uk.co.aperistudios.firma.items.HideItem;
 import uk.co.aperistudios.firma.items.IngotItem;
 import uk.co.aperistudios.firma.items.MetaBlockItem;
-import uk.co.aperistudios.firma.items.ToolHeads;
 import uk.co.aperistudios.firma.items.MetalSheetItem;
 import uk.co.aperistudios.firma.items.OreItem;
 import uk.co.aperistudios.firma.items.PebbleItem;
 import uk.co.aperistudios.firma.items.ScrapMetalItem;
+import uk.co.aperistudios.firma.items.ToolHeads;
 import uk.co.aperistudios.firma.items.ToolItem;
 import uk.co.aperistudios.firma.items.UnfiredClay;
 import uk.co.aperistudios.firma.packet.KnapToServer;
@@ -100,9 +99,8 @@ public abstract class CommonProxy {
 
 	FirmaWorld fw = new FirmaWorld();
 
-	
 	public void preInit(FMLPreInitializationEvent e) {
-		MinecraftForge.EVENT_BUS.register(new JoinHandler());
+		MinecraftForge.EVENT_BUS.register(new FirmaHandler());
 
 		FirmaMod.rock = new RockBlock(Material.ROCK);
 		FirmaMod.rock2 = new RockBlock2(Material.ROCK);
@@ -135,7 +133,8 @@ public abstract class CommonProxy {
 		FirmaMod.log = new LogBlock(Material.WOOD);
 		FirmaMod.log2 = new LogBlock2(Material.WOOD);
 
-		FirmaMod.shitOnFloor = new ShitOnFloor(Material.PLANTS);
+		FirmaMod.shitOnFloor = new ShitOnFloor(Material.AIR);
+		FirmaMod.floorStorage = new FloorStorage();
 		FirmaMod.crucible = new CrucibleBlock();
 		FirmaMod.anvil = new AnvilBlock(Material.ANVIL);
 		FirmaMod.ore = new OreBlock();
@@ -190,19 +189,19 @@ public abstract class CommonProxy {
 				thisTool.addRecipe();
 			}
 		}
-		
+
 		FirmaMod.lava = new BaseLiquid("lava", fluid -> fluid.setLuminosity(100).setDensity(800).setViscosity(1500), 0xffff0000);
 		FirmaMod.saltwater = new BaseLiquid("saltwater", fluid -> fluid.setLuminosity(0).setDensity(800).setViscosity(1500), 0xff0022ff);
 		FirmaMod.freshwater = new BaseLiquid("freshwater", fluid -> fluid.setLuminosity(0).setDensity(800).setViscosity(1500), 0xff0022ff);
-		for(AlcoholType at : AlcoholType.values()){ 
+		for (AlcoholType at : AlcoholType.values()) {
 			new BaseLiquid(at.getName(), fluid -> fluid.setLuminosity(0).setDensity(800).setViscosity(1500), at.getCol());
 		}
-		
+
 		NetworkRegistry.INSTANCE.registerGuiHandler(FirmaMod.instance, new GuiHandler());
 
 		KnapToServer.init();
 		SetDayPacket.init();
-		
+
 		CraftingManager.addKnappingRecipes();
 
 		for (BaseBlock b : FirmaMod.allBlocks) {
@@ -213,6 +212,7 @@ public abstract class CommonProxy {
 
 		GameRegistry.register(FirmaMod.crucible);
 		GameRegistry.register(FirmaMod.shitOnFloor);
+		GameRegistry.register(FirmaMod.floorStorage);
 
 		for (FirmaItem i : FirmaMod.allItems) {
 			GameRegistry.register(i);
@@ -247,12 +247,12 @@ public abstract class CommonProxy {
 		GameRegistry.registerTileEntity(FirmaOreTileEntity.class, "firmaorete");
 		GameRegistry.registerTileEntity(SoFTileEntity.class, "firmasof");
 		GameRegistry.registerTileEntity(AnvilTileEntity.class, "firmaanvil");
+		GameRegistry.registerTileEntity(FloorStorageTileEntity.class, "firmafloor");
 
 		GameRegistry.registerWorldGenerator(new FirmaOreGen(), 0);
 		GameRegistry.registerWorldGenerator(new FirmaTreeGen(), 0);
 		GameRegistry.registerWorldGenerator(new ShitOnFloorGen(), 0);
-		
-		
+
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 
@@ -265,15 +265,17 @@ public abstract class CommonProxy {
 	}
 
 	public abstract void setDate(TimeData data);
-	
+
 	@SubscribeEvent
 	public void onWorldTick(TickEvent.WorldTickEvent event) {
-		if(event.world.isRemote){ return; } // Not called on client
+		if (event.world.isRemote) {
+			return;
+		} // Not called on client
 		long time = event.world.getWorldTime();
 		if (time > Util.ticksInDay) {
 			MapStorage storage = event.world.getPerWorldStorage();
 			TimeData td = (TimeData) storage.getOrLoadData(TimeData.class, "firmatime");
-			if(td==null){
+			if (td == null) {
 				td = new TimeData("");
 				storage.setData("firmatime", td);
 			}
@@ -282,7 +284,7 @@ public abstract class CommonProxy {
 			td.setDirty(true);
 			SetDayPacket sdp = new SetDayPacket(td);
 			FirmaMod.dispatcher.sendToDimension(sdp, event.world.provider.getDimension());
-			//new Exception().printStackTrace();
+			// new Exception().printStackTrace();
 			System.out.println("Day inceremented on Server " + td.toString());
 		}
 	}

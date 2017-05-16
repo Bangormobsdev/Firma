@@ -79,11 +79,11 @@ public class GuiKnapping extends FirmaGuiContainer {
 		}
 		return "firma:textures/blocks/rock/andesite.png";
 	}
-	
-	public String getRemovedTexture(){
-		if(staticMaterial == CraftMat.LEATHER){
-			if(staticMaterialSub!=null){
-				return "firma:textures/items/leather"+ staticMaterialSub + ".png";
+
+	public String getRemovedTexture() {
+		if (staticMaterial == CraftMat.LEATHER) {
+			if (staticMaterialSub != null) {
+				return "firma:textures/items/leather" + staticMaterialSub + ".png";
 			}
 			return "firma:textures/blocks/flatleather.png";
 		}

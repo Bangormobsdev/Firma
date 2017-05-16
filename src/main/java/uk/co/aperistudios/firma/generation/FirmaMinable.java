@@ -30,11 +30,11 @@ public class FirmaMinable extends WorldGenerator {
 	}
 
 	public FirmaMinable(OresEnum ore, int blockCount, int grade) {
-		this(ore,blockCount,new FirmaMinable.StonePredicate(), grade);
+		this(ore, blockCount, new FirmaMinable.StonePredicate(), grade);
 	}
-	
-	public boolean generate(World worldIn, Random rand, int cX, int cZ){
-		return generate(worldIn, rand, new BlockPos(rand.nextInt(16)+cX*16, rand.nextInt(200), rand.nextInt(16)+cZ*16));
+
+	public boolean generate(World worldIn, Random rand, int cX, int cZ) {
+		return generate(worldIn, rand, new BlockPos(rand.nextInt(16) + cX * 16, rand.nextInt(200), rand.nextInt(16) + cZ * 16));
 	}
 
 	@Override
@@ -78,32 +78,34 @@ public class FirmaMinable extends WorldGenerator {
 
 									IBlockState state = worldIn.getBlockState(blockpos);
 									if (state.getBlock().isReplaceableOreGen(state, worldIn, blockpos, this.predicate)) {
-										RockEnum r=null;
-										RockEnum2 r2=null;
-										if(state.getBlock() instanceof BaseBlock){
+										RockEnum r = null;
+										RockEnum2 r2 = null;
+										if (state.getBlock() instanceof BaseBlock) {
 											r = Util.getRockEnum(state);
-											r2=Util.getRockEnum2(state);
+											r2 = Util.getRockEnum2(state);
 										}
 										boolean isAllowed = false;
-										if(r==null && r2==null){
-											isAllowed=true;
-											// Non-Firma-Rock that says it allows replacing? Must be some other mod! Let them have it
-										}else if(r!=null){
-											for(int v = 0; v < ore.getRock1().length; v++){
-												if(ore.getRock1()[v] == r){
-													isAllowed=true;
+										if (r == null && r2 == null) {
+											isAllowed = true;
+											// Non-Firma-Rock that says it
+											// allows replacing? Must be some
+											// other mod! Let them have it
+										} else if (r != null) {
+											for (int v = 0; v < ore.getRock1().length; v++) {
+												if (ore.getRock1()[v] == r) {
+													isAllowed = true;
 												}
 											}
-										}else if(r2!=null){
-											for(int v = 0; v < ore.getRock2().length; v++){
-												if(ore.getRock2()[v] == r2){
-													isAllowed=true;
+										} else if (r2 != null) {
+											for (int v = 0; v < ore.getRock2().length; v++) {
+												if (ore.getRock2()[v] == r2) {
+													isAllowed = true;
 												}
 											}
 										}
-										if(isAllowed){
+										if (isAllowed) {
 											setToOre(worldIn, blockpos, state, ore, grade);
-										}else{
+										} else {
 										}
 									}
 								}
@@ -134,10 +136,9 @@ public class FirmaMinable extends WorldGenerator {
 		}
 
 		@Override
-		public boolean apply(IBlockState p_apply_1_)
-            {
-                return p_apply_1_ != null && Util.isRawStone(p_apply_1_.getBlock());
-            }
+		public boolean apply(IBlockState p_apply_1_) {
+			return p_apply_1_ != null && Util.isRawStone(p_apply_1_.getBlock());
+		}
 	}
 
 }

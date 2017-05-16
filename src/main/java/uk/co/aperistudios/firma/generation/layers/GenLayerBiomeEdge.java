@@ -10,7 +10,8 @@ public class GenLayerBiomeEdge extends FirmaGenLayer {
 	}
 
 	/**
-	 * Switches biomes so that there's less alias. Where non-mountainous touch mountainous replaces with mountain edge etcetc
+	 * Switches biomes so that there's less alias. Where non-mountainous touch
+	 * mountainous replaces with mountain edge etcetc
 	 */
 	@Override
 	public int[] getInts(int par1, int par2, int xSize, int zSize) {
@@ -32,11 +33,11 @@ public class GenLayerBiomeEdge extends FirmaGenLayer {
 				var13 = inCache[x + 1 + (z + 1 + 1) * (xSize + 2)];
 				outCache[x + z * xSize] = thisID;
 				if (thisID == Layer.EXHILLS) {
-					if(!(isMountain(var10) && isMountain(var11) && isMountain(var12) && isMountain(var13))){
+					if (!(isMountain(var10) && isMountain(var11) && isMountain(var12) && isMountain(var13))) {
 						outCache[x + z * xSize] = Layer.EXHILLSEDGE;
 					}
 				} else if (thisID == Layer.HILLS) {
-					if (!(isMountain(var10) && isMountain(var11) && isMountain(var12) && isMountain(var13))){
+					if (!(isMountain(var10) && isMountain(var11) && isMountain(var12) && isMountain(var13))) {
 						outCache[x + z * xSize] = Layer.HILLSEDGE;
 					}
 				}

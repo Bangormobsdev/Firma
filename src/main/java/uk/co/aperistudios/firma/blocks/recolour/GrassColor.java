@@ -11,12 +11,12 @@ public class GrassColor implements IBlockColor {
 	@Override
 	public int colorMultiplier(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex) {
 		// return worldIn.getBiome(pos).getFoliageColorAtPos(pos);
-	//	Mouse.setGrabbed(false);
+		// Mouse.setGrabbed(false);
 
 		Biome b = worldIn.getBiome(pos);
-		if(!(b instanceof FirmaBiome)){
-		//	Mouse.setGrabbed(false);
-			//throw new RuntimeException("Non-Firma Biome!");
+		if (!(b instanceof FirmaBiome)) {
+			// Mouse.setGrabbed(false);
+			// throw new RuntimeException("Non-Firma Biome!");
 		}
 		int c = b.getGrassColorAtPos(pos);
 		// TODO Mix in seasonal colours

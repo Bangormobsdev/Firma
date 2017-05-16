@@ -37,7 +37,7 @@ public abstract class FirmaGuiContainer extends GuiContainer {
 
 			drawForeground(guiLeft, guiTop);
 		}
-		if (drawInventory){
+		if (drawInventory) {
 			PlayerInv.drawInventory(this, width, height, this.getShiftedYSize());
 		}
 	}

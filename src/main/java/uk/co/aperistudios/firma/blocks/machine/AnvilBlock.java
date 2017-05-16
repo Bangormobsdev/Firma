@@ -122,14 +122,15 @@ public class AnvilBlock extends BaseBlock implements ITileEntityProvider {
 				if (itemInHand.getItem() instanceof ToolItem) { // What a Tool
 					if (((ToolItem) itemInHand.getItem()).isToolType(ToolType.Hammer)) {
 						// TODO Check the hammer/anvil is high enough tier
-						// TODO Check for a heatsource & water source or other cooling
+						// TODO Check for a heatsource & water source or other
+						// cooling
 						if (worldIn.isRemote) {
 							GuiKnapping.staticMaterial = CraftMat.ANVIL;
 							GuiKnapping.staticMaterialSub = FirmaMod.ingot.getSubName(itemInAnvil.getItemDamage());
 						} else {
 							PlayerData pd = PlayerData.getPlayerData(player.getUniqueID());
 							pd.resetKnapCraft();
-							pd.setTileEntity(player.world,pos);
+							pd.setTileEntity(player.world, pos);
 							pd.setCraftingMaterial(CraftMat.ANVIL);
 							pd.setItemStack(itemInAnvil);
 						}

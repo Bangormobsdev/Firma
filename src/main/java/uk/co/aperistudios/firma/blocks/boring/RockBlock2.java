@@ -67,12 +67,12 @@ public class RockBlock2 extends BaseBlock {
 		}
 		return names;
 	}
-	
+
 	@Override
 	public String getMetaName(int meta) {
 		return RockEnum2.getName(meta);
 	}
-	
+
 	@Override
 	public boolean isReplaceableOreGen(IBlockState state, IBlockAccess world, BlockPos pos, Predicate<IBlockState> target) {
 		return true;

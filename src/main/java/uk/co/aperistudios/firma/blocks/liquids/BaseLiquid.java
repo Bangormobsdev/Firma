@@ -29,11 +29,11 @@ public class BaseLiquid extends Fluid {
 		block.setCreativeTab(FirmaMod.blockTab);
 		block.setLightOpacity(3);
 		block.setLightLevel(0);
-		
+
 		GameRegistry.register(block);
 		i = new ItemBlock(block);
-		i.setRegistryName(FirmaMod.MODID+":fluid."+fluidName);
-		i.setUnlocalizedName(FirmaMod.MODID+":fluid."+fluidName);
+		i.setRegistryName(FirmaMod.MODID + ":fluid." + fluidName);
+		i.setUnlocalizedName(FirmaMod.MODID + ":fluid." + fluidName);
 		GameRegistry.register(i);
 		FirmaMod.allFluids.add(this);
 		this.col = col;
@@ -50,17 +50,17 @@ public class BaseLiquid extends Fluid {
 	public Item getFluidItem() {
 		return i;
 	}
-	
+
 	@Override
 	public int getColor() {
 		return col;
 	}
-	
+
 	@Override
 	public int getColor(FluidStack stack) {
 		return col;
 	}
-	
+
 	@Override
 	public int getColor(World world, BlockPos pos) {
 		return col;

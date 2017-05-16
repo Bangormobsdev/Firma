@@ -68,7 +68,7 @@ public class PlankBlock extends BaseBlock {
 		}
 		return names;
 	}
-	
+
 	@Override
 	public AxisAlignedBB getCollisionBoundingBox(IBlockState bState, IBlockAccess worldIn, BlockPos pos) {
 		return null;
@@ -78,7 +78,7 @@ public class PlankBlock extends BaseBlock {
 	public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer) {
 		return BlockRenderLayer.CUTOUT == layer;
 	}
-	
+
 	@Override
 	public String getMetaName(int meta) {
 		return WoodEnum.getName(meta);
