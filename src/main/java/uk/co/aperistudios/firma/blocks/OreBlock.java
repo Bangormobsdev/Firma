@@ -2,7 +2,6 @@ package uk.co.aperistudios.firma.blocks;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -20,6 +19,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import uk.co.aperistudios.firma.Util;
 import uk.co.aperistudios.firma.blocks.boring.BaseBlock;
 import uk.co.aperistudios.firma.blocks.tileentity.FirmaOreTileEntity;
 import uk.co.aperistudios.firma.types.OresEnum;
@@ -133,6 +133,10 @@ public class OreBlock extends BaseBlock implements ITileEntityProvider {
 
 	@Override
 	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
-		return super.getDrops(world, pos, state, fortune);
+		// return super.getDrops(world, pos, state, fortune);
+		FirmaOreTileEntity fote = (FirmaOreTileEntity) world.getTileEntity(pos);
+		List<ItemStack> ret = new ArrayList<ItemStack>();
+		ret.add(Util.getOreItemStack(fote.ore, fote.grade, 1));
+		return ret;
 	}
 }

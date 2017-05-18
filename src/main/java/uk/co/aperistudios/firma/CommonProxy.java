@@ -59,10 +59,11 @@ import uk.co.aperistudios.firma.blocks.tileentity.FloorStorageTileEntity;
 import uk.co.aperistudios.firma.blocks.tileentity.SoFTileEntity;
 import uk.co.aperistudios.firma.crafting.CraftingManager;
 import uk.co.aperistudios.firma.generation.FirmaBiome;
-import uk.co.aperistudios.firma.generation.FirmaOreGen;
+import uk.co.aperistudios.firma.generation.FirmaOreVeinGen;
 import uk.co.aperistudios.firma.generation.FirmaTreeGen;
 import uk.co.aperistudios.firma.generation.FirmaWorld;
 import uk.co.aperistudios.firma.generation.FirmaWorldProvider;
+import uk.co.aperistudios.firma.generation.OreGenReplacer;
 import uk.co.aperistudios.firma.generation.ShitOnFloorGen;
 import uk.co.aperistudios.firma.generation.layers.Layer;
 import uk.co.aperistudios.firma.generation.tree.FirmaTree;
@@ -86,6 +87,7 @@ import uk.co.aperistudios.firma.items.UnfiredClay;
 import uk.co.aperistudios.firma.packet.KnapToServer;
 import uk.co.aperistudios.firma.packet.SetDayPacket;
 import uk.co.aperistudios.firma.types.AlcoholType;
+import uk.co.aperistudios.firma.types.OresEnum;
 import uk.co.aperistudios.firma.types.RockEnum;
 import uk.co.aperistudios.firma.types.RockEnum2;
 import uk.co.aperistudios.firma.types.ToolMaterials;
@@ -248,10 +250,68 @@ public abstract class CommonProxy {
 		GameRegistry.registerTileEntity(SoFTileEntity.class, "firmasof");
 		GameRegistry.registerTileEntity(AnvilTileEntity.class, "firmaanvil");
 		GameRegistry.registerTileEntity(FloorStorageTileEntity.class, "firmafloor");
+		// TODO Non-vein ores.
 
-		GameRegistry.registerWorldGenerator(new FirmaOreGen(), 0);
-		GameRegistry.registerWorldGenerator(new FirmaTreeGen(), 0);
-		GameRegistry.registerWorldGenerator(new ShitOnFloorGen(), 0);
+		// Top layer pinned to top stone block. Veins will break off/be visible
+		// in mountain edges. Harder to follow vein but easier to find more.
+		// Grade 0, shit tier
+		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(100, 256, 1, new OreGenReplacer(OresEnum.NATIVECOPPER, 0)), 0);
+		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(100, 256, 2, new OreGenReplacer(OresEnum.BISMUTHINITE, 0)), 0);
+		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(100, 256, 3, new OreGenReplacer(OresEnum.CASSITERITE, 0)), 0);
+		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(100, 256, 4, new OreGenReplacer(OresEnum.GARNIERITE, 0)), 0);
+		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(100, 256, 5, new OreGenReplacer(OresEnum.MALACHITE, 0)), 0);
+		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(100, 256, 6, new OreGenReplacer(OresEnum.TETRAHEDRITE, 0)), 0);
+		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(100, 256, 7, new OreGenReplacer(OresEnum.HEMATITE, 0)), 0);
+		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(100, 256, 8, new OreGenReplacer(OresEnum.NATIVESILVER, 0)), 0);
+		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(100, 256, 9, new OreGenReplacer(OresEnum.NATIVEGOLD, 0)), 0);
+		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(100, 256, 10, new OreGenReplacer(OresEnum.SPHALERITE, 0)), 0);
+		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(100, 256, 11, new OreGenReplacer(OresEnum.LIMONITE, 0)), 0);
+
+		// Middle layer, between 50 and 100 y, Grade 1
+		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(50, 100, 12, new OreGenReplacer(OresEnum.NATIVECOPPER, 0)), 0);
+		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(50, 100, 13, new OreGenReplacer(OresEnum.NATIVEGOLD, 0)), 0);
+		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(50, 100, 14, new OreGenReplacer(OresEnum.NATIVESILVER, 0)), 0);
+		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(50, 100, 15, new OreGenReplacer(OresEnum.BISMUTHINITE, 0)), 0);
+		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(50, 100, 16, new OreGenReplacer(OresEnum.CASSITERITE, 0)), 0);
+		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(50, 100, 17, new OreGenReplacer(OresEnum.GARNIERITE, 0)), 0);
+		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(50, 100, 18, new OreGenReplacer(OresEnum.HEMATITE, 0)), 0);
+		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(50, 100, 19, new OreGenReplacer(OresEnum.LIMONITE, 0)), 0);
+		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(50, 100, 20, new OreGenReplacer(OresEnum.MALACHITE, 0)), 0);
+		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(50, 100, 21, new OreGenReplacer(OresEnum.SPHALERITE, 0)), 0);
+		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(50, 100, 22, new OreGenReplacer(OresEnum.TETRAHEDRITE, 0)), 0);
+
+		// Bottom layer, between 30 and 70, Grade 2
+		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(30, 70, 23, new OreGenReplacer(OresEnum.NATIVECOPPER, 0)), 0);
+		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(30, 70, 24, new OreGenReplacer(OresEnum.NATIVEGOLD, 0)), 0);
+		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(30, 70, 25, new OreGenReplacer(OresEnum.NATIVESILVER, 0)), 0);
+		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(30, 70, 26, new OreGenReplacer(OresEnum.BISMUTHINITE, 0)), 0);
+		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(30, 70, 27, new OreGenReplacer(OresEnum.CASSITERITE, 0)), 0);
+		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(30, 70, 28, new OreGenReplacer(OresEnum.GARNIERITE, 0)), 0);
+		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(30, 70, 29, new OreGenReplacer(OresEnum.HEMATITE, 0)), 0);
+		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(30, 70, 30, new OreGenReplacer(OresEnum.LIMONITE, 0)), 0);
+		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(30, 70, 31, new OreGenReplacer(OresEnum.MALACHITE, 0)), 0);
+		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(30, 70, 32, new OreGenReplacer(OresEnum.SPHALERITE, 0)), 0);
+		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(30, 70, 33, new OreGenReplacer(OresEnum.TETRAHEDRITE, 0)), 0);
+
+		// Lava layer, between 1 and 40. Dangerous, Grade 3. Less severe for
+		// lower tier ores
+		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(3, 40, 34, new OreGenReplacer(OresEnum.NATIVECOPPER, 3)), 0);
+		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(3, 40, 35, new OreGenReplacer(OresEnum.NATIVESILVER, 3)), 0);
+		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(3, 40, 36, new OreGenReplacer(OresEnum.MALACHITE, 3)), 0);
+		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(3, 40, 37, new OreGenReplacer(OresEnum.TETRAHEDRITE, 3)), 0);
+		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(3, 25, 38, new OreGenReplacer(OresEnum.CASSITERITE, 3)), 0);
+		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(3, 10, 39, new OreGenReplacer(OresEnum.HEMATITE, 3)), 0);
+		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(3, 10, 40, new OreGenReplacer(OresEnum.LIMONITE, 3)), 0);
+		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(3, 50, 41, new OreGenReplacer(OresEnum.SPHALERITE, 3)), 0);
+		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(3, 40, 42, new OreGenReplacer(OresEnum.BISMUTHINITE, 3)), 0);
+		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(3, 40, 43, new OreGenReplacer(OresEnum.GARNIERITE, 3)), 0);
+		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(3, 60, 44, new OreGenReplacer(OresEnum.NATIVEGOLD, 3)), 0);
+
+		GameRegistry.registerWorldGenerator(new ShitOnFloorGen(), 1);
+		GameRegistry.registerWorldGenerator(new FirmaTreeGen(), 5);
+
+		// Use during debug to remove Rock from world to expose ore veins
+		// GameRegistry.registerWorldGenerator(new FirmaDebugOres(), 10);
 
 		MinecraftForge.EVENT_BUS.register(this);
 	}

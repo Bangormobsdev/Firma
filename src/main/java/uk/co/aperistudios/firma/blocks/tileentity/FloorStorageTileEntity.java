@@ -76,7 +76,7 @@ public class FloorStorageTileEntity extends TileEntity implements IInventory {
 
 	@Override
 	public String getName() {
-		return this.hasCustomName() ? this.customName : "container.anvil";
+		return this.hasCustomName() ? this.customName : "container.floor";
 	}
 
 	@Override
@@ -145,18 +145,11 @@ public class FloorStorageTileEntity extends TileEntity implements IInventory {
 		return customName;
 	}
 
-	/**
-	 * Removes up to a specified number of items from an inventory slot and
-	 * returns them in a new stack.
-	 */
 	@Override
 	public ItemStack decrStackSize(int index, int count) {
 		return ItemStackHelper.getAndSplit(this.inventory, index, count);
 	}
 
-	/**
-	 * Removes a stack from the given slot and returns it.
-	 */
 	@Override
 	public ItemStack removeStackFromSlot(int index) {
 		return ItemStackHelper.getAndRemove(this.inventory, index);

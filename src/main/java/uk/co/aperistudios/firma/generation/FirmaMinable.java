@@ -127,7 +127,7 @@ public class FirmaMinable extends WorldGenerator {
 			te.grade = grade;
 			te.ore = ore;
 			te.markDirty();
-			FirmaOreGen.count++;
+			FirmaOreVeinGen.count++;
 		}
 	}
 

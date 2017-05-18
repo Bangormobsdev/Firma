@@ -3,10 +3,10 @@ package uk.co.aperistudios.firma;
 import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import uk.co.aperistudios.firma.blocks.OreBlock.OreEnum;
+import uk.co.aperistudios.firma.items.OreItem;
 import uk.co.aperistudios.firma.types.OresEnum;
 import uk.co.aperistudios.firma.types.RockEnum;
 import uk.co.aperistudios.firma.types.RockEnum2;
@@ -243,5 +243,13 @@ public class Util {
 			iter++;
 		}
 		throw new RuntimeException("No ores can spawn in " + meta);
+	}
+
+	public static ItemStack getOreItemStack(OresEnum ore, int grade, int quant) {
+		return new ItemStack(FirmaMod.oreItem, quant, FirmaMod.oreItem.getSubMeta(ore + OreItem.QUALITY[grade]));
+	}
+
+	public static boolean isLiquid(Block block) {
+		return block == FirmaMod.freshwater.getBlock() || block == FirmaMod.saltwater.getBlock() || block == FirmaMod.lava.getBlock();
 	}
 }

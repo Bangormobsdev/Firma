@@ -15,7 +15,15 @@ public class FirmaGenLayerRiver extends FirmaGenLayer {
 		int j1 = y - 1;
 		int k1 = w + 2;
 		int l1 = h + 2;
-		int[] aint = this.parent.getInts(i1, j1, k1, l1);
+		int[] aint = null;
+		if (this.parent != null) {
+			aint = this.parent.getInts(i1, j1, k1, l1);
+		} else {
+			aint = new int[(w + 3) * (h + 3)];
+			for (int c = 0; c < aint.length; c++) {
+				aint[c] = 1;
+			}
+		}
 		int[] aint1 = new int[w * h];
 
 		for (int i2 = 0; i2 < h; ++i2) {

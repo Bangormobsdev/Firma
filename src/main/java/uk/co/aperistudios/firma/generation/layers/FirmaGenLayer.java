@@ -31,8 +31,9 @@ public abstract class FirmaGenLayer extends GenLayer {
 		for (int var7 = 0; var7 < var4; ++var7) {
 			var18 = new FirmaGenLayerZoom(1000 + var7, var18);
 			drawImage(512, var18, "18-" + var7 + " Zoom");
-			if (var7 == 0)
+			if (var7 == 0) {
 				var18 = new FirmaGenLayerAddIsland(3L, var18);
+			}
 			if (var7 == 1) {
 				var18 = new FirmaGenLayerShore(1000L, var18);
 				drawImage(512, var18, "18z Shore");
@@ -42,11 +43,11 @@ public abstract class FirmaGenLayer extends GenLayer {
 		// Create Rivers
 		FirmaGenLayer riverCont = FirmaGenLayerZoom.magnify(1000L, continent, 2);
 		riverCont = new FirmaGenLayerRiverInit(100L, riverCont);
-		riverCont = FirmaGenLayerZoom.magnify(1000L, riverCont, 6);
-		riverCont = new FirmaGenLayerRiver(1L, riverCont);
-		riverCont = new FirmaGenLayerSmooth(1000L, riverCont);
+		FirmaGenLayer riverCont2 = FirmaGenLayerZoom.magnify(1000L, riverCont, 6);
+		riverCont2 = new FirmaGenLayerRiver(1L, riverCont2);
+		riverCont2 = new FirmaGenLayerSmooth(1000L, riverCont2);
 		FirmaGenLayerSmoothBiome smoothContinent = new FirmaGenLayerSmoothBiome(1000L, var18);
-		FirmaGenLayerRiverMix riverMix = new FirmaGenLayerRiverMix(100L, smoothContinent, riverCont);
+		FirmaGenLayerRiverMix riverMix = new FirmaGenLayerRiverMix(100L, smoothContinent, riverCont2);
 		FirmaGenLayer finalCont = FirmaGenLayerZoom.magnify(1000L, riverMix, 2);
 		finalCont = new FirmaGenLayerSmoothBiome(1001L, finalCont);
 		riverMix.initWorldGenSeed(seed);
@@ -72,8 +73,9 @@ public abstract class FirmaGenLayer extends GenLayer {
 	public static void drawImage(int size, FirmaGenLayer genlayer, String name) {
 		try {
 			File outFile = new File(name + ".bmp");
-			if (outFile.exists())
+			if (outFile.exists()) {
 				return;
+			}
 			int[] ints = genlayer.getInts(0, 0, size, size);
 			BufferedImage outBitmap = new BufferedImage(size, size, BufferedImage.TYPE_INT_RGB);
 			Graphics2D graphics = (Graphics2D) outBitmap.getGraphics();
@@ -81,9 +83,41 @@ public abstract class FirmaGenLayer extends GenLayer {
 			for (int x = 0; x < size; x++) {
 				for (int z = 0; z < size; z++) {
 					if (ints[x * size + z] != -1 && FirmaBiome.getBiomeList()[ints[x * size + z]] != null) {
-						graphics.setColor(Color.getColor("", ((FirmaBiome) Biome.getBiome(ints[x * size + z])).getBiomeColor()));
+						Biome b = Biome.getBiome(ints[x * size + z]);
+						graphics.setColor(Color.WHITE);
+						if (b instanceof FirmaBiome) {
+							graphics.setColor(((FirmaBiome) b).getBiomeColor());
+						}
 						graphics.drawRect(x, z, 1, 1);
+
 					}
+				}
+			}
+			System.out.println(outFile.getAbsolutePath());
+			ImageIO.write(outBitmap, "BMP", outFile);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void drawImageMono(int size, FirmaGenLayer genlayer, String name) {
+		try {
+			File outFile = new File(name + ".bmp");
+			if (outFile.exists()) {
+				return;
+			}
+			int[] ints = genlayer.getInts(0, 0, size, size);
+			BufferedImage outBitmap = new BufferedImage(size, size, BufferedImage.TYPE_INT_RGB);
+			Graphics2D graphics = (Graphics2D) outBitmap.getGraphics();
+			graphics.clearRect(0, 0, size, size);
+			for (int x = 0; x < size; x++) {
+				for (int z = 0; z < size; z++) {
+					if (ints[x * size + z] == 0) {
+						graphics.setColor(Color.BLACK);
+					} else {
+						graphics.setColor(Color.WHITE);
+					}
+					graphics.drawRect(x, z, 1, 1);
 				}
 			}
 			System.out.println(outFile.getAbsolutePath());
@@ -112,8 +146,9 @@ public abstract class FirmaGenLayer extends GenLayer {
 	@Override
 	public void initWorldGenSeed(long par1) {
 		worldGenSeed = par1;
-		if (this.parent != null)
+		if (this.parent != null) {
 			parent.initWorldGenSeed(par1);
+		}
 
 		worldGenSeed *= worldGenSeed * 6364136223846793005L + 1442695040888963407L;
 		worldGenSeed += baseSeed;
@@ -146,8 +181,9 @@ public abstract class FirmaGenLayer extends GenLayer {
 	@Override
 	protected int nextInt(int par1) {
 		int var2 = (int) ((this.chunkSeed >> 24) % par1);
-		if (var2 < 0)
+		if (var2 < 0) {
 			var2 += par1;
+		}
 		chunkSeed *= chunkSeed * 6364136223846793005L + 1442695040888963407L;
 		chunkSeed += worldGenSeed;
 		return var2;
