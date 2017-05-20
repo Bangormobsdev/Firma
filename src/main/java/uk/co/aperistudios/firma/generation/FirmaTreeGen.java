@@ -7,7 +7,6 @@ import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.fml.common.IWorldGenerator;
 import uk.co.aperistudios.firma.generation.tree.FirmaTree;
-import uk.co.aperistudios.firma.types.OresEnum;
 
 public class FirmaTreeGen implements IWorldGenerator {
 	@Override

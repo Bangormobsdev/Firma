@@ -1,7 +1,6 @@
 package uk.co.aperistudios.firma.generation.tree;
 
 import java.util.Random;
-import org.lwjgl.input.Mouse;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 

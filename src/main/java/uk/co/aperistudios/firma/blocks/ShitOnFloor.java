@@ -33,7 +33,7 @@ public class ShitOnFloor extends Block implements ITileEntityProvider {
 	}
 
 	@Override
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
+	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState2, IBlockAccess worldIn, BlockPos pos) {
 		return new AxisAlignedBB(0, 0, 0, 1f, 0.1f, 1f);
 	}
 

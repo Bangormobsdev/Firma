@@ -1,7 +1,6 @@
 package uk.co.aperistudios.firma.renderer;
 
 import java.util.List;
-import org.lwjgl.input.Mouse;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.block.model.BakedQuad;

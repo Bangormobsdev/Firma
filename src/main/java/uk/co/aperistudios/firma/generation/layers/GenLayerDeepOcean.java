@@ -1,8 +1,6 @@
 package uk.co.aperistudios.firma.generation.layers;
 
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.IntCache;
-import uk.co.aperistudios.firma.generation.FirmaBiome;
 
 public class GenLayerDeepOcean extends FirmaGenLayer {
 	public GenLayerDeepOcean(long seed, FirmaGenLayer parent) {

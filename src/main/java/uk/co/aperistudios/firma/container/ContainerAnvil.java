@@ -1,6 +1,5 @@
 package uk.co.aperistudios.firma.container;
 
-import java.util.Random;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -12,9 +11,6 @@ import uk.co.aperistudios.firma.blocks.tileentity.AnvilTileEntity;
 
 public class ContainerAnvil extends Container {
 
-	private Random rand;
-	private World worldPointer;
-	private BlockPos position;
 	private AnvilTileEntity te;
 
 	@Override
@@ -30,9 +26,6 @@ public class ContainerAnvil extends Container {
 
 	public ContainerAnvil(InventoryPlayer playerInv, World worldIn, BlockPos pos, AnvilTileEntity ate) {
 		this.te = ate;
-		this.rand = new Random();
-		this.worldPointer = worldIn;
-		this.position = pos;
 		this.addSlotToContainer(new SlotAnvilInput(ate, 0, 19, 22));
 		this.addSlotToContainer(new SlotAnvilInput(ate, 1, 19, 41));
 		this.addSlotToContainer(new SlotOutput(ate, 2, 140, 31));

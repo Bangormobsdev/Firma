@@ -1,7 +1,6 @@
 package uk.co.aperistudios.firma.blocks.recolour;
 
 import java.util.HashMap;
-import org.lwjgl.input.Mouse;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.color.IBlockColor;
@@ -51,7 +50,7 @@ public class LeafColor implements IBlockColor {
 		return Colour.mix(leaf.get(below), leaf.get(above), bInf);
 	}
 
-	private float interp(float below, float above, float fIn) {
+	private static float interp(float below, float above, float fIn) {
 		float top = above - below;
 		float mid = fIn - below;
 		return mid / top;
@@ -71,6 +70,8 @@ public class LeafColor implements IBlockColor {
 			} else if (meta == WoodEnum.Whitecedar.getMeta()) {
 				return 0x00ff00; // Evergreen
 			}
+		} else if (w2) {
+
 		}
 		// Otherwise, deciduous
 		float a = Util.getHeat(Minecraft.getMinecraft().world, pos);

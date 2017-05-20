@@ -14,7 +14,6 @@ import net.minecraftforge.fml.common.IWorldGenerator;
 import uk.co.aperistudios.firma.FirmaMod;
 import uk.co.aperistudios.firma.Util;
 import uk.co.aperistudios.firma.blocks.boring.BaseBlock;
-import uk.co.aperistudios.firma.blocks.tileentity.FirmaOreTileEntity;
 import uk.co.aperistudios.firma.blocks.tileentity.SoFTileEntity;
 import uk.co.aperistudios.firma.types.OresEnum;
 

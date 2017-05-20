@@ -3,7 +3,6 @@ package uk.co.aperistudios.firma.player;
 import java.util.HashMap;
 import java.util.UUID;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;

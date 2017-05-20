@@ -9,7 +9,6 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import uk.co.aperistudios.firma.items.PebbleItem;
 
 public class SoFTileEntity extends TileEntity {
 

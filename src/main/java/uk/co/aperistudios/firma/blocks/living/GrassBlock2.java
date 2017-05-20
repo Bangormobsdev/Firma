@@ -14,7 +14,6 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import uk.co.aperistudios.firma.FirmaMod;
 import uk.co.aperistudios.firma.Util;
 import uk.co.aperistudios.firma.blocks.boring.BaseBlock;
 import uk.co.aperistudios.firma.types.RockEnum2;
