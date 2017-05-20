@@ -8,12 +8,10 @@ import uk.co.aperistudios.firma.blocks.tileentity.AnvilTileEntity;
 
 public class GuiAnvil extends GuiFirmaBase {
 	public static final int guiwidth = 176, guiheight = 103;
-	private AnvilTileEntity te;
 
 	public GuiAnvil(EntityPlayer player, World world, AnvilTileEntity ate) {
 		super(new ContainerAnvil(player.inventory, world, ate), guiwidth, guiheight);
 		tex = new ResourceLocation(FirmaMod.MODID + ":textures/gui/guismithing.png");
-		this.te = ate;
 	}
 
 	@Override

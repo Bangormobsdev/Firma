@@ -82,14 +82,12 @@ public class Recipe {
 				r.metaSub = FirmaMod.metalsheet.getSubName(is.getItemDamage());
 			} else if (r.material == CraftMat.LEATHER) { // Takes no subtypes
 															// yet
-				System.err.println("Leather cannot have a specified ItemStack");
-				assert r == null;
+				throw new RuntimeException("Leather cannot have a specified ItemStack");
 			} else {
 				// Specifying an itemstack with a craftmat that does not match.
 				// So specifying leather crafting with metal or stonecrafting
 				// with a sandwich
-				System.err.println("Itemstack " + is + " does not match Craft Mat " + mat);
-				assert r == null;
+				throw new RuntimeException("Itemstack " + is + " does not match Craft Mat " + mat);
 			}
 		}
 		CraftingManager.addRecipe(r);
