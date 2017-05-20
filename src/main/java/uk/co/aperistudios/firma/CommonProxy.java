@@ -196,11 +196,11 @@ public abstract class CommonProxy {
 			}
 		}
 
-		FirmaMod.lava = new BaseLiquid("lava", fluid -> fluid.setLuminosity(100).setDensity(800).setViscosity(1500), 0xffff0000);
-		FirmaMod.saltwater = new BaseLiquid("saltwater", fluid -> fluid.setLuminosity(0).setDensity(800).setViscosity(1500), 0xff0022ff);
-		FirmaMod.freshwater = new BaseLiquid("freshwater", fluid -> fluid.setLuminosity(0).setDensity(800).setViscosity(1500), 0xff0022ff);
+		FirmaMod.lava = BaseLiquid.create("lava", fluid -> fluid.setLuminosity(100).setDensity(800).setViscosity(1500), 0xffff0000);
+		FirmaMod.saltwater = BaseLiquid.create("saltwater", fluid -> fluid.setLuminosity(0).setDensity(800).setViscosity(1500), 0xff0022ff);
+		FirmaMod.freshwater = BaseLiquid.create("freshwater", fluid -> fluid.setLuminosity(0).setDensity(800).setViscosity(1500), 0xff0022ff);
 		for (AlcoholType at : AlcoholType.values()) {
-			new BaseLiquid(at.getName(), fluid -> fluid.setLuminosity(0).setDensity(800).setViscosity(1500), at.getCol());
+			BaseLiquid.create(at.getName(), fluid -> fluid.setLuminosity(0).setDensity(800).setViscosity(1500), at.getCol());
 		}
 
 		NetworkRegistry.INSTANCE.registerGuiHandler(FirmaMod.instance, new HandlerGui());

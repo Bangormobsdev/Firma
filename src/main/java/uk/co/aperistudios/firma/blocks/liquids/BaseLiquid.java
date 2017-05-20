@@ -18,25 +18,8 @@ public class BaseLiquid extends Fluid {
 	public Item i;
 	private int col;
 
-	public BaseLiquid(String fluidName, Consumer<Fluid> f, int col) {
+	public BaseLiquid(String fluidName) {
 		super(fluidName, new ResourceLocation(FirmaMod.MODID + ":blocks/water_still"), new ResourceLocation(FirmaMod.MODID + ":blocks/water_flow"));
-		this.setUnlocalizedName(FirmaMod.MODID + ":fluid." + fluidName);
-		FluidRegistry.registerFluid(this);
-		f.accept(this);
-		block = new BaseBlockLiquid(this, Material.WATER);
-		block.setRegistryName(FirmaMod.MODID + ":fluid." + fluidName);
-		block.setUnlocalizedName(FirmaMod.MODID + ":fluid." + fluidName);
-		block.setCreativeTab(FirmaMod.blockTab);
-		block.setLightOpacity(3);
-		block.setLightLevel(0);
-
-		GameRegistry.register(block);
-		i = new ItemBlock(block);
-		i.setRegistryName(FirmaMod.MODID + ":fluid." + fluidName);
-		i.setUnlocalizedName(FirmaMod.MODID + ":fluid." + fluidName);
-		GameRegistry.register(i);
-		FirmaMod.allFluids.add(this);
-		this.col = col;
 	}
 
 	public Block getFluidBlock() {
@@ -64,5 +47,27 @@ public class BaseLiquid extends Fluid {
 	@Override
 	public int getColor(World world, BlockPos pos) {
 		return col;
+	}
+
+	public static BaseLiquid create(String fluidName, Consumer<Fluid> f, int col) {
+		BaseLiquid nL = new BaseLiquid(fluidName);
+		nL.setUnlocalizedName(FirmaMod.MODID + ":fluid." + fluidName);
+		FluidRegistry.registerFluid(nL);
+		f.accept(nL);
+		nL.block = new BaseBlockLiquid(nL, Material.WATER);
+		nL.block.setRegistryName(FirmaMod.MODID + ":fluid." + fluidName);
+		nL.block.setUnlocalizedName(FirmaMod.MODID + ":fluid." + fluidName);
+		nL.block.setCreativeTab(FirmaMod.blockTab);
+		nL.block.setLightOpacity(3);
+		nL.block.setLightLevel(0);
+
+		GameRegistry.register(nL.block);
+		nL.i = new ItemBlock(nL.block);
+		nL.i.setRegistryName(FirmaMod.MODID + ":fluid." + fluidName);
+		nL.i.setUnlocalizedName(FirmaMod.MODID + ":fluid." + fluidName);
+		GameRegistry.register(nL.i);
+		FirmaMod.allFluids.add(nL);
+		nL.col = col;
+		return nL;
 	}
 }
