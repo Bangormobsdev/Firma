@@ -7,7 +7,6 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import uk.co.aperistudios.firma.FirmaMod;
-import uk.co.aperistudios.firma.gui.GuiKnapping;
 import uk.co.aperistudios.firma.packet.KnapToServer;
 
 public class SlotSpecialCraftingOutput extends Slot {

@@ -7,9 +7,9 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 import uk.co.aperistudios.firma.FirmaMod;
+import uk.co.aperistudios.firma.container.HandlerGui;
+import uk.co.aperistudios.firma.container.GuiKnapping;
 import uk.co.aperistudios.firma.crafting.CraftMat;
-import uk.co.aperistudios.firma.gui.GuiHandler;
-import uk.co.aperistudios.firma.gui.GuiKnapping;
 import uk.co.aperistudios.firma.player.PlayerData;
 import uk.co.aperistudios.firma.types.ItemSize;
 
@@ -36,7 +36,7 @@ public class PebbleItem extends MetaItem {
 				pd.setCraftingMaterial(CraftMat.STONE);
 			}
 		}
-		player.openGui(FirmaMod.instance, GuiHandler.GUI_KNAPPING, player.world, (int) player.posX, (int) player.posY, (int) player.posZ);
+		player.openGui(FirmaMod.instance, HandlerGui.GUI_KNAPPING, player.world, (int) player.posX, (int) player.posY, (int) player.posZ);
 		return new ActionResult<ItemStack>(EnumActionResult.PASS, is);
 	}
 }

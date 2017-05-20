@@ -1,4 +1,4 @@
-package uk.co.aperistudios.firma.gui;
+package uk.co.aperistudios.firma.container;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
@@ -6,12 +6,12 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
 
-public class GuiKnappingButton extends GuiButton {
+public class ButtonKnapping extends GuiButton {
 	boolean show = true;
 	private GuiKnapping screen;
 	private int locx, locy;
 
-	public GuiKnappingButton(int buttonId, int x, int y, int widthIn, int heightIn, GuiKnapping screen, int locx, int locy) {
+	public ButtonKnapping(int buttonId, int x, int y, int widthIn, int heightIn, GuiKnapping screen, int locx, int locy) {
 		super(buttonId, x, y, widthIn, heightIn, "");
 		this.screen = screen;
 		this.locx = locx;

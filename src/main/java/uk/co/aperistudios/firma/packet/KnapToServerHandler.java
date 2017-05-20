@@ -6,11 +6,11 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import uk.co.aperistudios.firma.FirmaMod;
 import uk.co.aperistudios.firma.blocks.tileentity.AnvilTileEntity;
-import uk.co.aperistudios.firma.container.ContainerSpecialCrafting;
+import uk.co.aperistudios.firma.container.ContainerKnapping;
+import uk.co.aperistudios.firma.container.HandlerGui;
 import uk.co.aperistudios.firma.crafting.CraftMat;
 import uk.co.aperistudios.firma.crafting.CraftingManager;
 import uk.co.aperistudios.firma.crafting.Recipe;
-import uk.co.aperistudios.firma.gui.GuiHandler;
 import uk.co.aperistudios.firma.player.PlayerData;
 
 public class KnapToServerHandler implements IMessageHandler<KnapToServer, IMessage> {
@@ -39,7 +39,7 @@ public class KnapToServerHandler implements IMessageHandler<KnapToServer, IMessa
 					if (r.payPrice(pd.getTileEntity())) {
 						if (pd.getTileEntity() instanceof AnvilTileEntity) {
 							((AnvilTileEntity) pd.getTileEntity()).setInventorySlotContents(2, r.getOutput());
-							ctx.getServerHandler().playerEntity.openGui(FirmaMod.instance, GuiHandler.GUI_SMITHING, pd.getWorld(), pd.getPosition().getX(),
+							ctx.getServerHandler().playerEntity.openGui(FirmaMod.instance, HandlerGui.GUI_SMITHING, pd.getWorld(), pd.getPosition().getX(),
 									pd.getPosition().getY(), pd.getPosition().getZ());
 							pd.resetKnapCraft();
 							return null;
@@ -62,8 +62,8 @@ public class KnapToServerHandler implements IMessageHandler<KnapToServer, IMessa
 			pd.setKnapCraft(message.x, message.y, message.b);
 			Recipe r = CraftingManager.getMatchingRecipe(pd.getCraftingMaterial(), pd.getItemStack(), pd.getKnapLayout());
 			System.out.println(r);
-			if (ctx.getServerHandler().playerEntity.openContainer instanceof ContainerSpecialCrafting && r != null) {
-				((ContainerSpecialCrafting) ctx.getServerHandler().playerEntity.openContainer).craftResult.setInventorySlotContents(0, r.getOutput());
+			if (ctx.getServerHandler().playerEntity.openContainer instanceof ContainerKnapping && r != null) {
+				((ContainerKnapping) ctx.getServerHandler().playerEntity.openContainer).craftResult.setInventorySlotContents(0, r.getOutput());
 			}
 		}
 		return null;

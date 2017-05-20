@@ -1,8 +1,7 @@
-package uk.co.aperistudios.firma.gui;
+package uk.co.aperistudios.firma.container;
 
 import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.util.text.ITextComponent;
-import uk.co.aperistudios.firma.container.AnvilContainer;
 
 public class Inventory extends InventoryBasic {
 

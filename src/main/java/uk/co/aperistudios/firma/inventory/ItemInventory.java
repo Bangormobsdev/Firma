@@ -44,27 +44,22 @@ public class ItemInventory implements IInventory {
 	}
 
 	@Override
-	public ItemStack decrStackSize(int slot, int amount) {
-		ItemStack stack = getStackInSlot(slot);
-		if (stack != null) {
-			if (stack.getCount() > amount) {
-				stack = stack.splitStack(amount);
-				markDirty();
-			} else {
-				setInventorySlotContents(slot, null);
-			}
-		}
-		return stack;
+	public ItemStack decrStackSize(int index, int count) {
+		markDirty();
+		return ItemStackHelper.getAndSplit(this.inventory, index, count);
 	}
 
+	/**
+	 * Sets the given item stack to the specified slot in the inventory (can be
+	 * crafting or armor sections).
+	 */
 	@Override
-	public void setInventorySlotContents(int slot, ItemStack stack) {
-		inventory.set(slot, stack);
+	public void setInventorySlotContents(int index, ItemStack stack) {
+		this.inventory.set(index, stack);
 
-		if (stack != null && stack.getCount() > getInventoryStackLimit()) {
-			stack.setCount(getInventoryStackLimit());
+		if (stack.getCount() > this.getInventoryStackLimit()) {
+			stack.setCount(this.getInventoryStackLimit());
 		}
-
 		markDirty();
 	}
 
@@ -76,7 +71,7 @@ public class ItemInventory implements IInventory {
 	@Override
 	public void markDirty() {
 		for (int i = 0; i < getSizeInventory(); ++i) {
-			if (getStackInSlot(i) != null && getStackInSlot(i).getCount() == 0) {
+			if (getStackInSlot(i).getCount() == 0) {
 				inventory.set(i, ItemStack.EMPTY);
 			}
 		}

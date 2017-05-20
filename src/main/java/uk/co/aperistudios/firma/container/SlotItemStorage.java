@@ -7,11 +7,11 @@ import net.minecraft.item.ItemStack;
 import uk.co.aperistudios.firma.items.FirmaItem;
 import uk.co.aperistudios.firma.types.ItemSize;
 
-public class ItemStorageSlot extends Slot {
+public class SlotItemStorage extends Slot {
 
 	ItemSize maxSize;
 
-	public ItemStorageSlot(IInventory inventoryIn, int index, int xPosition, int yPosition, ItemSize maxSize) {
+	public SlotItemStorage(IInventory inventoryIn, int index, int xPosition, int yPosition, ItemSize maxSize) {
 		super(inventoryIn, index, xPosition, yPosition);
 		this.maxSize = maxSize;
 	}

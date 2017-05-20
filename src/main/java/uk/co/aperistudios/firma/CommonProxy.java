@@ -57,6 +57,7 @@ import uk.co.aperistudios.firma.blocks.tileentity.AnvilTileEntity;
 import uk.co.aperistudios.firma.blocks.tileentity.FirmaOreTileEntity;
 import uk.co.aperistudios.firma.blocks.tileentity.FloorStorageTileEntity;
 import uk.co.aperistudios.firma.blocks.tileentity.SoFTileEntity;
+import uk.co.aperistudios.firma.container.HandlerGui;
 import uk.co.aperistudios.firma.crafting.CraftingManager;
 import uk.co.aperistudios.firma.generation.FirmaBiome;
 import uk.co.aperistudios.firma.generation.FirmaOreVeinGen;
@@ -67,7 +68,6 @@ import uk.co.aperistudios.firma.generation.OreGenReplacer;
 import uk.co.aperistudios.firma.generation.ShitOnFloorGen;
 import uk.co.aperistudios.firma.generation.layers.Layer;
 import uk.co.aperistudios.firma.generation.tree.FirmaTree;
-import uk.co.aperistudios.firma.gui.GuiHandler;
 import uk.co.aperistudios.firma.handler.FirmaHandler;
 import uk.co.aperistudios.firma.items.BrickItem;
 import uk.co.aperistudios.firma.items.ClayItem;
@@ -203,7 +203,7 @@ public abstract class CommonProxy {
 			new BaseLiquid(at.getName(), fluid -> fluid.setLuminosity(0).setDensity(800).setViscosity(1500), at.getCol());
 		}
 
-		NetworkRegistry.INSTANCE.registerGuiHandler(FirmaMod.instance, new GuiHandler());
+		NetworkRegistry.INSTANCE.registerGuiHandler(FirmaMod.instance, new HandlerGui());
 
 		KnapToServer.init();
 		SetDayPacket.init();

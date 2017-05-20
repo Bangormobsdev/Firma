@@ -5,18 +5,16 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryCraftResult;
-import net.minecraft.item.ItemStack;
-import uk.co.aperistudios.firma.gui.PlayerInv;
 
-public class ContainerSpecialCrafting extends Container {
+public class ContainerKnapping extends Container {
 	private SlotSpecialCraftingOutput outputSlot;
 	public IInventory craftResult = new InventoryCraftResult();
 
-	public ContainerSpecialCrafting(InventoryPlayer inventoryplayer, int x, int y, int z) {
+	public ContainerKnapping(InventoryPlayer inventoryplayer, int x, int y, int z) {
 		outputSlot = new SlotSpecialCraftingOutput(this, inventoryplayer.player, craftResult, 0, 128, 44);
 		addSlotToContainer(outputSlot);
 
-		PlayerInv.buildInventoryLayout(this, inventoryplayer, 8, 108, true, true);
+		PlayerInv.buildInventoryLayout(this, inventoryplayer, GuiKnapping.guiwidth, GuiKnapping.guiheight, true, true);
 	}
 
 	@Override
@@ -33,6 +31,10 @@ public class ContainerSpecialCrafting extends Container {
 			// if (is != null)
 			// player.entityDropItem(is, 0);
 		}
+	}
+
+	@Override
+	protected void retrySlotClick(int slotId, int clickedButton, boolean mode, EntityPlayer playerIn) {
 	}
 
 }

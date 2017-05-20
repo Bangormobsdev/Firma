@@ -1,10 +1,10 @@
-package uk.co.aperistudios.firma.gui;
+package uk.co.aperistudios.firma.container;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Container;
 import net.minecraft.util.ResourceLocation;
 
-public abstract class FirmaGuiContainer extends GuiContainer {
+public abstract class GuiFirmaBase extends GuiContainer {
 	boolean drawInventory = true;
 	protected ResourceLocation tex;
 
@@ -15,7 +15,7 @@ public abstract class FirmaGuiContainer extends GuiContainer {
 		guiTop = (height - ySize) / 2;
 	}
 
-	public FirmaGuiContainer(Container cont, int w, int h) {
+	public GuiFirmaBase(Container cont, int w, int h) {
 		super(cont);
 		xSize = w;
 		ySize = h + PlayerInv.invYSize;

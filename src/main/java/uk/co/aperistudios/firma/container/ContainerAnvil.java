@@ -4,9 +4,6 @@ import java.util.Random;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
-import net.minecraft.inventory.ContainerEnchantment;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
@@ -14,10 +11,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import uk.co.aperistudios.firma.blocks.tileentity.AnvilTileEntity;
-import uk.co.aperistudios.firma.gui.Inventory;
-import uk.co.aperistudios.firma.gui.PlayerInv;
 
-public class AnvilContainer extends Container {
+public class ContainerAnvil extends Container {
 
 	private Random rand;
 	private World worldPointer;
@@ -30,12 +25,12 @@ public class AnvilContainer extends Container {
 	}
 
 	@SideOnly(Side.CLIENT)
-	public AnvilContainer(InventoryPlayer playerInv, World worldIn, AnvilTileEntity ate) {
+	public ContainerAnvil(InventoryPlayer playerInv, World worldIn, AnvilTileEntity ate) {
 		this(playerInv, worldIn, BlockPos.ORIGIN, ate);
 
 	}
 
-	public AnvilContainer(InventoryPlayer playerInv, World worldIn, BlockPos pos, AnvilTileEntity ate) {
+	public ContainerAnvil(InventoryPlayer playerInv, World worldIn, BlockPos pos, AnvilTileEntity ate) {
 		this.te = ate;
 		this.rand = new Random();
 		this.worldPointer = worldIn;
@@ -63,8 +58,11 @@ public class AnvilContainer extends Container {
 				return false;
 			}
 		});
-		PlayerInv.buildInventoryLayout(this, playerInv, 8, 108, true, true);
+		PlayerInv.buildInventoryLayout(this, playerInv, GuiAnvil.guiwidth, GuiAnvil.guiheight, true, true);
 
 	}
 
+	@Override
+	protected void retrySlotClick(int slotId, int clickedButton, boolean mode, EntityPlayer playerIn) {
+	}
 }

@@ -1,4 +1,4 @@
-package uk.co.aperistudios.firma.gui;
+package uk.co.aperistudios.firma.container;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;

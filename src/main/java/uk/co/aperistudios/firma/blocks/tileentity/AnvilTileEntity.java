@@ -2,8 +2,6 @@ package uk.co.aperistudios.firma.blocks.tileentity;
 
 import javax.annotation.Nullable;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
@@ -15,9 +13,6 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
-import net.minecraft.world.IInteractionObject;
-import uk.co.aperistudios.firma.container.AnvilContainer;
-import uk.co.aperistudios.firma.gui.GuiHandler;
 
 public class AnvilTileEntity extends TileEntity implements IInventory {
 
@@ -172,7 +167,6 @@ public class AnvilTileEntity extends TileEntity implements IInventory {
 		if (stack.getCount() > this.getInventoryStackLimit()) {
 			stack.setCount(this.getInventoryStackLimit());
 		}
-
 	}
 
 	@Override

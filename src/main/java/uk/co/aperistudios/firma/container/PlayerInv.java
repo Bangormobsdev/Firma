@@ -1,4 +1,4 @@
-package uk.co.aperistudios.firma.gui;
+package uk.co.aperistudios.firma.container;
 
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -18,6 +18,7 @@ public class PlayerInv {
 	// private static int index;
 	public static void addInventory(Container container, InventoryPlayer inventory, int x, int y, boolean freezeHeld) {
 		int index = 0;
+		// x = (x - invXSize) / 2;
 		for (int i = 0; i < 3; ++i) {
 			for (int k = 0; k < 9; ++k) {
 				index = k + (i + 1) * 9;
@@ -44,7 +45,7 @@ public class PlayerInv {
 		return slot;
 	}
 
-	public static void drawInventory(FirmaGuiContainer gui, int width, int height, int shiftedYSize) {
+	public static void drawInventory(GuiFirmaBase gui, int width, int height, int shiftedYSize) {
 		gui.mc.getTextureManager().bindTexture(invTexture);
 		int l = (gui.width - invXSize) / 2;
 		int i1 = (gui.height - (shiftedYSize + invYSize)) / 2 + shiftedYSize;
@@ -62,17 +63,20 @@ public class PlayerInv {
 
 	public static void buildInventoryLayout(Container container, InventoryPlayer inventory, int x, int y, boolean freezeSlot, boolean toolBarAfterMainInv) {
 		int index = 0;
-		if (!toolBarAfterMainInv)
-			addToolbarSlots(container, inventory, x, y, freezeSlot);
+		x = (x - invXSize) / 2;
+		if (!toolBarAfterMainInv) {
+			addToolbarSlots(container, inventory, x + 8, y + 5, freezeSlot);
+		}
 
 		for (int i = 0; i < 3; ++i) {
 			for (int k = 0; k < 9; ++k) {
 				index = k + (i + 1) * 9;
-				addSlotToContainer(container, new Slot(inventory, index, x + k * 18, y + i * 18));
+				addSlotToContainer(container, new Slot(inventory, index, x + k * 18 + 8, y + i * 18 + 5));
 			}
 		}
 
-		if (toolBarAfterMainInv)
-			addToolbarSlots(container, inventory, x, y, freezeSlot);
+		if (toolBarAfterMainInv) {
+			addToolbarSlots(container, inventory, x + 8, y + 5, freezeSlot);
+		}
 	}
 }

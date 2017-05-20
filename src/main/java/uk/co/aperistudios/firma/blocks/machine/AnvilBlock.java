@@ -26,9 +26,9 @@ import net.minecraft.world.World;
 import uk.co.aperistudios.firma.FirmaMod;
 import uk.co.aperistudios.firma.blocks.boring.BaseBlock;
 import uk.co.aperistudios.firma.blocks.tileentity.AnvilTileEntity;
+import uk.co.aperistudios.firma.container.HandlerGui;
+import uk.co.aperistudios.firma.container.GuiKnapping;
 import uk.co.aperistudios.firma.crafting.CraftMat;
-import uk.co.aperistudios.firma.gui.GuiHandler;
-import uk.co.aperistudios.firma.gui.GuiKnapping;
 import uk.co.aperistudios.firma.items.ToolItem;
 import uk.co.aperistudios.firma.player.PlayerData;
 import uk.co.aperistudios.firma.types.MetalEnum;
@@ -134,13 +134,13 @@ public class AnvilBlock extends BaseBlock implements ITileEntityProvider {
 							pd.setCraftingMaterial(CraftMat.ANVIL);
 							pd.setItemStack(itemInAnvil);
 						}
-						player.openGui(FirmaMod.instance, GuiHandler.GUI_KNAPPING, player.world, pos.getX(), pos.getY(), pos.getZ());
+						player.openGui(FirmaMod.instance, HandlerGui.GUI_KNAPPING, player.world, pos.getX(), pos.getY(), pos.getZ());
 						return true;
 						// Open Metal knapping.
 					}
 				}
 			}
-			player.openGui(FirmaMod.instance, GuiHandler.GUI_SMITHING, player.world, pos.getX(), pos.getY(), pos.getZ());
+			player.openGui(FirmaMod.instance, HandlerGui.GUI_SMITHING, player.world, pos.getX(), pos.getY(), pos.getZ());
 		}
 
 		return true;
