@@ -81,12 +81,14 @@ import uk.co.aperistudios.firma.items.MetalSheetItem;
 import uk.co.aperistudios.firma.items.OreItem;
 import uk.co.aperistudios.firma.items.PebbleItem;
 import uk.co.aperistudios.firma.items.ScrapMetalItem;
+import uk.co.aperistudios.firma.items.StorageItem;
 import uk.co.aperistudios.firma.items.ToolHeads;
 import uk.co.aperistudios.firma.items.ToolItem;
 import uk.co.aperistudios.firma.items.UnfiredClay;
 import uk.co.aperistudios.firma.packet.KnapToServer;
 import uk.co.aperistudios.firma.packet.SetDayPacket;
 import uk.co.aperistudios.firma.types.AlcoholType;
+import uk.co.aperistudios.firma.types.ItemSize;
 import uk.co.aperistudios.firma.types.OresEnum;
 import uk.co.aperistudios.firma.types.RockEnum;
 import uk.co.aperistudios.firma.types.RockEnum2;
@@ -153,6 +155,8 @@ public abstract class CommonProxy {
 		FirmaMod.toolHeads = new ToolHeads("toolheads");
 		FirmaMod.clay = new ClayItem("clay");
 		FirmaMod.hide = new HideItem("hide");
+
+		FirmaMod.vesselItem = new StorageItem("vesselitem", ItemSize.SMALL, 4);
 
 		rockLayerTop = new IBlockState[] { FirmaMod.rock2.getStateFromMeta(RockEnum2.Shale.getMeta()),
 				FirmaMod.rock.getStateFromMeta(RockEnum.Claystone.getMeta()), FirmaMod.rock2.getStateFromMeta(RockEnum2.RockSalt.getMeta()),

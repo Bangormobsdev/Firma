@@ -1,13 +1,12 @@
 package uk.co.aperistudios.firma.items;
 
-import org.lwjgl.input.Mouse;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import uk.co.aperistudios.firma.FirmaMod;
+import uk.co.aperistudios.firma.types.ItemSize;
 import uk.co.aperistudios.firma.types.ToolMaterials;
 import uk.co.aperistudios.firma.types.ToolType;
 
@@ -16,7 +15,7 @@ public class ToolItem extends FirmaItem {
 	private ToolMaterials toolMaterial;
 
 	public ToolItem(ToolMaterials tm, ToolType tt) {
-		super("tool." + tm.getName() + tt.getName());
+		super("tool." + tm.getName() + tt.getName(), ItemSize.MEDIUM);
 		this.toolMaterial = tm;
 		this.toolType = tt;
 		this.maxStackSize = 1;

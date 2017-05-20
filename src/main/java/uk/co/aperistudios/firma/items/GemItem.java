@@ -2,11 +2,12 @@ package uk.co.aperistudios.firma.items;
 
 import java.util.ArrayList;
 import uk.co.aperistudios.firma.FirmaMod;
+import uk.co.aperistudios.firma.types.ItemSize;
 
 public class GemItem extends MetaItem {
 
 	public GemItem(String name) {
-		super(name);
+		super(name, ItemSize.TINY);
 		ArrayList<String> list = new ArrayList<String>();
 		for (String type : new String[] { "agate", "amethyst", "beryl", "diamond", "emerald", "garnet", "jade", "jasper", "opal", "ruby", "sapphire", "topaz",
 				"tourmaline" }) {

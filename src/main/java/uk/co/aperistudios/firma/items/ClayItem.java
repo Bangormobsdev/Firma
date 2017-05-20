@@ -12,11 +12,12 @@ import uk.co.aperistudios.firma.crafting.CraftMat;
 import uk.co.aperistudios.firma.gui.GuiHandler;
 import uk.co.aperistudios.firma.gui.GuiKnapping;
 import uk.co.aperistudios.firma.player.PlayerData;
+import uk.co.aperistudios.firma.types.ItemSize;
 
 public class ClayItem extends MetaItem {
 
 	public ClayItem(String name) {
-		super(name);
+		super(name, ItemSize.SMALL);
 		setSubs(new String[] { "clay", "fireclay" });
 	}
 

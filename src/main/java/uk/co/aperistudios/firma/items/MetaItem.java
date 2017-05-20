@@ -7,12 +7,13 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import uk.co.aperistudios.firma.FirmaMod;
+import uk.co.aperistudios.firma.types.ItemSize;
 
 public abstract class MetaItem extends FirmaItem {
 	private List<String> subs;
 
-	public MetaItem(String name) {
-		super(name);
+	public MetaItem(String name, ItemSize iSize) {
+		super(name, iSize);
 		this.setMaxDamage(0);
 		this.setHasSubtypes(true);
 		this.setCreativeTab(FirmaMod.itemTab);

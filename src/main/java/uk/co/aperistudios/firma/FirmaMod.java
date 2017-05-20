@@ -60,6 +60,7 @@ import uk.co.aperistudios.firma.items.MetalSheetItem;
 import uk.co.aperistudios.firma.items.OreItem;
 import uk.co.aperistudios.firma.items.PebbleItem;
 import uk.co.aperistudios.firma.items.ScrapMetalItem;
+import uk.co.aperistudios.firma.items.StorageItem;
 import uk.co.aperistudios.firma.items.ToolHeads;
 import uk.co.aperistudios.firma.items.ToolItem;
 import uk.co.aperistudios.firma.items.UnfiredClay;
@@ -134,6 +135,7 @@ public class FirmaMod {
 	public static SparseGrassBlock2 grasss2;
 	public static SparseGrassBlock grasss;
 	public static FloorStorage floorStorage;
+	public static StorageItem vesselItem;
 
 	public FirmaMod() {
 		instance = this;
