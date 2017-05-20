@@ -40,8 +40,7 @@ public class Util {
 	}
 
 	public static boolean isClay(Block b) {
-		// TODO CLAY
-		return false;
+		return b == FirmaMod.clayBlock || b == FirmaMod.clayBlock2;
 	}
 
 	public static boolean isSand(Block b) {

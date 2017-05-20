@@ -1,7 +1,6 @@
 package uk.co.aperistudios.firma.blocks.machine;
 
 import java.util.ArrayList;
-import net.minecraft.block.BlockChest;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -13,29 +12,26 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityEnchantmentTable;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.ILockableContainer;
 import net.minecraft.world.World;
 import uk.co.aperistudios.firma.FirmaMod;
 import uk.co.aperistudios.firma.blocks.boring.BaseBlock;
 import uk.co.aperistudios.firma.blocks.tileentity.AnvilTileEntity;
-import uk.co.aperistudios.firma.container.HandlerGui;
 import uk.co.aperistudios.firma.container.GuiKnapping;
+import uk.co.aperistudios.firma.container.HandlerGui;
 import uk.co.aperistudios.firma.crafting.CraftMat;
 import uk.co.aperistudios.firma.items.ToolItem;
 import uk.co.aperistudios.firma.player.PlayerData;
-import uk.co.aperistudios.firma.types.MetalEnum;
+import uk.co.aperistudios.firma.types.ToolMaterials;
 import uk.co.aperistudios.firma.types.ToolType;
 
 public class AnvilBlock extends BaseBlock implements ITileEntityProvider {
-	public static final IProperty<MetalEnum> properties = PropertyEnum.create("variants", MetalEnum.class);
+	public static final IProperty<ToolMaterials> properties = PropertyEnum.create("variants", ToolMaterials.class);
 
 	public AnvilBlock(Material materialIn) {
 		super(materialIn, "anvil");
@@ -52,21 +48,21 @@ public class AnvilBlock extends BaseBlock implements ITileEntityProvider {
 
 	@Override
 	public void getSubBlocks(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list) {
-		for (final MetalEnum enumType : MetalEnum.values()) {
+		for (final ToolMaterials enumType : ToolMaterials.values()) {
 			list.add(new ItemStack(this, 1, enumType.getMeta()));
 		}
 	}
 
 	@Override
 	public int getMetaFromState(IBlockState state) {
-		MetalEnum type = state.getValue(properties);
+		ToolMaterials type = state.getValue(properties);
 
 		return type.getMeta();
 	}
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		return getDefaultState().withProperty(properties, MetalEnum.get(meta));
+		return getDefaultState().withProperty(properties, ToolMaterials.get(meta));
 	}
 
 	@Override
@@ -74,13 +70,13 @@ public class AnvilBlock extends BaseBlock implements ITileEntityProvider {
 		if (stack == null) {
 			throw new NullPointerException();
 		}
-		return MetalEnum.getName(stack.getMetadata());
+		return ToolMaterials.getName(stack.getMetadata());
 	}
 
 	@Override
 	public ArrayList<String> getVariantNames() {
 		ArrayList<String> names = new ArrayList<String>();
-		for (MetalEnum tr : MetalEnum.values()) {
+		for (ToolMaterials tr : ToolMaterials.values()) {
 			names.add(tr.getName());
 		}
 		return names;
@@ -88,7 +84,7 @@ public class AnvilBlock extends BaseBlock implements ITileEntityProvider {
 
 	@Override
 	public String getMetaName(int meta) {
-		return MetalEnum.getName(meta);
+		return ToolMaterials.getName(meta);
 	}
 
 	@Override

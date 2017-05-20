@@ -10,10 +10,55 @@ public class Recipe {
 	CraftMat material;
 	String itemName;
 	String metaSub;
+	String itemName2;
+	String metaSub2;
 	RecipeShape rs;
 	ItemStack is;
 
-	public static Recipe makeRecipe(ItemStack output, CraftMat mat, ItemStack is, RecipeShape rs) {
+	public static Recipe makeRecipeTwoInput(ItemStack output, CraftMat mat, ItemStack is, ItemStack is2, RecipeShape rs) {
+		Recipe r = new Recipe();
+		r.is = output.copy();
+		r.material = mat;
+		r.rs = rs;
+
+		if (is != null) {
+			if (r.material == CraftMat.ANVIL) {
+				if (is.getItem() == FirmaMod.ingot) {
+					r.itemName = "ingot";
+					r.metaSub = FirmaMod.ingot.getSubName(is.getItemDamage());
+				} else if (is.getItem() == FirmaMod.doubleingot) {
+					r.itemName = "doubleingot";
+					r.metaSub = FirmaMod.doubleingot.getSubName(is.getItemDamage());
+				} else if (is.getItem() == FirmaMod.metalsheet) {
+					r.itemName = "metalsheet";
+					r.metaSub = FirmaMod.metalsheet.getSubName(is.getItemDamage());
+				}
+				if (is2.getItem() == FirmaMod.ingot) {
+					r.itemName2 = "ingot";
+					r.metaSub2 = FirmaMod.ingot.getSubName(is2.getItemDamage());
+				} else if (is2.getItem() == FirmaMod.doubleingot) {
+					r.itemName2 = "doubleingot";
+					r.metaSub2 = FirmaMod.doubleingot.getSubName(is2.getItemDamage());
+				} else if (is2.getItem() == FirmaMod.metalsheet) {
+					r.itemName2 = "metalsheet";
+					r.metaSub2 = FirmaMod.metalsheet.getSubName(is2.getItemDamage());
+				}
+
+			} else if (r.material == CraftMat.STONE && is.getItem() == FirmaMod.pebble) {
+				throw new RuntimeException("Cannot have a two-input stone knap");
+			} else if (r.material == CraftMat.CLAY && is.getItem() == FirmaMod.clay) {
+				throw new RuntimeException("Cannot have a two-input clay shape");
+			} else if (r.material == CraftMat.LEATHER) { // Takes no subtypes
+				throw new RuntimeException("Cannot have a dual input leather shape");
+			} else {
+				throw new RuntimeException("Itemstack " + is + " does not match Craft Mat " + mat);
+			}
+		}
+		CraftingManager.addRecipe(r);
+		return r;
+	}
+
+	public static Recipe makeRecipeOneInput(ItemStack output, CraftMat mat, ItemStack is, RecipeShape rs) {
 		Recipe r = new Recipe();
 		r.is = output.copy();
 		r.material = mat;

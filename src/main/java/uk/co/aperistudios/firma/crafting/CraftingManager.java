@@ -5,13 +5,14 @@ import net.minecraft.item.ItemStack;
 import uk.co.aperistudios.firma.FirmaMod;
 import uk.co.aperistudios.firma.items.FirmaItem;
 import uk.co.aperistudios.firma.items.MetaItem;
+import uk.co.aperistudios.firma.types.MetalEnum;
 import uk.co.aperistudios.firma.types.ToolMaterials;
 import uk.co.aperistudios.firma.types.ToolType;
 
 public class CraftingManager {
 	private static ArrayList<Recipe> list = new ArrayList<Recipe>();
 	public static RecipeShape knifeShape1, knifeShape2, axeShape, hammerShape, hoeShape1, hoeShape2, javelinShape, shovelShape, jugShape, moldShape,
-			chiselShape, maceShape, pickaxeShape, propickaxeShape, sawShape, swordShape, scytheShape, potShape, vesselShape;
+			chiselShape, maceShape, pickaxeShape, propickaxeShape, sawShape, swordShape, scytheShape, potShape, vesselShape, fullShape;
 	public static final int knapWidth = 5, knapHeight = 5; // Constants for
 															// size of grid.
 															// Maybe we'll want
@@ -74,56 +75,87 @@ public class CraftingManager {
 		scytheShape = RecipeShape.makeRecipeShape("  SSS", " SSS ", "SSS  ");
 		potShape = RecipeShape.makeRecipeShape(" SSS ", " SSS ", " SSS ", " SSS ", "     ");
 		vesselShape = RecipeShape.makeRecipeShape("S   S", "     ", "     ", "     ", "S   S");
+		fullShape = RecipeShape.makeRecipeShape("SSSSS", "SSSSS", "SSSSS", "SSSSS", "SSSSS");
 
-		Recipe.makeRecipe(new ItemStack(FirmaMod.toolHeads, 1, FirmaMod.toolHeads.getSubMeta("stoneknife")), CraftMat.STONE, null, knifeShape1);
-		Recipe.makeRecipe(new ItemStack(FirmaMod.toolHeads, 2, FirmaMod.toolHeads.getSubMeta("stoneknife")), CraftMat.STONE, null, knifeShape2);
-		Recipe.makeRecipe(new ItemStack(FirmaMod.toolHeads, 1, FirmaMod.toolHeads.getSubMeta("stoneaxe")), CraftMat.STONE, null, axeShape);
-		Recipe.makeRecipe(new ItemStack(FirmaMod.toolHeads, 1, FirmaMod.toolHeads.getSubMeta("stonehammer")), CraftMat.STONE, null, hammerShape);
-		Recipe.makeRecipe(new ItemStack(FirmaMod.toolHeads, 1, FirmaMod.toolHeads.getSubMeta("stonehoe")), CraftMat.STONE, null, hoeShape1);
-		Recipe.makeRecipe(new ItemStack(FirmaMod.toolHeads, 2, FirmaMod.toolHeads.getSubMeta("stonehoe")), CraftMat.STONE, null, hoeShape2);
-		Recipe.makeRecipe(new ItemStack(FirmaMod.toolHeads, 1, FirmaMod.toolHeads.getSubMeta("stonejavelin")), CraftMat.STONE, null, javelinShape);
-		Recipe.makeRecipe(new ItemStack(FirmaMod.toolHeads, 1, FirmaMod.toolHeads.getSubMeta("stoneshovel")), CraftMat.STONE, null, shovelShape);
+		Recipe.makeRecipeOneInput(new ItemStack(FirmaMod.toolHeads, 1, FirmaMod.toolHeads.getSubMeta("stoneknife")), CraftMat.STONE, null, knifeShape1);
+		Recipe.makeRecipeOneInput(new ItemStack(FirmaMod.toolHeads, 2, FirmaMod.toolHeads.getSubMeta("stoneknife")), CraftMat.STONE, null, knifeShape2);
+		Recipe.makeRecipeOneInput(new ItemStack(FirmaMod.toolHeads, 1, FirmaMod.toolHeads.getSubMeta("stoneaxe")), CraftMat.STONE, null, axeShape);
+		Recipe.makeRecipeOneInput(new ItemStack(FirmaMod.toolHeads, 1, FirmaMod.toolHeads.getSubMeta("stonehammer")), CraftMat.STONE, null, hammerShape);
+		Recipe.makeRecipeOneInput(new ItemStack(FirmaMod.toolHeads, 1, FirmaMod.toolHeads.getSubMeta("stonehoe")), CraftMat.STONE, null, hoeShape1);
+		Recipe.makeRecipeOneInput(new ItemStack(FirmaMod.toolHeads, 2, FirmaMod.toolHeads.getSubMeta("stonehoe")), CraftMat.STONE, null, hoeShape2);
+		Recipe.makeRecipeOneInput(new ItemStack(FirmaMod.toolHeads, 1, FirmaMod.toolHeads.getSubMeta("stonejavelin")), CraftMat.STONE, null, javelinShape);
+		Recipe.makeRecipeOneInput(new ItemStack(FirmaMod.toolHeads, 1, FirmaMod.toolHeads.getSubMeta("stoneshovel")), CraftMat.STONE, null, shovelShape);
 
 		ItemStack normalClayOnly = new ItemStack(FirmaMod.clay, 1, FirmaMod.clay.getSubMeta("clay"));
 		ItemStack fireClayOnly = new ItemStack(FirmaMod.clay, 1, FirmaMod.clay.getSubMeta("fireclay"));
-		Recipe.makeRecipe(new ItemStack(FirmaMod.unfiredClayBits, 1, FirmaMod.unfiredClayBits.getSubMeta("jug")), CraftMat.CLAY, normalClayOnly, jugShape);
-		Recipe.makeRecipe(new ItemStack(FirmaMod.unfiredClayBits, 1, FirmaMod.unfiredClayBits.getSubMeta("mold")), CraftMat.CLAY, normalClayOnly, moldShape);
-		Recipe.makeRecipe(new ItemStack(FirmaMod.unfiredClayBits, 1, FirmaMod.unfiredClayBits.getSubMeta("moldaxe")), CraftMat.CLAY, normalClayOnly, axeShape);
-		Recipe.makeRecipe(new ItemStack(FirmaMod.unfiredClayBits, 1, FirmaMod.unfiredClayBits.getSubMeta("moldchisel")), CraftMat.CLAY, normalClayOnly,
+		Recipe.makeRecipeOneInput(new ItemStack(FirmaMod.unfiredClayBits, 1, FirmaMod.unfiredClayBits.getSubMeta("jug")), CraftMat.CLAY, normalClayOnly,
+				jugShape);
+		Recipe.makeRecipeOneInput(new ItemStack(FirmaMod.unfiredClayBits, 1, FirmaMod.unfiredClayBits.getSubMeta("mold")), CraftMat.CLAY, normalClayOnly,
+				moldShape);
+		Recipe.makeRecipeOneInput(new ItemStack(FirmaMod.unfiredClayBits, 1, FirmaMod.unfiredClayBits.getSubMeta("moldaxe")), CraftMat.CLAY, normalClayOnly,
+				axeShape);
+		Recipe.makeRecipeOneInput(new ItemStack(FirmaMod.unfiredClayBits, 1, FirmaMod.unfiredClayBits.getSubMeta("moldchisel")), CraftMat.CLAY, normalClayOnly,
 				chiselShape);
-		Recipe.makeRecipe(new ItemStack(FirmaMod.unfiredClayBits, 1, FirmaMod.unfiredClayBits.getSubMeta("moldhammer")), CraftMat.CLAY, normalClayOnly,
+		Recipe.makeRecipeOneInput(new ItemStack(FirmaMod.unfiredClayBits, 1, FirmaMod.unfiredClayBits.getSubMeta("moldhammer")), CraftMat.CLAY, normalClayOnly,
 				hammerShape);
-		Recipe.makeRecipe(new ItemStack(FirmaMod.unfiredClayBits, 1, FirmaMod.unfiredClayBits.getSubMeta("moldhoe")), CraftMat.CLAY, normalClayOnly, hoeShape1);
-		Recipe.makeRecipe(new ItemStack(FirmaMod.unfiredClayBits, 1, FirmaMod.unfiredClayBits.getSubMeta("moldjavelin")), CraftMat.CLAY, normalClayOnly,
+		Recipe.makeRecipeOneInput(new ItemStack(FirmaMod.unfiredClayBits, 1, FirmaMod.unfiredClayBits.getSubMeta("moldhoe")), CraftMat.CLAY, normalClayOnly,
+				hoeShape1);
+		Recipe.makeRecipeOneInput(new ItemStack(FirmaMod.unfiredClayBits, 1, FirmaMod.unfiredClayBits.getSubMeta("moldjavelin")), CraftMat.CLAY, normalClayOnly,
 				javelinShape);
-		Recipe.makeRecipe(new ItemStack(FirmaMod.unfiredClayBits, 1, FirmaMod.unfiredClayBits.getSubMeta("moldknife")), CraftMat.CLAY, normalClayOnly,
+		Recipe.makeRecipeOneInput(new ItemStack(FirmaMod.unfiredClayBits, 1, FirmaMod.unfiredClayBits.getSubMeta("moldknife")), CraftMat.CLAY, normalClayOnly,
 				knifeShape1);
-		Recipe.makeRecipe(new ItemStack(FirmaMod.unfiredClayBits, 1, FirmaMod.unfiredClayBits.getSubMeta("moldmace")), CraftMat.CLAY, normalClayOnly,
+		Recipe.makeRecipeOneInput(new ItemStack(FirmaMod.unfiredClayBits, 1, FirmaMod.unfiredClayBits.getSubMeta("moldmace")), CraftMat.CLAY, normalClayOnly,
 				maceShape);
-		Recipe.makeRecipe(new ItemStack(FirmaMod.unfiredClayBits, 1, FirmaMod.unfiredClayBits.getSubMeta("moldpick")), CraftMat.CLAY, normalClayOnly,
+		Recipe.makeRecipeOneInput(new ItemStack(FirmaMod.unfiredClayBits, 1, FirmaMod.unfiredClayBits.getSubMeta("moldpick")), CraftMat.CLAY, normalClayOnly,
 				pickaxeShape);
-		Recipe.makeRecipe(new ItemStack(FirmaMod.unfiredClayBits, 1, FirmaMod.unfiredClayBits.getSubMeta("moldpropick")), CraftMat.CLAY, normalClayOnly,
+		Recipe.makeRecipeOneInput(new ItemStack(FirmaMod.unfiredClayBits, 1, FirmaMod.unfiredClayBits.getSubMeta("moldpropick")), CraftMat.CLAY, normalClayOnly,
 				propickaxeShape);
-		Recipe.makeRecipe(new ItemStack(FirmaMod.unfiredClayBits, 1, FirmaMod.unfiredClayBits.getSubMeta("moldsaw")), CraftMat.CLAY, normalClayOnly, sawShape);
-		Recipe.makeRecipe(new ItemStack(FirmaMod.unfiredClayBits, 1, FirmaMod.unfiredClayBits.getSubMeta("moldscythe")), CraftMat.CLAY, normalClayOnly,
+		Recipe.makeRecipeOneInput(new ItemStack(FirmaMod.unfiredClayBits, 1, FirmaMod.unfiredClayBits.getSubMeta("moldsaw")), CraftMat.CLAY, normalClayOnly,
+				sawShape);
+		Recipe.makeRecipeOneInput(new ItemStack(FirmaMod.unfiredClayBits, 1, FirmaMod.unfiredClayBits.getSubMeta("moldscythe")), CraftMat.CLAY, normalClayOnly,
 				scytheShape);
-		Recipe.makeRecipe(new ItemStack(FirmaMod.unfiredClayBits, 1, FirmaMod.unfiredClayBits.getSubMeta("moldshovel")), CraftMat.CLAY, normalClayOnly,
+		Recipe.makeRecipeOneInput(new ItemStack(FirmaMod.unfiredClayBits, 1, FirmaMod.unfiredClayBits.getSubMeta("moldshovel")), CraftMat.CLAY, normalClayOnly,
 				shovelShape);
-		Recipe.makeRecipe(new ItemStack(FirmaMod.unfiredClayBits, 1, FirmaMod.unfiredClayBits.getSubMeta("moldsword")), CraftMat.CLAY, normalClayOnly,
+		Recipe.makeRecipeOneInput(new ItemStack(FirmaMod.unfiredClayBits, 1, FirmaMod.unfiredClayBits.getSubMeta("moldsword")), CraftMat.CLAY, normalClayOnly,
 				swordShape);
-		Recipe.makeRecipe(new ItemStack(FirmaMod.unfiredClayBits, 1, FirmaMod.unfiredClayBits.getSubMeta("pot")), CraftMat.CLAY, normalClayOnly, potShape);
-		Recipe.makeRecipe(new ItemStack(FirmaMod.unfiredClayBits, 1, FirmaMod.unfiredClayBits.getSubMeta("vessel")), CraftMat.CLAY, normalClayOnly,
+		Recipe.makeRecipeOneInput(new ItemStack(FirmaMod.unfiredClayBits, 1, FirmaMod.unfiredClayBits.getSubMeta("pot")), CraftMat.CLAY, normalClayOnly,
+				potShape);
+		Recipe.makeRecipeOneInput(new ItemStack(FirmaMod.unfiredClayBits, 1, FirmaMod.unfiredClayBits.getSubMeta("vessel")), CraftMat.CLAY, normalClayOnly,
 				vesselShape);
-		Recipe.makeRecipe(new ItemStack(FirmaMod.crucible), CraftMat.CLAY, fireClayOnly, potShape);
+		Recipe.makeRecipeOneInput(new ItemStack(FirmaMod.crucible), CraftMat.CLAY, fireClayOnly, potShape);
 
 		for (ToolType tt : ToolType.values()) {
 			for (ToolMaterials tm : ToolMaterials.values()) {
 				if (tm == ToolMaterials.Stone) {
 					continue;
 				}
-				Recipe.makeRecipe(new ItemStack(FirmaMod.toolHeads, 1, FirmaMod.toolHeads.getSubMeta(tm.getName() + tt.getName())), CraftMat.ANVIL,
+				Recipe.makeRecipeOneInput(new ItemStack(FirmaMod.toolHeads, 1, FirmaMod.toolHeads.getSubMeta(tm.getName() + tt.getName())), CraftMat.ANVIL,
 						new ItemStack(FirmaMod.ingot, 1, FirmaMod.ingot.getSubMeta(tm.getName())), tt.getShape());
 			}
 		}
+		for (MetalEnum metal : MetalEnum.values()) {
+			Recipe.makeRecipeTwoInput(new ItemStack(FirmaMod.doubleingot, 1, FirmaMod.doubleingot.getSubMeta(metal.getName())), CraftMat.ANVIL,
+					new ItemStack(FirmaMod.ingot, 1, FirmaMod.ingot.getSubMeta(metal.getName())),
+					new ItemStack(FirmaMod.ingot, 1, FirmaMod.ingot.getSubMeta(metal.getName())), fullShape);
+			Recipe.makeRecipeOneInput(new ItemStack(FirmaMod.metalsheet, 1, FirmaMod.metalsheet.getSubMeta(metal.getName())), CraftMat.ANVIL,
+					new ItemStack(FirmaMod.doubleingot, 1, FirmaMod.doubleingot.getSubMeta(metal.getName())), fullShape);
+		}
+
+	}
+
+	public static boolean isCraftingInput(ItemStack is, CraftMat type) {
+		if (is.getItem() instanceof MetaItem) {
+			MetaItem i = (MetaItem) is.getItem();
+
+			for (Recipe r : list) {
+				if (type == null || type == r.material) {
+					if (i.getName().equals(r.getItemName()) && is.getMetadata() == i.getSubMeta(r.getSubItemName())) {
+						// Same item type and meta
+						return true;
+					}
+				}
+			}
+		}
+		return false;
 	}
 }

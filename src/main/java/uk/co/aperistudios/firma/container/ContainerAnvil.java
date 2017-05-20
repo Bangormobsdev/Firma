@@ -4,8 +4,6 @@ import java.util.Random;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
-import net.minecraft.inventory.Slot;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -35,29 +33,9 @@ public class ContainerAnvil extends Container {
 		this.rand = new Random();
 		this.worldPointer = worldIn;
 		this.position = pos;
-		this.addSlotToContainer(new Slot(ate, 0, 15, 47) {
-			@Override
-			public boolean isItemValid(ItemStack stack) {
-				return true;
-			}
-
-			@Override
-			public int getSlotStackLimit() {
-				return 1;
-			}
-		});
-		this.addSlotToContainer(new Slot(ate, 1, 35, 47) {
-			@Override
-			public boolean isItemValid(ItemStack stack) {
-				return false;
-			}
-		});
-		this.addSlotToContainer(new Slot(ate, 2, 69, 47) {
-			@Override
-			public boolean isItemValid(ItemStack stack) {
-				return false;
-			}
-		});
+		this.addSlotToContainer(new SlotAnvilInput(ate, 0, 19, 22));
+		this.addSlotToContainer(new SlotAnvilInput(ate, 1, 19, 41));
+		this.addSlotToContainer(new SlotOutput(ate, 2, 140, 31));
 		PlayerInv.buildInventoryLayout(this, playerInv, GuiAnvil.guiwidth, GuiAnvil.guiheight, true, true);
 
 	}

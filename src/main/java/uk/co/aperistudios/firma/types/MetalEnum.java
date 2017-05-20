@@ -1,10 +1,18 @@
 package uk.co.aperistudios.firma.types;
 
+import java.util.ArrayList;
+import java.util.List;
 import net.minecraft.util.IStringSerializable;
 
 public enum MetalEnum implements IStringSerializable {
-	Stone("stone", 0), Copper("copper", 1), Bronze("bronze", 2), BismuthBronze("bismuthbronze", 3), BlackBronze("blackbronze", 4), WroughtIron("wroughtiron",
-			5), Steel("steel", 6), BlackSteel("blacksteel", 7), BlueSteel("bluesteel", 8), RedSteel("redsteel", 9);
+	// "copper", "tin", "bismuth", "bronze", "bismuthbronze", "blackbronze",
+	// "brass", "silver", "gold", "rosegold", "lead", "nickel",
+	// "platinum", "wroughtiron", "pigiron", "steel", "sterlingsilver", "zinc",
+	// "blacksteel", "redsteel", "bluesteel"
+	Copper("copper", 1), Tin("tin", 2), Bismuth("bismuth", 3), Bronze("bronze", 4), BismuthBronze("bismuthbronze", 5), BlackBronze("blackbronze", 6), Brass(
+			"brass", 7), Silver("silver", 8), Gold("gold", 9), RoseGold("rosegold", 10), Lead("lead", 11), Nickel("nickel", 12), Platinum("platinum",
+					13), WroughtIron("wroughtiron", 14), PigIron("pigiron", 15), Steel("steel", 16), SterlingSilver("sterlingsilver",
+							17), Zinc("zinc", 18), BlackSteel("blacksteel", 19), RedSteel("redsteel", 20), BlueSteel("bluesteel", 21);
 
 	private int meta;
 	private String name;
@@ -38,5 +46,13 @@ public enum MetalEnum implements IStringSerializable {
 			}
 		}
 		return null;
+	}
+
+	public static List<String> getList() {
+		ArrayList<String> list = new ArrayList<String>();
+		for (MetalEnum e : MetalEnum.values()) {
+			list.add(e.name);
+		}
+		return list;
 	}
 }
