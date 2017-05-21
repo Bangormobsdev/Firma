@@ -112,4 +112,13 @@ public class LeafBlock2 extends BaseBlock {
 		return false;
 	}
 
+	@Override
+	public boolean isCollidable() {
+		return false;
+	}
+
+	@Override
+	public boolean causesSuffocation(IBlockState state) {
+		return false;
+	}
 }
