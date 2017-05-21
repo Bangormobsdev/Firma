@@ -1,6 +1,7 @@
 package uk.co.aperistudios.firma.blocks.boring;
 
 import java.util.ArrayList;
+import java.util.List;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
@@ -10,10 +11,12 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLiving.SpawnPlacementType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import uk.co.aperistudios.firma.FirmaMod;
+import uk.co.aperistudios.firma.Util;
 import uk.co.aperistudios.firma.types.RockEnum;
 
 public class ClayBlock extends BaseBlock {
@@ -76,5 +79,19 @@ public class ClayBlock extends BaseBlock {
 	@Override
 	public boolean canCreatureSpawn(IBlockState state, IBlockAccess world, BlockPos pos, SpawnPlacementType type) {
 		return super.canCreatureSpawn(state, world, pos, type);
+	}
+
+	@Override
+	public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer) {
+		return layer == BlockRenderLayer.TRANSLUCENT;
+	}
+
+	@Override
+	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
+		ArrayList<ItemStack> list = new ArrayList<ItemStack>();
+		list.add(new ItemStack(FirmaMod.clay, 3, FirmaMod.clay.getSubMeta("clay")));
+		IBlockState dirtState = Util.getDirt(state);
+		list.add(new ItemStack(Item.getItemFromBlock(dirtState.getBlock()), 1, dirtState.getBlock().getMetaFromState(dirtState)));
+		return list;
 	}
 }

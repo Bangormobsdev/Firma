@@ -1,8 +1,10 @@
 package uk.co.aperistudios.firma;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.storage.MapStorage;
@@ -137,7 +139,7 @@ public abstract class CommonProxy {
 		FirmaMod.log = new LogBlock(Material.WOOD);
 		FirmaMod.log2 = new LogBlock2(Material.WOOD);
 
-		FirmaMod.shitOnFloor = new ShitOnFloor(Material.AIR);
+		FirmaMod.shitOnFloor = new ShitOnFloor(Material.GRASS);
 		FirmaMod.floorStorage = new FloorStorage();
 		FirmaMod.crucible = new CrucibleBlock();
 		FirmaMod.anvil = new AnvilBlock(Material.ANVIL);
@@ -200,7 +202,9 @@ public abstract class CommonProxy {
 		FirmaMod.saltwater = BaseLiquid.create("saltwater", fluid -> fluid.setLuminosity(0).setDensity(800).setViscosity(1500), 0xff0022ff);
 		FirmaMod.freshwater = BaseLiquid.create("freshwater", fluid -> fluid.setLuminosity(0).setDensity(800).setViscosity(1500), 0xff0022ff);
 		for (AlcoholType at : AlcoholType.values()) {
-			BaseLiquid.create(at.getName(), fluid -> fluid.setLuminosity(0).setDensity(800).setViscosity(1500), at.getCol());
+			// BaseLiquid.create(at.getName(), fluid ->
+			// fluid.setLuminosity(0).setDensity(800).setViscosity(1500),
+			// at.getCol());
 		}
 
 		NetworkRegistry.INSTANCE.registerGuiHandler(FirmaMod.instance, new HandlerGui());
@@ -216,9 +220,9 @@ public abstract class CommonProxy {
 			GameRegistry.register(i);
 		}
 
-		GameRegistry.register(FirmaMod.crucible);
-		GameRegistry.register(FirmaMod.shitOnFloor);
-		GameRegistry.register(FirmaMod.floorStorage);
+		// Other blocks
+		noModelResource(FirmaMod.floorStorage);
+		noModelResource(FirmaMod.shitOnFloor);
 
 		for (FirmaItem i : FirmaMod.allItems) {
 			GameRegistry.register(i);
@@ -318,6 +322,13 @@ public abstract class CommonProxy {
 		// GameRegistry.registerWorldGenerator(new FirmaDebugOres(), 10);
 
 		MinecraftForge.EVENT_BUS.register(this);
+	}
+
+	private void noModelResource(Block block) {
+		GameRegistry.register(block);
+		ItemBlock ib = new ItemBlock(block);
+		ib.setRegistryName(block.getRegistryName());
+		GameRegistry.register(ib);
 	}
 
 	public void init(FMLInitializationEvent e) {

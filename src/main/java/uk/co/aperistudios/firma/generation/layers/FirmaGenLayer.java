@@ -52,6 +52,9 @@ public abstract class FirmaGenLayer extends GenLayer {
 		finalCont = new FirmaGenLayerSmoothBiome(1001L, finalCont);
 		riverMix.initWorldGenSeed(seed);
 		finalCont.initWorldGenSeed(seed);
+		FirmaGenLayer ore = new FirmaGenLayerIsland(seed + 22L);
+		ore.initWorldGenSeed(seed);
+		drawImage(512, ore, "orecluster");
 		drawImage(512, riverMix, "Biome 20");
 		drawImage(512, finalCont, "Biome 21");
 		return new FirmaGenLayer[] { riverMix, finalCont };

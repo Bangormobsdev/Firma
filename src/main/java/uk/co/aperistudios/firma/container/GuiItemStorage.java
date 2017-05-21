@@ -9,7 +9,6 @@ public class GuiItemStorage extends GuiFirmaBase {
 	public static final int width4 = 50, height4 = 50;
 	public static final int width12 = 50, height12 = 50;
 
-	// TODO make look not shit
 	public GuiItemStorage(Container cont, int items, ItemSize size) {
 		super(cont, items == 4 ? width4 : items == 12 ? width12 : 0, items == 4 ? width4 : items == 12 ? width12 : 0);
 		tex = new ResourceLocation(FirmaMod.MODID + ":textures/gui/guistorage" + items + ".png");

@@ -8,7 +8,6 @@ import uk.co.aperistudios.firma.inventory.ItemInventory;
 import uk.co.aperistudios.firma.types.ItemSize;
 
 public class ContainerItemStorage extends Container {
-	// TODO Make look not shit
 	public IInventory inv;
 
 	public ContainerItemStorage(InventoryPlayer invPlayer, int items, ItemSize iSize) {

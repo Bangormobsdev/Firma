@@ -46,6 +46,7 @@ public class ShitOnFloorRenderer extends FastTESR<SoFTileEntity> {
 					quadinfo[i * 7 + 1] = quadinfo[i * 7 + 2];
 					quadinfo[i * 7 + 2] = v;
 				}
+
 				vertexBuffer.addVertexData(quadinfo);
 				vertexBuffer.putPosition(x, y - 0.45f, z);
 			}

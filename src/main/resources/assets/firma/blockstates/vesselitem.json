@@ -1,0 +1,4 @@
+{"forge_marker":1,"defaults":{"model":"firma:item/generated"},"variants":{    "normal": [{}],
+    "inventory": [{"model": "firma:item/generated"}],"variants":{
+"inventory":{"textures":{"layer0":"firma:items/clay/ceramicvessel"}}
+}}}

@@ -81,12 +81,12 @@ public class Util {
 
 	public static boolean isRockEnum1(Block b) {
 		return b == FirmaMod.rock || b == FirmaMod.dirt || b == FirmaMod.grass || b == FirmaMod.gravel || b == FirmaMod.sand || b == FirmaMod.rockb
-				|| b == FirmaMod.rockc || b == FirmaMod.rocks || b == FirmaMod.grasss;
+				|| b == FirmaMod.rockc || b == FirmaMod.rocks || b == FirmaMod.grasss || b == FirmaMod.clayBlock;
 	}
 
 	public static boolean isRockEnum2(Block b) {
 		return b == FirmaMod.rock2 || b == FirmaMod.dirt2 || b == FirmaMod.grass2 || b == FirmaMod.gravel2 || b == FirmaMod.sand2 || b == FirmaMod.rockb2
-				|| b == FirmaMod.rockc2 || b == FirmaMod.rocks2 || b == FirmaMod.grasss2;
+				|| b == FirmaMod.rockc2 || b == FirmaMod.rocks2 || b == FirmaMod.grasss2 || b == FirmaMod.clayBlock2;
 	}
 
 	public static RockEnum getRockEnum(IBlockState b) {

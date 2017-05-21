@@ -51,14 +51,6 @@ public abstract class BaseBlock extends Block {
 
 	public abstract String getSpecialName(ItemStack stack);
 
-	public ArrayList<ResourceLocation> getResourceLocations() {
-		ArrayList<ResourceLocation> mrl = new ArrayList<ResourceLocation>();
-		for (String s : getVariantNames()) {
-			mrl.add(new ResourceLocation(FirmaMod.MODID + ":" + this.getUnlocalizedName().substring(5) + "." + s));
-		}
-		return mrl;
-	}
-
 	@Override
 	public int damageDropped(IBlockState state) {
 		return getMetaFromState(state);
@@ -74,10 +66,18 @@ public abstract class BaseBlock extends Block {
 		Item item = Item.getItemFromBlock(this);
 		ResourceLocation[] list = new ResourceLocation[getVariantNames().size()];
 		for (String s : getVariantNames()) {
-
-			String loc = this.getRegistryName().toString();// +"#variants="+s;
-			ResourceLocation res = new ResourceLocation(loc);
-			ModelResourceLocation mrl = new ModelResourceLocation(loc, "variants=" + s);
+			String loc = null;
+			ModelResourceLocation mrl;
+			ResourceLocation res;
+			if (this.getModelName() == null) {
+				loc = this.getRegistryName().toString();// +"#variants="+s;
+				res = new ResourceLocation(loc);
+				mrl = new ModelResourceLocation(loc, "variants=" + s);
+			} else {
+				loc = FirmaMod.MODID + ":" + this.getModelName();
+				res = new ResourceLocation(loc);
+				mrl = new ModelResourceLocation(loc, s);
+			}
 			ModelLoader.setCustomModelResourceLocation(item, i, mrl);
 			list[i] = res;
 			i++;
@@ -139,5 +139,13 @@ public abstract class BaseBlock extends Block {
 	@Override
 	public boolean isOpaqueCube(IBlockState state) {
 		return true;
+	}
+
+	public boolean canSupportVessels(IBlockState state) {
+		return isOpaqueCube(state) && isFullCube(state) && isFullBlock(state);
+	}
+
+	public String getModelName() {
+		return null;
 	}
 }

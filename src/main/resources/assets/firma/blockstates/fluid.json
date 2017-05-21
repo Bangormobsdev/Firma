@@ -33,6 +33,46 @@
 					
 				}
 			}
+		],
+		"lava": [
+			{
+				"custom": {
+					"fluid": "saltwater", 					"tintindex": 255
+					
+				}
+			}
+		],
+		"beer": [
+			{
+				"custom": {
+					"fluid": "saltwater", 					"tintindex": 255
+					
+				}
+			}
+		],
+		"ale": [
+			{
+				"custom": {
+					"fluid": "saltwater", 					"tintindex": 255
+					
+				}
+			}
+		],
+		"whiskey": [
+			{
+				"custom": {
+					"fluid": "saltwater", 					"tintindex": 255
+					
+				}
+			}
+		],
+		"rye": [
+			{
+				"custom": {
+					"fluid": "saltwater", 					"tintindex": 255
+					
+				}
+			}
 		]
 	}
 }

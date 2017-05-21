@@ -22,11 +22,11 @@ public abstract class FirmaItem extends Item {
 	}
 
 	public String getBlockStateName() {
-		return null;
+		return name;
 	}
 
 	public String getVariant() {
-		return null;
+		return "inventory";
 	}
 
 	public ItemSize getSize(ItemStack is) {

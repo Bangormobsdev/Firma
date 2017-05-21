@@ -1,6 +1,5 @@
 package uk.co.aperistudios.firma.items;
 
-import org.lwjgl.input.Mouse;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
@@ -8,8 +7,8 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 import uk.co.aperistudios.firma.FirmaMod;
-import uk.co.aperistudios.firma.container.HandlerGui;
 import uk.co.aperistudios.firma.container.GuiKnapping;
+import uk.co.aperistudios.firma.container.HandlerGui;
 import uk.co.aperistudios.firma.crafting.CraftMat;
 import uk.co.aperistudios.firma.player.PlayerData;
 import uk.co.aperistudios.firma.types.ItemSize;
@@ -23,7 +22,6 @@ public class ClayItem extends MetaItem {
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer player, EnumHand handIn) {
-		Mouse.setGrabbed(false); // TODO Remove debug
 		ItemStack is = player.getHeldItem(handIn);
 		if (player.getHeldItemMainhand().getCount() > 4) {
 			if (worldIn.isRemote) {

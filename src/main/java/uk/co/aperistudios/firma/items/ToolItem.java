@@ -23,6 +23,11 @@ public class ToolItem extends FirmaItem {
 		this.setCreativeTab(FirmaMod.toolTab);
 	}
 
+	@Override
+	public String getBlockStateName() {
+		return "tool";
+	}
+
 	private static boolean isDirt(Block b) {
 		return (b == FirmaMod.dirt || b == FirmaMod.dirt2 || b == FirmaMod.grass || b == FirmaMod.grass2 || b == FirmaMod.gravel || b == FirmaMod.gravel2
 				|| b == FirmaMod.sand || b == FirmaMod.sand2 || b == FirmaMod.grasss || b == FirmaMod.grasss2);
@@ -80,11 +85,6 @@ public class ToolItem extends FirmaItem {
 	public void addRecipe() {
 		GameRegistry.addShapelessRecipe(new ItemStack(this),
 				new Object[] { Items.STICK, new ItemStack(FirmaMod.toolHeads, 1, FirmaMod.toolHeads.getSubMeta(toolMaterial.getName() + toolType.getName())) });
-	}
-
-	@Override
-	public String getBlockStateName() {
-		return FirmaMod.MODID + ":tool";
 	}
 
 	@Override

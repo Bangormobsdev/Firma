@@ -1,6 +1,8 @@
 package uk.co.aperistudios.firma.blocks.tileentity;
 
 import javax.annotation.Nullable;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ItemStackHelper;
@@ -10,9 +12,11 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.world.World;
 
 public class FloorStorageTileEntity extends TileEntity implements IInventory {
 	private NonNullList<ItemStack> inventory = NonNullList.<ItemStack>withSize(4, ItemStack.EMPTY);
@@ -57,6 +61,7 @@ public class FloorStorageTileEntity extends TileEntity implements IInventory {
 
 	@Override
 	public void setInventorySlotContents(int index, ItemStack stack) {
+		this.markDirty();
 		this.inventory.set(index, stack);
 
 		if (stack.getCount() > this.getInventoryStackLimit()) {
@@ -71,6 +76,7 @@ public class FloorStorageTileEntity extends TileEntity implements IInventory {
 
 	@Override
 	public ItemStack getStackInSlot(int index) {
+		this.markDirty();
 		return this.inventory.get(index);
 	}
 
@@ -91,7 +97,12 @@ public class FloorStorageTileEntity extends TileEntity implements IInventory {
 
 	@Override
 	public boolean isEmpty() {
-		return false;
+		for (ItemStack is : inventory) {
+			if (!is.isEmpty()) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	@Override
@@ -114,7 +125,7 @@ public class FloorStorageTileEntity extends TileEntity implements IInventory {
 
 	@Override
 	public boolean isItemValidForSlot(int index, ItemStack stack) {
-		return false; // TODO Fill
+		return false; // Allow machines inserting? I don't think so
 	}
 
 	@Override
@@ -147,11 +158,13 @@ public class FloorStorageTileEntity extends TileEntity implements IInventory {
 
 	@Override
 	public ItemStack decrStackSize(int index, int count) {
+		this.markDirty();
 		return ItemStackHelper.getAndSplit(this.inventory, index, count);
 	}
 
 	@Override
 	public ItemStack removeStackFromSlot(int index) {
+		this.markDirty();
 		return ItemStackHelper.getAndRemove(this.inventory, index);
 	}
 
@@ -164,5 +177,14 @@ public class FloorStorageTileEntity extends TileEntity implements IInventory {
 	@Override
 	public NBTTagCompound getUpdateTag() {
 		return this.writeToNBT(new NBTTagCompound());
+	}
+
+	public void destroy(World worldIn, BlockPos pos, IBlockState state) {
+		for (int i = 0; i < this.getSizeInventory(); i++) {
+			ItemStack item = inventory.get(i);
+			if (!item.isEmpty()) {
+				worldIn.spawnEntity(new EntityItem(worldIn, pos.getX() + .5, pos.getY() + .5, pos.getZ() + .5, item));
+			}
+		}
 	}
 }

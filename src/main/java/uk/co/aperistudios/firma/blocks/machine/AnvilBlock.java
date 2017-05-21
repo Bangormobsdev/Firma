@@ -37,6 +37,7 @@ public class AnvilBlock extends BaseBlock implements ITileEntityProvider {
 		super(materialIn, "anvil");
 		this.setHardness(10);
 		this.setResistance(10);
+		this.lightOpacity = 0;
 		this.setCreativeTab(FirmaMod.blockTab);
 		this.setDefaultState(this.getStateFromMeta(0));
 	}

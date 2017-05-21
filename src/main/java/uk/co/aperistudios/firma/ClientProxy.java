@@ -1,7 +1,9 @@
 package uk.co.aperistudios.firma;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
@@ -20,11 +22,12 @@ import uk.co.aperistudios.firma.blocks.boring.BaseBlock;
 import uk.co.aperistudios.firma.blocks.liquids.BaseLiquid;
 import uk.co.aperistudios.firma.blocks.recolour.GrassColor;
 import uk.co.aperistudios.firma.blocks.recolour.LeafColor;
+import uk.co.aperistudios.firma.blocks.tileentity.FloorStorageTileEntity;
 import uk.co.aperistudios.firma.blocks.tileentity.SoFTileEntity;
 import uk.co.aperistudios.firma.items.FirmaItem;
 import uk.co.aperistudios.firma.items.MetaItem;
+import uk.co.aperistudios.firma.renderer.FloorStorageRenderer;
 import uk.co.aperistudios.firma.renderer.ShitOnFloorRenderer;
-import net.minecraft.client.renderer.ItemMeshDefinition;
 
 public class ClientProxy extends CommonProxy {
 
@@ -67,35 +70,31 @@ public class ClientProxy extends CommonProxy {
 		};
 		super.preInit(e);
 
-		for (BaseBlock b : FirmaMod.allBlocks) {
-			b.registerRender();
-		}
-
 		for (FirmaItem i : FirmaMod.allItems) {
 			if (i instanceof MetaItem) {
 				MetaItem mi = (MetaItem) i;
 				ResourceLocation[] list = new ResourceLocation[mi.getSubCount()];
 				for (int f = 0; f < mi.getSubCount(); f++) {
-					String loc = mi.getRegistryName().toString();// +"#variants="+s;
+					String loc = mi.getRegistryName().toString();
 					ResourceLocation res = new ResourceLocation(loc);
-					// FirmaMod.MODID + ":" +
-					// this.getUnlocalizedName().substring(5)+"."+s
 					ModelResourceLocation mrl = new ModelResourceLocation(loc, "variants=" + mi.getSubName(f));
 					ModelLoader.setCustomModelResourceLocation(i, f, mrl);
-					// ModelBakery.registerItemVariants(Item.getItemFromBlock(this),
-					// res);
 					list[f] = res;
 				}
 				ModelBakery.registerItemVariants(mi, list);
 			} else {
 				FirmaItem fi = i;
-				String loc = fi.getBlockStateName();
-				// ResourceLocation rl = new ResourceLocation(loc);
+				String loc = FirmaMod.MODID + ":" + fi.getBlockStateName();
 				ModelResourceLocation mrl = new ModelResourceLocation(loc, "variants=" + fi.getVariant());
 				ModelLoader.setCustomModelResourceLocation(i, 0, mrl);
-				// ModelBakery.registerItemVariants(fi, rl);
 			}
 		}
+
+		for (BaseBlock b : FirmaMod.allBlocks) {
+			b.registerRender();
+		}
+		noModelRegister(FirmaMod.floorStorage);
+		noModelRegister(FirmaMod.shitOnFloor);
 
 		for (BaseLiquid f : FirmaMod.allFluids) {
 			final Item item = Item.getItemFromBlock(f.getFluidBlock());
@@ -121,7 +120,18 @@ public class ClientProxy extends CommonProxy {
 
 		// Special Renderers
 		ClientRegistry.bindTileEntitySpecialRenderer(SoFTileEntity.class, new ShitOnFloorRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(FloorStorageTileEntity.class, new FloorStorageRenderer());
 		LeafColor.init();
+	}
+
+	private static void noModelRegister(Block block) {
+		Item item = Item.getItemFromBlock(block);
+		ModelResourceLocation mrl;
+		ResourceLocation res = new ResourceLocation(block.getRegistryName().toString());
+		mrl = new ModelResourceLocation(res, "nope");
+		ModelLoader.setCustomModelResourceLocation(item, 0, mrl);
+		ModelBakery.registerItemVariants(item, res);
+
 	}
 
 	@Override
@@ -132,15 +142,6 @@ public class ClientProxy extends CommonProxy {
 		Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(new GrassColor(), FirmaMod.grass2);
 		Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(new GrassColor(), FirmaMod.grasss);
 		Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(new GrassColor(), FirmaMod.grasss2);
-
-		// More than one way to skin a cat. Moved into fluid like it apparently
-		// should have been
-		// Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(new
-		// LiquidColor(0xffaaff00), FirmaMod.saltwater.getFluidBlock());
-		// Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(new
-		// LiquidColor(0xffaaff00), FirmaMod.freshwater.getFluidBlock());
-		// Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new
-		// LiquidItemColor(), FirmaMod.saltwater.getFluidItem());
 		super.init(e);
 	}
 
