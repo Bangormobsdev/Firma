@@ -1,5 +1,6 @@
 package uk.co.aperistudios.firma.generation;
 
+import java.util.HashMap;
 import java.util.Random;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -14,8 +15,8 @@ import uk.co.aperistudios.firma.generation.layers.FirmaGenLayerZoom;
 
 public class FirmaOreVeinGen implements IWorldGenerator {
 	public static int count = 0;
-	FirmaGenLayer layer = null;
-	NoiseGeneratorSimplex height = null;
+	HashMap<String, FirmaGenLayer> layers = null;
+	HashMap<String, NoiseGeneratorSimplex> heights = null;
 	private int heightVar, minH;
 	private GenBlockReplacer replacer;
 	private long seedOffset;
@@ -36,11 +37,15 @@ public class FirmaOreVeinGen implements IWorldGenerator {
 		Random r2 = new Random(seedOffset + world.getSeed());
 		int xOff = r2.nextInt(100);
 		int zOff = r2.nextInt(100);
-		if (layer == null || height == null) {
-			layer = new FirmaGenLayerRiver(1L, FirmaGenLayerZoom.magnify(5L + seedOffset, FirmaGenLayer.genContinent(seedOffset, false), 8));
-			layer.initWorldGenSeed(world.getSeed());
-			height = new NoiseGeneratorSimplex(new Random(world.getSeed() + seedOffset));
+		String worldName = world.getWorldInfo().getWorldName();
+		if (!layers.containsKey(worldName) || !heights.containsKey(worldName)) {
+			FirmaGenLayerRiver l = new FirmaGenLayerRiver(1L, FirmaGenLayerZoom.magnify(5L + seedOffset, FirmaGenLayer.genContinent(seedOffset, false), 8));
+			layers.put(worldName, l);
+			l.initWorldGenSeed(world.getSeed());
+			heights.put(worldName, new NoiseGeneratorSimplex(new Random(world.getSeed() + seedOffset)));
 		}
+		FirmaGenLayer layer = layers.get(worldName);
+		NoiseGeneratorSimplex height = heights.get(worldName);
 		for (int x = 0; x < 16; x++) {
 			for (int z = 0; z < 16; z++) {
 
