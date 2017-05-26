@@ -114,7 +114,7 @@ public class LeafBlock extends BaseBlock {
 
 	@Override
 	public boolean isCollidable() {
-		return false;
+		return true;
 	}
 
 	@Override
