@@ -251,4 +251,16 @@ public class Util {
 	public static boolean isLiquid(Block block) {
 		return block == FirmaMod.freshwater.getBlock() || block == FirmaMod.saltwater.getBlock() || block == FirmaMod.lava.getBlock();
 	}
+
+	public static boolean isRawStone(IBlockState blockState) {
+		return isRawStone(blockState.getBlock());
+	}
+
+	private static boolean isOre(Block block) {
+		return block == FirmaMod.ore;
+	}
+
+	public static boolean isOre(IBlockState blockState) {
+		return isOre(blockState.getBlock());
+	}
 }

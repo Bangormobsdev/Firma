@@ -15,8 +15,8 @@ import uk.co.aperistudios.firma.generation.layers.FirmaGenLayerZoom;
 
 public class FirmaOreVeinGen implements IWorldGenerator {
 	public static int count = 0;
-	HashMap<String, FirmaGenLayer> layers = null;
-	HashMap<String, NoiseGeneratorSimplex> heights = null;
+	HashMap<String, FirmaGenLayer> layers = new HashMap<String, FirmaGenLayer>();
+	HashMap<String, NoiseGeneratorSimplex> heights = new HashMap<String, NoiseGeneratorSimplex>();
 	private int heightVar, minH;
 	private GenBlockReplacer replacer;
 	private long seedOffset;

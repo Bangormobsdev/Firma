@@ -66,6 +66,7 @@ import uk.co.aperistudios.firma.generation.FirmaOreVeinGen;
 import uk.co.aperistudios.firma.generation.FirmaTreeGen;
 import uk.co.aperistudios.firma.generation.FirmaWorld;
 import uk.co.aperistudios.firma.generation.FirmaWorldProvider;
+import uk.co.aperistudios.firma.generation.LavaLayerGen;
 import uk.co.aperistudios.firma.generation.OreGenReplacer;
 import uk.co.aperistudios.firma.generation.ShitOnFloorGen;
 import uk.co.aperistudios.firma.generation.layers.Layer;
@@ -317,9 +318,10 @@ public abstract class CommonProxy {
 
 		GameRegistry.registerWorldGenerator(new ShitOnFloorGen(), 1);
 		GameRegistry.registerWorldGenerator(new FirmaTreeGen(), 5);
+		GameRegistry.registerWorldGenerator(new LavaLayerGen(-4), 40);
 
 		// Use during debug to remove Rock from world to expose ore veins
-		// GameRegistry.registerWorldGenerator(new FirmaDebugOres(), 10);
+		// GameRegistry.registerWorldGenerator(new FirmaDebugOres(), 200);
 
 		MinecraftForge.EVENT_BUS.register(this);
 	}
