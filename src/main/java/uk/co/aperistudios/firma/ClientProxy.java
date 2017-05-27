@@ -13,12 +13,12 @@ import net.minecraft.item.ItemAir;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.fluids.IFluidBlock;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import uk.co.aperistudios.firma.blocks.boring.BaseBlock;
+import uk.co.aperistudios.firma.blocks.liquids.BaseBlockLiquid;
 import uk.co.aperistudios.firma.blocks.liquids.BaseLiquid;
 import uk.co.aperistudios.firma.blocks.recolour.GrassColor;
 import uk.co.aperistudios.firma.blocks.recolour.LeafColor;
@@ -68,6 +68,12 @@ public class ClientProxy extends CommonProxy {
 				return new ItemStack(FirmaMod.bunchOfTools.get(4));
 			}
 		};
+		FirmaMod.liquidTab = new CreativeTabs("FirmaLiquid") {
+			@Override
+			public ItemStack getTabIconItem() {
+				return new ItemStack(FirmaMod.freshwater.getBlock());
+			}
+		};
 		super.preInit(e);
 
 		for (FirmaItem i : FirmaMod.allItems) {
@@ -105,7 +111,7 @@ public class ClientProxy extends CommonProxy {
 			ItemMeshDefinition imd = new ItemMeshDefinition() {
 				@Override
 				public ModelResourceLocation getModelLocation(ItemStack stack) {
-					return new ModelResourceLocation(f.getModelPath(), ((IFluidBlock) f.getFluidBlock()).getFluid().getName());
+					return new ModelResourceLocation(f.getModelPath(), ((BaseBlockLiquid) f.getFluidBlock()).getFluid().getName());
 				}
 			};
 			ModelLoader.setCustomMeshDefinition(item, imd);
@@ -113,7 +119,7 @@ public class ClientProxy extends CommonProxy {
 			ModelLoader.setCustomStateMapper(f.getFluidBlock(), new StateMapperBase() {
 				@Override
 				protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
-					return new ModelResourceLocation(f.getModelPath(), ((IFluidBlock) f.getFluidBlock()).getFluid().getName());
+					return new ModelResourceLocation(f.getModelPath(), ((BaseBlockLiquid) f.getFluidBlock()).getFluid().getName());
 				}
 			});
 		}

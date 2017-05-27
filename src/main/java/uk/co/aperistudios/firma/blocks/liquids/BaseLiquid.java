@@ -49,17 +49,20 @@ public class BaseLiquid extends Fluid {
 		return col;
 	}
 
-	public static BaseLiquid create(String fluidName, Consumer<Fluid> f, int col) {
+	public static BaseLiquid create(String fluidName, Consumer<Fluid> f, Consumer<BaseBlockLiquid> l, int col) {
 		BaseLiquid nL = new BaseLiquid(fluidName);
 		nL.setUnlocalizedName(FirmaMod.MODID + ":fluid." + fluidName);
-		FluidRegistry.registerFluid(nL);
+		nL.col = col;
 		f.accept(nL);
+		FluidRegistry.registerFluid(nL);
+
 		nL.block = new BaseBlockLiquid(nL, Material.WATER);
 		nL.block.setRegistryName(FirmaMod.MODID + ":fluid." + fluidName);
 		nL.block.setUnlocalizedName(FirmaMod.MODID + ":fluid." + fluidName);
-		nL.block.setCreativeTab(FirmaMod.blockTab);
+		nL.block.setCreativeTab(FirmaMod.liquidTab);
 		nL.block.setLightOpacity(3);
 		nL.block.setLightLevel(0);
+		l.accept((BaseBlockLiquid) nL.block);
 
 		GameRegistry.register(nL.block);
 		nL.i = new ItemBlock(nL.block);
@@ -67,7 +70,6 @@ public class BaseLiquid extends Fluid {
 		nL.i.setUnlocalizedName(FirmaMod.MODID + ":fluid." + fluidName);
 		GameRegistry.register(nL.i);
 		FirmaMod.allFluids.add(nL);
-		nL.col = col;
 		return nL;
 	}
 }

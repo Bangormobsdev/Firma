@@ -66,7 +66,6 @@ import uk.co.aperistudios.firma.generation.FirmaOreVeinGen;
 import uk.co.aperistudios.firma.generation.FirmaTreeGen;
 import uk.co.aperistudios.firma.generation.FirmaWorld;
 import uk.co.aperistudios.firma.generation.FirmaWorldProvider;
-import uk.co.aperistudios.firma.generation.LavaLayerGen;
 import uk.co.aperistudios.firma.generation.OreGenReplacer;
 import uk.co.aperistudios.firma.generation.ShitOnFloorGen;
 import uk.co.aperistudios.firma.generation.layers.Layer;
@@ -199,13 +198,13 @@ public abstract class CommonProxy {
 			}
 		}
 
-		FirmaMod.lava = BaseLiquid.create("lava", fluid -> fluid.setLuminosity(100).setDensity(800).setViscosity(1500), 0xffff0000);
-		FirmaMod.saltwater = BaseLiquid.create("saltwater", fluid -> fluid.setLuminosity(0).setDensity(800).setViscosity(1500), 0xff0022ff);
-		FirmaMod.freshwater = BaseLiquid.create("freshwater", fluid -> fluid.setLuminosity(0).setDensity(800).setViscosity(1500), 0xff0022ff);
+		FirmaMod.lava = BaseLiquid.create("lava", fluid -> fluid.setLuminosity(100).setDensity(800).setViscosity(1500), l -> l.setsOnFire(true), 0xffff0000);
+		FirmaMod.saltwater = BaseLiquid.create("saltwater", fluid -> fluid.setLuminosity(0).setDensity(800).setViscosity(1500), l -> l.canSpawnInBlock(),
+				0xff0022ff);
+		FirmaMod.freshwater = BaseLiquid.create("freshwater", fluid -> fluid.setLuminosity(0).setDensity(800).setViscosity(1500), l -> l.canSpawnInBlock(),
+				0xff0022ff);
 		for (AlcoholType at : AlcoholType.values()) {
-			// BaseLiquid.create(at.getName(), fluid ->
-			// fluid.setLuminosity(0).setDensity(800).setViscosity(1500),
-			// at.getCol());
+			BaseLiquid.create(at.getName(), fluid -> fluid.setLuminosity(0).setDensity(800).setViscosity(1500), l -> l.canSpawnInBlock(), at.getCol());
 		}
 
 		NetworkRegistry.INSTANCE.registerGuiHandler(FirmaMod.instance, new HandlerGui());
@@ -318,7 +317,7 @@ public abstract class CommonProxy {
 
 		GameRegistry.registerWorldGenerator(new ShitOnFloorGen(), 1);
 		GameRegistry.registerWorldGenerator(new FirmaTreeGen(), 5);
-		GameRegistry.registerWorldGenerator(new LavaLayerGen(-4), 40);
+		// GameRegistry.registerWorldGenerator(new LavaLayerGen(-4), 40);
 
 		// Use during debug to remove Rock from world to expose ore veins
 		// GameRegistry.registerWorldGenerator(new FirmaDebugOres(), 200);
@@ -326,7 +325,7 @@ public abstract class CommonProxy {
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 
-	private void noModelResource(Block block) {
+	private static void noModelResource(Block block) {
 		GameRegistry.register(block);
 		ItemBlock ib = new ItemBlock(block);
 		ib.setRegistryName(block.getRegistryName());

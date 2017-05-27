@@ -34,7 +34,7 @@ public class FloorStorage extends Block implements ITileEntityProvider {
 
 	@Override
 	public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer) {
-		return layer == layer.SOLID;
+		return layer == BlockRenderLayer.SOLID;
 	}
 
 	@Override

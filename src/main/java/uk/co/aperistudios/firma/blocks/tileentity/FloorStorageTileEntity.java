@@ -179,11 +179,11 @@ public class FloorStorageTileEntity extends TileEntity implements IInventory {
 		return this.writeToNBT(new NBTTagCompound());
 	}
 
-	public void destroy(World worldIn, BlockPos pos, IBlockState state) {
+	public void destroy(World worldIn, BlockPos pos1, IBlockState state) {
 		for (int i = 0; i < this.getSizeInventory(); i++) {
 			ItemStack item = inventory.get(i);
 			if (!item.isEmpty()) {
-				worldIn.spawnEntity(new EntityItem(worldIn, pos.getX() + .5, pos.getY() + .5, pos.getZ() + .5, item));
+				worldIn.spawnEntity(new EntityItem(worldIn, pos1.getX() + .5, pos1.getY() + .5, pos1.getZ() + .5, item));
 			}
 		}
 	}

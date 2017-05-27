@@ -5,7 +5,6 @@
 		"fluid": "normal",
 		"transform": "forge:default-item",
 		"custom": {
-			"fluid": "saltwater",
 			"tintindex": 255
 		}
 	},
@@ -37,7 +36,7 @@
 		"lava": [
 			{
 				"custom": {
-					"fluid": "saltwater", 					"tintindex": 255
+					"fluid": "lava", 					"tintindex": 255
 					
 				}
 			}
@@ -61,7 +60,7 @@
 		"whiskey": [
 			{
 				"custom": {
-					"fluid": "saltwater", 					"tintindex": 255
+					"fluid": "whiskey", 					"tintindex": 255
 					
 				}
 			}
