@@ -28,7 +28,7 @@
 		"freshwater": [
 			{
 				"custom": {
-					"fluid": "saltwater", 					"tintindex": 255
+					"fluid": "freshwater", 					"tintindex": 255
 					
 				}
 			}
@@ -44,7 +44,7 @@
 		"beer": [
 			{
 				"custom": {
-					"fluid": "saltwater", 					"tintindex": 255
+					"fluid": "beer", 					"tintindex": 255
 					
 				}
 			}
@@ -52,7 +52,7 @@
 		"ale": [
 			{
 				"custom": {
-					"fluid": "saltwater", 					"tintindex": 255
+					"fluid": "ale", 					"tintindex": 255
 					
 				}
 			}
@@ -65,10 +65,106 @@
 				}
 			}
 		],
+		"bourbon": [
+			{
+				"custom": {
+					"fluid": "bourbon", 					"tintindex": 255
+					
+				}
+			}
+		],
 		"rye": [
 			{
 				"custom": {
-					"fluid": "saltwater", 					"tintindex": 255
+					"fluid": "rye", 					"tintindex": 255
+					
+				}
+			}
+		],
+		"cider": [
+			{
+				"custom": {
+					"fluid": "cider", 					"tintindex": 255
+					
+				}
+			}
+		],
+		"brandy": [
+			{
+				"custom": {
+					"fluid": "brandy", 					"tintindex": 255
+					
+				}
+			}
+		],
+		"gin": [
+			{
+				"custom": {
+					"fluid": "gin", 					"tintindex": 255
+					
+				}
+			}
+		],
+		"rum": [
+			{
+				"custom": {
+					"fluid": "rum", 					"tintindex": 255
+					
+				}
+			}
+		],
+		"tequila": [
+			{
+				"custom": {
+					"fluid": "tequila", 					"tintindex": 255
+					
+				}
+			}
+		],
+		"liquour": [
+			{
+				"custom": {
+					"fluid": "liquour", 					"tintindex": 255
+					
+				}
+			}
+		],
+		"sake": [
+			{
+				"custom": {
+					"fluid": "sake", 					"tintindex": 255
+					
+				}
+			}
+		],
+		"mead": [
+			{
+				"custom": {
+					"fluid": "mead", 					"tintindex": 255
+					
+				}
+			}
+		],
+		"pangalacticgargleblaster": [
+			{
+				"custom": {
+					"fluid": "pangalacticgargleblaster", 					"tintindex": 255
+					
+				}
+			}
+		],
+		"absinthe": [
+			{
+				"custom": {
+					"fluid": "absinthe", 					"tintindex": 255
+					
+				}
+			}
+		],
+		"vodka": [
+			{
+				"custom": {
+					"fluid": "vodka", 					"tintindex": 255
 					
 				}
 			}
