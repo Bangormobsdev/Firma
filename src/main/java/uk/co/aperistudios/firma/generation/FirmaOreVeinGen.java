@@ -66,7 +66,7 @@ public class FirmaOreVeinGen implements IWorldGenerator {
 				if (a[0] != 0) {
 					// Place ore!
 					if (top) {
-						int topRock = getMaxY(world, x + (chunkX * 16), z + (chunkZ * 16));
+						int topRock = getMaxY(world, x + (chunkX * 16) + 8, z + (chunkZ * 16) + 8);
 						if (topRock <= minH) {
 							continue;
 						}

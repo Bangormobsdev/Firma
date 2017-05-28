@@ -64,6 +64,7 @@ import uk.co.aperistudios.firma.container.HandlerGui;
 import uk.co.aperistudios.firma.crafting.CraftingManager;
 import uk.co.aperistudios.firma.generation.FirmaBiome;
 import uk.co.aperistudios.firma.generation.FirmaOreVeinGen;
+import uk.co.aperistudios.firma.generation.FirmaPathGen;
 import uk.co.aperistudios.firma.generation.FirmaTreeGen;
 import uk.co.aperistudios.firma.generation.FirmaWorld;
 import uk.co.aperistudios.firma.generation.FirmaWorldProvider;
@@ -339,6 +340,8 @@ public abstract class CommonProxy {
 		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(3, 40, 42, new OreGenReplacer(OresEnum.BISMUTHINITE, 3)), prio++);
 		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(3, 40, 43, new OreGenReplacer(OresEnum.GARNIERITE, 3)), prio++);
 		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(3, 60, 44, new OreGenReplacer(OresEnum.NATIVEGOLD, 3)), prio++);
+
+		GameRegistry.registerWorldGenerator(new FirmaPathGen(45), prio++);
 
 		GameRegistry.registerWorldGenerator(new FirmaTreeGen(), prio++);
 		GameRegistry.registerWorldGenerator(new ShitOnFloorGen(topLayers), prio++);

@@ -263,4 +263,12 @@ public class Util {
 	public static boolean isOre(IBlockState blockState) {
 		return isOre(blockState.getBlock());
 	}
+
+	public static boolean isRockEnum2(IBlockState bs) {
+		return isRockEnum2(bs.getBlock());
+	}
+
+	public static boolean isWater(IBlockState bs) {
+		return isWater(bs.getBlock());
+	}
 }
