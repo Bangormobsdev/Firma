@@ -1,5 +1,7 @@
 package uk.co.aperistudios.firma.generation;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -19,13 +21,18 @@ import uk.co.aperistudios.firma.types.OresEnum;
 
 public class ShitOnFloorGen implements IWorldGenerator {
 	boolean belowTree = false;
+	private ArrayList<FirmaOreVeinGen> topLayers;
+
+	public ShitOnFloorGen(ArrayList<FirmaOreVeinGen> topLayers) {
+		this.topLayers = topLayers;
+	}
 
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
 		for (int i = 0; i < random.nextInt(16); i++) {
 			belowTree = false;
-			int x = random.nextInt(16) + chunkX * 16;
-			int z = random.nextInt(16) + chunkZ * 16;
+			int x = random.nextInt(16) + chunkX * 16 + 8;
+			int z = random.nextInt(16) + chunkZ * 16 + 8;
 			int y = world.getHeight();
 			BlockPos pos = new BlockPos(x, y, z);
 			while (!shitCheck(world, pos)) {
@@ -43,7 +50,7 @@ public class ShitOnFloorGen implements IWorldGenerator {
 				world.setBlockState(pos, FirmaMod.shitOnFloor.getDefaultState(), 2);
 				SoFTileEntity te = (SoFTileEntity) world.getTileEntity(pos);
 				if (te != null) {
-					te.setItem(getItemForArea(random, meta));
+					te.setItem(getItemForArea(random, world, chunkX, chunkZ, meta));
 					te.markDirty();
 				}
 			}
@@ -59,7 +66,7 @@ public class ShitOnFloorGen implements IWorldGenerator {
 		return shitfuck != Blocks.AIR;
 	}
 
-	public ItemStack getItemForArea(Random r, String meta) {
+	public ItemStack getItemForArea(Random r, World world, int chunkX, int chunkZ, String meta) {
 		if (r.nextInt(100) < 10) {
 			return new ItemStack(Items.STICK);
 		}
@@ -67,8 +74,19 @@ public class ShitOnFloorGen implements IWorldGenerator {
 			return new ItemStack(Items.STICK);
 		}
 		if (r.nextInt(100) < 20) {
-			OresEnum oe = Util.getOreForRock(r, meta);
-			return new ItemStack(FirmaMod.oreItem, 1, FirmaMod.oreItem.getSubMeta(oe.getName() + "poor"));
+			// Try Ore
+			OresEnum oe = null;
+			Collections.shuffle(topLayers);
+			for (FirmaOreVeinGen vein : topLayers) {
+				if (vein.belongsInChunk(world, chunkX, chunkZ)) {
+					oe = vein.getOreEnum();
+					break;
+				}
+
+			}
+			if (oe != null) {
+				return new ItemStack(FirmaMod.oreItem, 1, FirmaMod.oreItem.getSubMeta(oe.getName() + "poor"));
+			}
 		}
 		return new ItemStack(FirmaMod.pebble, 1, FirmaMod.pebble.getSubMeta(meta));
 	}

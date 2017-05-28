@@ -12,6 +12,7 @@ import uk.co.aperistudios.firma.Util;
 import uk.co.aperistudios.firma.generation.layers.FirmaGenLayer;
 import uk.co.aperistudios.firma.generation.layers.FirmaGenLayerRiver;
 import uk.co.aperistudios.firma.generation.layers.FirmaGenLayerZoom;
+import uk.co.aperistudios.firma.types.OresEnum;
 
 public class FirmaOreVeinGen implements IWorldGenerator {
 	public static int count = 0;
@@ -32,20 +33,32 @@ public class FirmaOreVeinGen implements IWorldGenerator {
 		}
 	}
 
+	public FirmaGenLayer getLayer(World w) {
+		String s = w.getWorldInfo().getWorldName();
+		if (!layers.containsKey(s)) {
+			FirmaGenLayerRiver l = new FirmaGenLayerRiver(1L, FirmaGenLayerZoom.magnify(5L + seedOffset, FirmaGenLayer.genContinent(seedOffset, false), 8));
+			layers.put(s, l);
+			l.initWorldGenSeed(w.getSeed());
+		}
+		return layers.get(s);
+	}
+
+	public NoiseGeneratorSimplex getHeight(World w) {
+		String s = w.getWorldInfo().getWorldName();
+		if (!heights.containsKey(s)) {
+			heights.put(s, new NoiseGeneratorSimplex(new Random(w.getSeed() + seedOffset)));
+		}
+		return heights.get(s);
+	}
+
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
 		Random r2 = new Random(seedOffset + world.getSeed());
 		int xOff = r2.nextInt(100);
 		int zOff = r2.nextInt(100);
-		String worldName = world.getWorldInfo().getWorldName();
-		if (!layers.containsKey(worldName) || !heights.containsKey(worldName)) {
-			FirmaGenLayerRiver l = new FirmaGenLayerRiver(1L, FirmaGenLayerZoom.magnify(5L + seedOffset, FirmaGenLayer.genContinent(seedOffset, false), 8));
-			layers.put(worldName, l);
-			l.initWorldGenSeed(world.getSeed());
-			heights.put(worldName, new NoiseGeneratorSimplex(new Random(world.getSeed() + seedOffset)));
-		}
-		FirmaGenLayer layer = layers.get(worldName);
-		NoiseGeneratorSimplex height = heights.get(worldName);
+
+		FirmaGenLayer layer = getLayer(world);
+		NoiseGeneratorSimplex height = getHeight(world);
 		for (int x = 0; x < 16; x++) {
 			for (int z = 0; z < 16; z++) {
 
@@ -67,7 +80,7 @@ public class FirmaOreVeinGen implements IWorldGenerator {
 							h = 1.0;
 						}
 						int y = (int) (h * heightVar2) + minH;
-						replacer.replaceBlock(world, new BlockPos(x + (chunkX * 16), y, z + (chunkZ * 16)));
+						replacer.replaceBlock(world, new BlockPos(x + (chunkX * 16) + 8, y, z + (chunkZ * 16) + 8));
 					} else {
 						double h = (1.0 + (height.getValue((x + (chunkX * 16)) / 1024.0, (z + (chunkZ * 16)) / 1024.0)) * 1.40) * .5;
 						if (h < 0.0) {
@@ -77,7 +90,7 @@ public class FirmaOreVeinGen implements IWorldGenerator {
 							h = 1.0;
 						}
 						int y = (int) (h * heightVar) + minH;
-						replacer.replaceBlock(world, new BlockPos(x + (chunkX * 16), y, z + (chunkZ * 16)));
+						replacer.replaceBlock(world, new BlockPos(x + (chunkX * 16) + 8, y, z + (chunkZ * 16) + 8));
 					}
 				}
 			}
@@ -92,5 +105,26 @@ public class FirmaOreVeinGen implements IWorldGenerator {
 			}
 		}
 		return 0;
+	}
+
+	public boolean belongsInChunk(World world, int chunkX, int chunkZ) {
+		Random r2 = new Random(seedOffset + world.getSeed());
+		int xOff = r2.nextInt(100);
+		int zOff = r2.nextInt(100);
+		FirmaGenLayer layer = getLayer(world);
+		for (int x = 0; x < 16; x++) {
+			for (int z = 0; z < 16; z++) {
+
+				int[] a = layer.getInts(x + (chunkX * 16) + xOff, z + (chunkZ * 16) + zOff, 1, 1);
+				if (a[0] != 0) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	public OresEnum getOreEnum() {
+		return ((OreGenReplacer) replacer).getOreEnum();
 	}
 }

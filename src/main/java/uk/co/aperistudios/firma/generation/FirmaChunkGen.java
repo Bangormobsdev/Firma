@@ -78,28 +78,28 @@ public class FirmaChunkGen implements IChunkGenerator {
 
 	private Biome[] replaceBiomeBlocks(int x, int z, ChunkPrimer primer) {
 		this.biomesForBiomeGen = ((FirmaBiomeProvider) this.world.getBiomeProvider()).getBiomes(this.biomesForBiomeGen, x * 16 - 1, z * 16 - 1, 18, 18);
-
-		// Prep Rock Strata
-		IBlockState topRock = Util.getRockStrata(rockStrataNoise.noise(x, 0, z, 0.02), 0);
-
-		IBlockState dirt;
-		IBlockState grass;
-		IBlockState midRock = Util.getRockStrata(rockStrataNoise.noise(x, -30, z, 0.02), 1);
-		IBlockState botRock = Util.getRockStrata(rockStrataNoise.noise(x, -60, z, 0.02), 2);
-		IBlockState bedRock = Blocks.BEDROCK.getDefaultState();
-		if (topRock == null) {
-			topRock = Blocks.AIR.getDefaultState();
-		}
-		if (midRock == null) {
-			midRock = Blocks.AIR.getDefaultState();
-		}
-		if (botRock == null) {
-			botRock = Blocks.AIR.getDefaultState();
-		}
 		Block b = null;
 		int cx, cy, cz, top, lt, lb, lm;
 		for (cx = 0; cx < 16; cx++) {
 			for (cz = 0; cz < 16; cz++) {
+				double bx = (x + cx / 16.0);
+				double bz = (z + cz / 16.0);
+				// Prep Rock Strata
+				IBlockState dirt;
+				IBlockState grass;
+				IBlockState topRock = Util.getRockStrata(rockStrataNoise.noise(bx, 0, bz, 0.02), 0);
+				IBlockState midRock = Util.getRockStrata(rockStrataNoise.noise(bx, -30, bz, 0.02), 1);
+				IBlockState botRock = Util.getRockStrata(rockStrataNoise.noise(bx, -60, bz, 0.02), 2);
+				IBlockState bedRock = Blocks.BEDROCK.getDefaultState();
+				if (topRock == null) {
+					topRock = Blocks.AIR.getDefaultState();
+				}
+				if (midRock == null) {
+					midRock = Blocks.AIR.getDefaultState();
+				}
+				if (botRock == null) {
+					botRock = Blocks.AIR.getDefaultState();
+				}
 				FirmaBiome biome = (FirmaBiome) biomesForBiomeGen[(cz + 1) * 18 + (cx + 1)];
 				if (isDirtBiome(biome)) {
 					dirt = Util.getDirt(topRock);
@@ -136,6 +136,7 @@ public class FirmaChunkGen implements IChunkGenerator {
 				dirtDepth += ((FirmaBiome) biomesForBiomeGen[(cz + 1) * 18 + (cx + 2)]).getDirtDepth();
 				dirtDepth += ((FirmaBiome) biomesForBiomeGen[(cz + 1) * 18 + (cx)]).getDirtDepth();
 				dirtDepth = (int) ((dirtDepth * 1f) / 5f);
+				dirtDepth--; // Exclude top layer
 				lt = top - dirtDepth;
 				lb = lt / 3; // Lower layers below dirt layer
 				lm = lb * 2;

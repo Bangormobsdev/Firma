@@ -112,9 +112,7 @@ public class FirmaMod {
 	public static ScrapMetalItem scrapmetal;
 	public static HideItem hide;
 
-	public static BaseLiquid freshwater;
-	public static BaseLiquid saltwater;
-	public static BaseLiquid lava;
+	public static BaseLiquid freshwater, saltwater, lava, milk;
 
 	public static ArrayList<BaseBlock> allBlocks = new ArrayList<BaseBlock>();
 	public static ArrayList<FirmaItem> allItems = new ArrayList<FirmaItem>();

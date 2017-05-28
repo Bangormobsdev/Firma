@@ -22,6 +22,10 @@ public class OreGenReplacer implements GenBlockReplacer {
 		this.grade = grade;
 	}
 
+	public OresEnum getOreEnum() {
+		return ore;
+	}
+
 	@Override
 	public void replaceBlock(World world, BlockPos pos) {
 		IBlockState state = world.getBlockState(pos);

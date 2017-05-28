@@ -29,7 +29,7 @@ public class BaseBlockLiquid extends BlockFluidClassic {
 	@Override
 	public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
 		if (fire) {
-			entityIn.setFire(1);
+			entityIn.setFire(5);
 		}
 		super.onEntityWalk(worldIn, pos, entityIn);
 	}

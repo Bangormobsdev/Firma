@@ -79,7 +79,7 @@ public class FirmaBiome extends Biome {
 	public static FirmaBiome PLAINS = (FirmaBiome) new FirmaBiome(new BiomeProperties("firmaplains").setBaseHeight(0.1f).setHeightVariation(0.16f), 1,
 			Type.PLAINS).setTreeCount(3).setDirtDepth(3).setBiomeColor(Color.GREEN).setRegistryName("firmaplains");
 	public static FirmaBiome HILLS = (FirmaBiome) new FirmaBiome(new BiomeProperties("firmahills").setBaseHeight(0.8f).setHeightVariation(1.6f), 30, Type.HILLS)
-			.setTreeCount(1).setDirtDepth(2).setBiomeColor(Color.LIGHT_GRAY).setRegistryName("firmahills");
+			.setTreeCount(1).setDirtDepth(1).setBiomeColor(Color.LIGHT_GRAY).setRegistryName("firmahills");
 	public static FirmaBiome EXHILLS = (FirmaBiome) new FirmaBiome(new BiomeProperties("firmaexhills").setBaseHeight(0.8f).setHeightVariation(1.8f), 3,
 			Type.MOUNTAIN).setDirtDepth(1).setTreeCount(1).setBiomeColor(Color.GRAY).setRegistryName("firmaexhills");
 	public static FirmaBiome OCEAN = (FirmaBiome) new FirmaBiome(new BiomeProperties("firmaocean").setBaseHeight(-0.9f).setHeightVariation(0.0001f), 0,
@@ -93,9 +93,9 @@ public class FirmaBiome extends Biome {
 	public static FirmaBiome SWAMP = (FirmaBiome) new FirmaBiome(new BiomeProperties("firmaswamp").setBaseHeight(-0.05f).setHeightVariation(0.05f), 6,
 			Type.SWAMP).setDirtDepth(7).setTreeCount(1).setBiomeColor(new Color(0f, .4f, .8f)).setRegistryName("firmaswmap");
 	public static FirmaBiome EXHILLSEDGE = (FirmaBiome) new FirmaBiome(new BiomeProperties("firmaexhillsedge").setBaseHeight(0.4f).setHeightVariation(0.8f), 32,
-			Type.MOUNTAIN).setDirtDepth(2).setTreeCount(1).setBiomeColor(Color.DARK_GRAY).setRegistryName("firmaexhillsedge");
+			Type.MOUNTAIN).setDirtDepth(1).setTreeCount(1).setBiomeColor(Color.DARK_GRAY).setRegistryName("firmaexhillsedge");
 	public static FirmaBiome HILLSEDGE = (FirmaBiome) new FirmaBiome(new BiomeProperties("firmahillsedge").setBaseHeight(0.2f).setHeightVariation(0.4f), 20,
-			Type.HILLS).setDirtDepth(2).setTreeCount(1).setBiomeColor(Color.GRAY).setRegistryName("firmahillsedge");
+			Type.HILLS).setDirtDepth(1).setTreeCount(1).setBiomeColor(Color.GRAY).setRegistryName("firmahillsedge");
 	public static FirmaBiome RIVER = (FirmaBiome) new FirmaBiome(new BiomeProperties("firmariver").setBaseHeight(-0.5f).setHeightVariation(-0.0f), 7,
 			Type.RIVER).setDirtDepth(3).setTreeCount(1).setBiomeColor(new Color(.3f, .3f, .8f)).setRegistryName("firmariver");
 
