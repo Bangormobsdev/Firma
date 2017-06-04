@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2003, 2004 Jason Bevins (original libnoise code)
  * Copyright 2010 Thomas J. Hodge (java port of libnoise)
+ * Copyright 2017 Nathan Howard (minor alterations including getCoords)
  * 
  * This file was part of libnoiseforjava.
  * 
@@ -41,22 +42,15 @@ public class VoronoiNoise {
 	/// the seed points, which reduces the size of the cells. To specify the
 	/// frequency of the cells, call the setFrequency() method.
 	///
-	/// This noise module assigns each Voronoi cell with a random constant
-	/// value from a coherent-noise function. The <i>displacement value</i>
-	/// controls the range of random values to assign to each cell. The
-	/// range of random values is +/- the displacement value. Call the
-	/// setDisplacement() method to specify the displacement value.
-	///
 	/// To modify the random positions of the seed points, call the SetSeed()
 	/// method.
-	///
-	/// This noise module can optionally add the distance from the nearest
-	/// seed to the output value. To enable this feature, call the
-	/// enableDistance() method. This causes the points in the Voronoi cells
-	/// to increase in value the further away that point is from the nearest
-	/// seed point.
 
 	// for speed, we can approximate the sqrt term in the distance funtions
+
+	public enum DistanceType {
+		SHORTEST, MANHATTAN
+	};
+
 	private static final double SQRT_2 = 1.4142135623730950488;
 	private static final double SQRT_3 = 1.7320508075688772935;
 
@@ -65,18 +59,18 @@ public class VoronoiNoise {
 	private boolean useDistance = false;
 
 	private long seed;
-	private short distanceMethod;
+	private DistanceType distanceMethod;
 
-	public VoronoiNoise(long seed, short distanceMethod) {
+	public VoronoiNoise(long seed, DistanceType dist) {
 		this.seed = seed;
-		this.distanceMethod = distanceMethod;
+		this.distanceMethod = dist;
 	}
 
 	private double getDistance(double xDist, double zDist) {
 		switch (distanceMethod) {
-		case 0:
+		case SHORTEST:
 			return Math.sqrt(xDist * xDist + zDist * zDist) / SQRT_2;
-		case 1:
+		case MANHATTAN:
 			return xDist + zDist;
 		default:
 			return Double.NaN;
@@ -85,15 +79,9 @@ public class VoronoiNoise {
 
 	private double getDistance(double xDist, double yDist, double zDist) {
 		switch (distanceMethod) {
-		case 0:
-			return Math.sqrt(xDist * xDist + yDist * yDist + zDist * zDist) / SQRT_3; // Approximation
-																						// (for
-																						// speed)
-																						// of
-																						// elucidean
-																						// (regular)
-																						// distance
-		case 1:
+		case SHORTEST:
+			return Math.sqrt(xDist * xDist + yDist * yDist + zDist * zDist) / SQRT_3;
+		case MANHATTAN:
 			return xDist + yDist + zDist;
 		default:
 			return Double.NaN;
@@ -108,7 +96,7 @@ public class VoronoiNoise {
 		this.useDistance = useDistance;
 	}
 
-	public short getDistanceMethod() {
+	public DistanceType getDistanceMethod() {
 		return distanceMethod;
 	}
 
@@ -116,7 +104,7 @@ public class VoronoiNoise {
 		return seed;
 	}
 
-	public void setDistanceMethod(short distanceMethod) {
+	public void setDistanceMethod(DistanceType distanceMethod) {
 		this.distanceMethod = distanceMethod;
 	}
 
@@ -160,6 +148,38 @@ public class VoronoiNoise {
 		}
 
 		return (VoronoiNoise.valueNoise2D((int) (Math.floor(xCandidate)), (int) (Math.floor(zCandidate)), seed));
+	}
+
+	public double[] getCoord(double x, double z, double frequency) {
+		x *= frequency;
+		z *= frequency;
+
+		int xInt = (x > .0 ? (int) x : (int) x - 1);
+		int zInt = (z > .0 ? (int) z : (int) z - 1);
+
+		double minDist = 32000000.0;
+
+		double xCandidate = 0;
+		double zCandidate = 0;
+
+		for (int zCur = zInt - 2; zCur <= zInt + 2; zCur++) {
+			for (int xCur = xInt - 2; xCur <= xInt + 2; xCur++) {
+
+				double xPos = xCur + valueNoise2D(xCur, zCur, seed);
+				double zPos = zCur + valueNoise2D(xCur, zCur, new Random(seed).nextLong());
+				double xDist = xPos - x;
+				double zDist = zPos - z;
+				double dist = xDist * xDist + zDist * zDist;
+
+				if (dist < minDist) {
+					minDist = dist;
+					xCandidate = xPos;
+					zCandidate = zPos;
+				}
+			}
+		}
+
+		return new double[] { xCandidate / frequency, zCandidate / frequency };
 	}
 
 	public double noise(double x, double y, double z, double frequency) {
@@ -221,6 +241,58 @@ public class VoronoiNoise {
 
 		return (VoronoiNoise.valueNoise3D((int) (Math.floor(xCandidate)), (int) (Math.floor(yCandidate)), (int) (Math.floor(zCandidate)), seed));
 
+	}
+
+	public double[] getCoord(double x, double y, double z, double frequency) {
+		// Inside each unit cube, there is a seed point at a random position. Go
+		// through each of the nearby cubes until we find a cube with a seed
+		// point
+		// that is closest to the specified position.
+		x *= frequency;
+		y *= frequency;
+		z *= frequency;
+
+		int xInt = (x > .0 ? (int) x : (int) x - 1);
+		int yInt = (y > .0 ? (int) y : (int) y - 1);
+		int zInt = (z > .0 ? (int) z : (int) z - 1);
+
+		double minDist = 32000000.0;
+
+		double xCandidate = 0;
+		double yCandidate = 0;
+		double zCandidate = 0;
+
+		Random rand = new Random(seed);
+
+		for (int zCur = zInt - 2; zCur <= zInt + 2; zCur++) {
+			for (int yCur = yInt - 2; yCur <= yInt + 2; yCur++) {
+				for (int xCur = xInt - 2; xCur <= xInt + 2; xCur++) {
+					// Calculate the position and distance to the seed point
+					// inside of
+					// this unit cube.
+
+					double xPos = xCur + valueNoise3D(xCur, yCur, zCur, seed);
+					double yPos = yCur + valueNoise3D(xCur, yCur, zCur, rand.nextLong());
+					double zPos = zCur + valueNoise3D(xCur, yCur, zCur, rand.nextLong());
+					double xDist = xPos - x;
+					double yDist = yPos - y;
+					double zDist = zPos - z;
+					double dist = xDist * xDist + yDist * yDist + zDist * zDist;
+
+					if (dist < minDist) {
+						// This seed point is closer to any others found so far,
+						// so record
+						// this seed point.
+						minDist = dist;
+						xCandidate = xPos;
+						yCandidate = yPos;
+						zCandidate = zPos;
+					}
+				}
+			}
+		}
+
+		return new double[] { xCandidate / frequency, yCandidate / frequency, zCandidate / frequency };
 	}
 
 	/**

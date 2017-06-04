@@ -27,7 +27,7 @@ public class FirmaChunkGen implements IChunkGenerator {
 	private IBlockState RIVER = FirmaMod.freshwater.getBlock().getDefaultState();
 
 	private final Random rand;
-	public VoronoiNoise rockStrataNoise;
+	// public VoronoiNoise rockStrataNoise;
 	private final World world;
 	private final boolean mapFeaturesEnabled;
 	private ChunkProviderSettings settings;
@@ -51,7 +51,6 @@ public class FirmaChunkGen implements IChunkGenerator {
 		this.world = worldIn;
 		this.mapFeaturesEnabled = mapFeaturesEnabledIn;
 		this.rand = new Random(world.getSeed());
-		this.rockStrataNoise = new VoronoiNoise(world.getSeed(), (short) 0);
 
 		String customSetting = worldIn.getWorldInfo().getGeneratorOptions();
 		if (customSetting.length() == 0) {
@@ -82,14 +81,14 @@ public class FirmaChunkGen implements IChunkGenerator {
 		int cx, cy, cz, top, lt, lb, lm;
 		for (cx = 0; cx < 16; cx++) {
 			for (cz = 0; cz < 16; cz++) {
-				double bx = (x + cx / 16.0);
-				double bz = (z + cz / 16.0);
+				int bx = (x * 16 + cx);
+				int bz = (z * 16 + cz);
 				// Prep Rock Strata
 				IBlockState dirt;
 				IBlockState grass;
-				IBlockState topRock = Util.getRockStrata(rockStrataNoise.noise(bx, 0, bz, 0.02), 0);
-				IBlockState midRock = Util.getRockStrata(rockStrataNoise.noise(bx, -30, bz, 0.02), 1);
-				IBlockState botRock = Util.getRockStrata(rockStrataNoise.noise(bx, -60, bz, 0.02), 2);
+				IBlockState topRock = FirmaRockStrata.getTop(this.world.getSeed(), bx, bz);
+				IBlockState midRock = FirmaRockStrata.getMid(this.world.getSeed(), bx, bz);
+				IBlockState botRock = FirmaRockStrata.getBot(this.world.getSeed(), bx, bz);
 				IBlockState bedRock = Blocks.BEDROCK.getDefaultState();
 				if (topRock == null) {
 					topRock = Blocks.AIR.getDefaultState();
@@ -352,12 +351,12 @@ public class FirmaChunkGen implements IChunkGenerator {
 	}
 
 	private void generateHeightmap(int x, int y, int z) {
-		this.depthRegion = this.depthNoise.generateNoiseOctaves(this.depthRegion, x, z, 5, 5, this.settings.depthNoiseScaleX, this.settings.depthNoiseScaleZ,
-				this.settings.depthNoiseScaleExponent);
+		this.depthRegion = this.depthNoise
+				.generateNoiseOctaves(this.depthRegion, x, z, 5, 5, this.settings.depthNoiseScaleX, this.settings.depthNoiseScaleZ, this.settings.depthNoiseScaleExponent);
 		float f = this.settings.coordinateScale;
 		float f1 = this.settings.heightScale;
-		this.mainNoiseRegion = this.mainPerlinNoise.generateNoiseOctaves(this.mainNoiseRegion, x, y, z, 5, 33, 5, f / this.settings.mainNoiseScaleX,
-				f1 / this.settings.mainNoiseScaleY, f / this.settings.mainNoiseScaleZ);
+		this.mainNoiseRegion = this.mainPerlinNoise.generateNoiseOctaves(this.mainNoiseRegion, x, y, z, 5, 33, 5, f / this.settings.mainNoiseScaleX, f1
+				/ this.settings.mainNoiseScaleY, f / this.settings.mainNoiseScaleZ);
 		this.minLimitRegion = this.minLimitPerlinNoise.generateNoiseOctaves(this.minLimitRegion, x, y, z, 5, 33, 5, f, f1, f);
 		this.maxLimitRegion = this.maxLimitPerlinNoise.generateNoiseOctaves(this.maxLimitRegion, x, y, z, 5, 33, 5, f, f1, f);
 		int i = 0;
@@ -502,5 +501,19 @@ public class FirmaChunkGen implements IChunkGenerator {
 				}
 			}
 		}
+	}
+
+	public BlockPos getTopBlock(BlockPos bp) {
+		ChunkPrimer cp = new ChunkPrimer();
+		int cx = (int) Math.floor(bp.getX() / 16.0);
+		int cz = (int) Math.floor(bp.getZ() / 16.0);
+		setBlocksInChunk(cx, cz, cp);
+		int x = bp.getX() - cx * 16;
+		int z = bp.getZ() - cz * 16;
+		int y = 255;
+		while (cp.getBlockState(x, y, z) == Blocks.AIR.getDefaultState()) {
+			y--;
+		}
+		return new BlockPos(x, y + 1, z); // +1 to account for top layer
 	}
 }

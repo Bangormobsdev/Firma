@@ -24,8 +24,8 @@ public class FirmaPathGen implements IWorldGenerator {
 	public FirmaGenLayer getLayer(World w) {
 		String s = w.getWorldInfo().getWorldName();
 		if (!layers.containsKey(s)) {
-			FirmaGenLayer l = FirmaGenLayerZoom.magnify(22 + seedOffset,
-					new FirmaGenLayerRiver(1L, FirmaGenLayerZoom.magnify(5L + seedOffset, FirmaGenLayer.genContinent(seedOffset, false), 5)), 1);
+			FirmaGenLayer l = FirmaGenLayerZoom.magnify(22
+					+ seedOffset, new FirmaGenLayerRiver(1L, FirmaGenLayerZoom.magnify(5L + seedOffset, FirmaGenLayer.genContinent(seedOffset, false), 5)), 1);
 			layers.put(s, l);
 			l.initWorldGenSeed(w.getSeed());
 		}
@@ -66,6 +66,21 @@ public class FirmaPathGen implements IWorldGenerator {
 			}
 		}
 		return 0;
+	}
+
+	public boolean isProximity(World world, double bx, double bz) {
+		Random r2 = new Random(seedOffset + world.getSeed());
+		int xOff = r2.nextInt(100);
+		int zOff = r2.nextInt(100);
+		FirmaGenLayer layer = getLayer(world);
+		int[] a = layer.getInts((int) bx + xOff - 10, (int) bz + zOff - 10, 21, 21);
+		for (int i : a) {
+			if (i != 0) {
+				return true;
+			}
+		}
+		return false;
+
 	}
 
 }

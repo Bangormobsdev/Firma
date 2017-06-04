@@ -66,11 +66,13 @@ import uk.co.aperistudios.firma.generation.FirmaBiome;
 import uk.co.aperistudios.firma.generation.FirmaOreVeinGen;
 import uk.co.aperistudios.firma.generation.FirmaPathGen;
 import uk.co.aperistudios.firma.generation.FirmaTreeGen;
+import uk.co.aperistudios.firma.generation.FirmaVillageGen;
 import uk.co.aperistudios.firma.generation.FirmaWorld;
 import uk.co.aperistudios.firma.generation.FirmaWorldProvider;
 import uk.co.aperistudios.firma.generation.OreGenReplacer;
 import uk.co.aperistudios.firma.generation.ShitOnFloorGen;
 import uk.co.aperistudios.firma.generation.layers.Layer;
+import uk.co.aperistudios.firma.generation.structures.Plan;
 import uk.co.aperistudios.firma.generation.tree.FirmaTree;
 import uk.co.aperistudios.firma.handler.FirmaHandler;
 import uk.co.aperistudios.firma.items.BrickItem;
@@ -104,6 +106,8 @@ public abstract class CommonProxy {
 	public static DimensionType firmaDimension;
 	public static IBlockState[] rockLayerTop, rockLayerMid, rockLayerBot, saplingLayer;
 	public static int d = 0;
+	public static FirmaTreeGen treeGen;
+	public static FirmaPathGen pathGen;
 
 	FirmaWorld fw = new FirmaWorld();
 
@@ -341,14 +345,19 @@ public abstract class CommonProxy {
 		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(3, 40, 43, new OreGenReplacer(OresEnum.GARNIERITE, 3)), prio++);
 		GameRegistry.registerWorldGenerator(new FirmaOreVeinGen(3, 60, 44, new OreGenReplacer(OresEnum.NATIVEGOLD, 3)), prio++);
 
-		GameRegistry.registerWorldGenerator(new FirmaPathGen(45), prio++);
-
-		GameRegistry.registerWorldGenerator(new FirmaTreeGen(), prio++);
+		CommonProxy.pathGen = new FirmaPathGen(45);
+		GameRegistry.registerWorldGenerator(pathGen, prio++);
+		GameRegistry.registerWorldGenerator(new FirmaVillageGen(), prio++);
+		CommonProxy.treeGen = new FirmaTreeGen();
+		GameRegistry.registerWorldGenerator(treeGen, prio++);
 		GameRegistry.registerWorldGenerator(new ShitOnFloorGen(topLayers), prio++);
+
 		// GameRegistry.registerWorldGenerator(new LavaLayerGen(-4), 40);
 
 		// Use during debug to remove Rock from world to expose ore veins
 		// GameRegistry.registerWorldGenerator(new FirmaDebugOres(), 200);
+
+		Plan.init(); // Prepare world gen structures
 
 		MinecraftForge.EVENT_BUS.register(this);
 	}

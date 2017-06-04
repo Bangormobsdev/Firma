@@ -35,7 +35,7 @@ public class FirmaGenLayerBiome extends FirmaGenLayer {
 				if (id == 0) {
 					newInts[currentY + currentX * w] = Layer.OCEAN;
 				} else if (id == Layer.DOCEAN) {
-					continue;
+					newInts[currentY + currentX * w] = Layer.DOCEAN;
 				} else {
 					newInts[currentY + currentX * w] = Biome.getIdForBiome(this.allowedBiomes[this.nextInt(this.allowedBiomes.length)]);
 				}

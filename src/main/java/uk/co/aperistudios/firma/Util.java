@@ -125,6 +125,24 @@ public class Util {
 		return isRockEnum1(b) ? FirmaMod.sand.getStateFromMeta(meta) : FirmaMod.sand2.getStateFromMeta(meta);
 	}
 
+	public static IBlockState getRock(IBlockState in) {
+		int meta = in.getBlock().getMetaFromState(in);
+		Block b = in.getBlock();
+		return isRockEnum1(b) ? FirmaMod.rock.getStateFromMeta(meta) : isRockEnum2(b) ? FirmaMod.rock2.getStateFromMeta(meta) : null;
+	}
+
+	public static IBlockState getCobble(IBlockState in) {
+		int meta = in.getBlock().getMetaFromState(in);
+		Block b = in.getBlock();
+		return isRockEnum1(b) ? FirmaMod.rockc.getStateFromMeta(meta) : FirmaMod.rockc2.getStateFromMeta(meta);
+	}
+
+	public static IBlockState getBricks(IBlockState in) {
+		int meta = in.getBlock().getMetaFromState(in);
+		Block b = in.getBlock();
+		return isRockEnum1(b) ? FirmaMod.rockb.getStateFromMeta(meta) : FirmaMod.rockb2.getStateFromMeta(meta);
+	}
+
 	public static IBlockState getGravel(IBlockState in) {
 		int meta = in.getBlock().getMetaFromState(in);
 		Block b = in.getBlock();
@@ -270,5 +288,29 @@ public class Util {
 
 	public static boolean isWater(IBlockState bs) {
 		return isWater(bs.getBlock());
+	}
+
+	public static IBlockState getFence(IBlockState in) {
+		int meta = in.getBlock().getMetaFromState(in); // TODO FENCE
+		Block b = in.getBlock();
+		return isWoodEnum1(b) ? FirmaMod.plank.getStateFromMeta(meta) : isWoodEnum2(b) ? FirmaMod.plank2.getStateFromMeta(meta) : null;
+	}
+
+	public static IBlockState getPlank(IBlockState in) {
+		int meta = in.getBlock().getMetaFromState(in);
+		Block b = in.getBlock();
+		return isWoodEnum1(b) ? FirmaMod.plank.getStateFromMeta(meta) : isWoodEnum2(b) ? FirmaMod.plank2.getStateFromMeta(meta) : null;
+	}
+
+	public static IBlockState getHalfPlank(IBlockState in) {
+		int meta = in.getBlock().getMetaFromState(in); // TODO Half Plank. Microblock?
+		Block b = in.getBlock();
+		return isWoodEnum1(b) ? FirmaMod.plank.getStateFromMeta(meta) : isWoodEnum2(b) ? FirmaMod.plank2.getStateFromMeta(meta) : null;
+	}
+
+	public static IBlockState getDoor(IBlockState in, boolean topHalf) {
+		int meta = in.getBlock().getMetaFromState(in); // TODO Door
+		Block b = in.getBlock();
+		return isWoodEnum1(b) ? FirmaMod.plank.getStateFromMeta(meta) : isWoodEnum2(b) ? FirmaMod.plank2.getStateFromMeta(meta) : null;
 	}
 }

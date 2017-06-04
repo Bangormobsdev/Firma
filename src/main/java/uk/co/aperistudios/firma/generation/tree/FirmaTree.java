@@ -77,4 +77,8 @@ public abstract class FirmaTree extends WorldGenerator implements IWorldGenerato
 		return this;
 	}
 
+	public IBlockState getWood() {
+		return bs;
+	}
+
 }

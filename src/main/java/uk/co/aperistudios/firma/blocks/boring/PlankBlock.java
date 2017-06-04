@@ -9,11 +9,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
 import uk.co.aperistudios.firma.FirmaMod;
 import uk.co.aperistudios.firma.types.WoodEnum;
 
@@ -67,16 +63,6 @@ public class PlankBlock extends BaseBlock {
 			names.add(tr.getName());
 		}
 		return names;
-	}
-
-	@Override
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState bState, IBlockAccess worldIn, BlockPos pos) {
-		return null;
-	}
-
-	@Override
-	public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer) {
-		return BlockRenderLayer.CUTOUT == layer;
 	}
 
 	@Override

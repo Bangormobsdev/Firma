@@ -27,12 +27,15 @@ public class GenLayerLakes extends FirmaGenLayer {
 				var11 = var5[var8 + 1 + 1 + (var7 + 1) * (par3 + 2)];
 				var12 = var5[var8 + 1 - 1 + (var7 + 1) * (par3 + 2)];
 				var13 = var5[var8 + 1 + (var7 + 1 + 1) * (par3 + 2)];
-
+				if (var9 == 0) {
+					var9 = Layer.OCEAN;
+				}
 				if (isOceanic(var9)) {
-					if (!isOceanic(var10) && !isOceanic(var11) && !isOceanic(var12) && !isOceanic(var13))
+					if (!isOceanic(var10) && !isOceanic(var11) && !isOceanic(var12) && !isOceanic(var13)) {
 						var6[var8 + var7 * par3] = Layer.LAKE;
-					else
+					} else {
 						var6[var8 + var7 * par3] = var9;
+					}
 				} else {
 					var6[var8 + var7 * par3] = var9;
 				}
