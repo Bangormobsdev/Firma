@@ -15,7 +15,6 @@ public class PlanWell extends Plan {
 		wellShape = PlanShape
 				.makePlan(wx, height, wz, "SSS", "SWS", "SSS", "SSS", "SWS", "SSS", "SSS", "S S", "SSS", "F F", "   ", "F F", "F F", "   ", "F F", "SSS", "SSS", "SSS", "   ", " S ", "   ");
 		wellShape.setBase(-2); // Well below ground level. Pun intended
-		wellShape.setFlattenDirt(true);
 	}
 
 	@Override

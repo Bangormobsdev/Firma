@@ -214,10 +214,7 @@ public abstract class FirmaGenLayer extends GenLayer {
 	}
 
 	public static boolean isOceanic(int id) {
-		return id == Layer.OCEAN || id == Layer.DOCEAN || id == 0; // Also check
-																	// for
-																	// vanilla
-																	// ocean
+		return id == Layer.OCEAN || id == Layer.DOCEAN || id == 0; // Also check for vanilla ocean
 	}
 
 	public static boolean isMountain(int id) {

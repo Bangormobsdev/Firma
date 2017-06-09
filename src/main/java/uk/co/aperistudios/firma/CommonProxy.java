@@ -21,6 +21,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import uk.co.aperistudios.firma.blocks.CrucibleBlock;
+import uk.co.aperistudios.firma.blocks.FirmaDoor;
 import uk.co.aperistudios.firma.blocks.OreBlock;
 import uk.co.aperistudios.firma.blocks.ShitOnFloor;
 import uk.co.aperistudios.firma.blocks.boring.BaseBlock;
@@ -98,6 +99,7 @@ import uk.co.aperistudios.firma.types.ItemSize;
 import uk.co.aperistudios.firma.types.OresEnum;
 import uk.co.aperistudios.firma.types.RockEnum;
 import uk.co.aperistudios.firma.types.RockEnum2;
+import uk.co.aperistudios.firma.types.SolidMaterialEnum;
 import uk.co.aperistudios.firma.types.ToolMaterials;
 import uk.co.aperistudios.firma.types.ToolType;
 
@@ -145,7 +147,7 @@ public abstract class CommonProxy {
 		FirmaMod.log = new LogBlock(Material.WOOD);
 		FirmaMod.log2 = new LogBlock2(Material.WOOD);
 
-		FirmaMod.shitOnFloor = new ShitOnFloor(Material.GRASS);
+		FirmaMod.shitOnFloor = new ShitOnFloor(Material.LEAVES);
 		FirmaMod.floorStorage = new FloorStorage();
 		FirmaMod.crucible = new CrucibleBlock();
 		FirmaMod.anvil = new AnvilBlock(Material.ANVIL);
@@ -165,6 +167,11 @@ public abstract class CommonProxy {
 		FirmaMod.hide = new HideItem("hide");
 
 		FirmaMod.vesselItem = new StorageItem("vesselitem", ItemSize.SMALL, 4);
+
+		FirmaMod.doors = new ArrayList<FirmaDoor>();
+		for (SolidMaterialEnum mat : SolidMaterialEnum.values()) {
+			FirmaMod.doors.add(new FirmaDoor(mat, null));
+		}
 
 		rockLayerTop = new IBlockState[] { FirmaMod.rock2.getStateFromMeta(RockEnum2.Shale.getMeta()),
 				FirmaMod.rock.getStateFromMeta(RockEnum.Claystone.getMeta()), FirmaMod.rock2.getStateFromMeta(RockEnum2.RockSalt.getMeta()),
@@ -188,12 +195,6 @@ public abstract class CommonProxy {
 				FirmaMod.rock.getStateFromMeta(RockEnum.Basalt.getMeta()), FirmaMod.rock.getStateFromMeta(RockEnum.Andesite.getMeta()),
 				FirmaMod.rock.getStateFromMeta(RockEnum.Dacite.getMeta()), FirmaMod.rock.getStateFromMeta(RockEnum.Granite.getMeta()),
 				FirmaMod.rock.getStateFromMeta(RockEnum.Diorite.getMeta()), FirmaMod.rock.getStateFromMeta(RockEnum.Gabbro.getMeta()), };
-		saplingLayer = new IBlockState[] { FirmaMod.sapling.getStateFromMeta(0), FirmaMod.sapling.getStateFromMeta(1), FirmaMod.sapling.getStateFromMeta(2),
-				FirmaMod.sapling.getStateFromMeta(3), FirmaMod.sapling.getStateFromMeta(4), FirmaMod.sapling.getStateFromMeta(5),
-				FirmaMod.sapling.getStateFromMeta(6), FirmaMod.sapling.getStateFromMeta(7), FirmaMod.sapling.getStateFromMeta(8),
-				FirmaMod.sapling.getStateFromMeta(9), FirmaMod.sapling.getStateFromMeta(10), FirmaMod.sapling.getStateFromMeta(11),
-				FirmaMod.sapling.getStateFromMeta(12), FirmaMod.sapling.getStateFromMeta(13), FirmaMod.sapling.getStateFromMeta(14),
-				FirmaMod.sapling.getStateFromMeta(15), FirmaMod.sapling2.getStateFromMeta(0) };
 
 		ToolItem thisTool = null;
 		for (ToolMaterials tm : ToolMaterials.values()) {

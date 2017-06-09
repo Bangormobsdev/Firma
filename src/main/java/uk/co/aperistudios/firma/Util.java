@@ -64,11 +64,6 @@ public class Util {
 			int count = CommonProxy.rockLayerBot.length;
 			int opt = (int) (noise * count);
 			return CommonProxy.rockLayerBot[opt];
-		} else if (layer == -1) {
-			// Tree. Not really rocks I guess?
-			int count = CommonProxy.saplingLayer.length;
-			int opt = (int) (noise * count);
-			return CommonProxy.saplingLayer[opt];
 		}
 		return null;
 	}
@@ -312,5 +307,10 @@ public class Util {
 		int meta = in.getBlock().getMetaFromState(in); // TODO Door
 		Block b = in.getBlock();
 		return isWoodEnum1(b) ? FirmaMod.plank.getStateFromMeta(meta) : isWoodEnum2(b) ? FirmaMod.plank2.getStateFromMeta(meta) : null;
+	}
+
+	public static IBlockState getRandomPlant() {
+		// TODO Plants
+		return FirmaMod.sapling.getDefaultState();
 	}
 }

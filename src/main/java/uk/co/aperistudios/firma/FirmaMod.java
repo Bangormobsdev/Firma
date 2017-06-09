@@ -13,6 +13,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import uk.co.aperistudios.firma.blocks.CrucibleBlock;
+import uk.co.aperistudios.firma.blocks.FirmaDoor;
 import uk.co.aperistudios.firma.blocks.OreBlock;
 import uk.co.aperistudios.firma.blocks.ShitOnFloor;
 import uk.co.aperistudios.firma.blocks.boring.BaseBlock;
@@ -134,6 +135,7 @@ public class FirmaMod {
 	public static SparseGrassBlock grasss;
 	public static FloorStorage floorStorage;
 	public static StorageItem vesselItem;
+	public static ArrayList<FirmaDoor> doors;
 
 	public FirmaMod() {
 		instance = this;

@@ -8,7 +8,6 @@ import net.minecraft.world.World;
 
 public class PlanShape {
 	private int sizex, sizey, sizez, offsetY;
-	private boolean flattenDirt = false;
 	private ArrayList<String> map = new ArrayList<String>();
 
 	public static PlanShape makePlan(int x, int y, int z, String... strings) {
@@ -45,8 +44,6 @@ public class PlanShape {
 		if (planx < 0 || planz < 0 || planx > getWidthX() || planz > getWidthZ()) {
 			throw new RuntimeException("Using plan out of bounds x:" + planx + " z:" + planz);
 		}
-		//BlockPos top = world.getTopSolidOrLiquidBlock(new BlockPos(worldx, 1, worldz));
-		BlockPos top = Plan.getTopBlock(world, new BlockPos(worldx, 1, worldz));
 		for (int incy = 0; incy < sizey; incy++) {
 			IBlockState b = blocks.get(getMapAt(planx, incy, planz));
 			if (b != null) {
@@ -66,9 +63,5 @@ public class PlanShape {
 
 	public int getHeight() {
 		return sizey;
-	}
-
-	public void setFlattenDirt(boolean b) {
-		this.flattenDirt = b;
 	}
 }

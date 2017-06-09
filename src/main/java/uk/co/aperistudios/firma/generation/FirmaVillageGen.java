@@ -23,7 +23,7 @@ public class FirmaVillageGen implements IWorldGenerator {
 			voro.put(world.getWorldInfo().getWorldName(), new VoronoiNoise(world.getSeed() + 5116, DistanceType.MANHATTAN));
 		}
 		VoronoiNoise vRandom = voro.get(world.getWorldInfo().getWorldName());
-		double[] center = vRandom.getCoord(chunkX, chunkZ, 0.1);
+		double[] center = vRandom.getCoord(chunkX, chunkZ, 0.05);
 
 		int villageChunkX = (int) Math.floor(center[0]);
 		int villageChunkZ = (int) Math.floor(center[1]);
@@ -48,5 +48,4 @@ public class FirmaVillageGen implements IWorldGenerator {
 		IBlockState rock = FirmaRockStrata.getTop(world.getSeed(), villageChunkX * 16, villageChunkZ * 16);
 		v.buildChunk(world, chunkX, chunkZ, rock, wood);
 	}
-
 }

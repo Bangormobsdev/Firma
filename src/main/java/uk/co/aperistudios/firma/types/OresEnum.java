@@ -3,30 +3,43 @@ package uk.co.aperistudios.firma.types;
 import net.minecraft.util.IStringSerializable;
 
 public enum OresEnum implements IStringSerializable {
-	NATIVECOPPER("nativecopper", RockEnum.values(), RockEnum2.values(), 20), NATIVEGOLD("nativegold",
+	NATIVECOPPER("nativecopper", RockEnum.values(), RockEnum2.values(), 20),
+	NATIVEGOLD(
+			"nativegold",
 			new RockEnum[] { RockEnum.Andesite, RockEnum.Basalt, RockEnum.Dacite, RockEnum.Diorite, RockEnum.Gabbro, RockEnum.Granite },
 			new RockEnum2[] { RockEnum2.Rhyolite },
-			5), NATIVESILVER("nativesilver", new RockEnum[] { RockEnum.Granite, RockEnum.Gneiss }, new RockEnum2[] {}, 8), BISMUTHINITE("bismuthinite",
-					new RockEnum[] { RockEnum.Andesite, RockEnum.Basalt, RockEnum.Dacite, RockEnum.Chalk, RockEnum.Chert, RockEnum.Claystone,
-							RockEnum.Conglomerate, RockEnum.Dolomite, RockEnum.Limestone },
-					new RockEnum2[] { RockEnum2.Rhyolite, RockEnum2.RockSalt, RockEnum2.Shale }, 20), CASSITERITE("cassiterite",
-							new RockEnum[] { RockEnum.Diorite, RockEnum.Granite, RockEnum.Gabbro }, new RockEnum2[] {},
-							15), GARNIERITE("garnierite", new RockEnum[] { RockEnum.Gabbro }, new RockEnum2[] {}, 5), HEMATITE("hematite",
-									new RockEnum[] { RockEnum.Andesite, RockEnum.Basalt, RockEnum.Dacite }, new RockEnum2[] { RockEnum2.Rhyolite },
-									10), LIMONITE("limonite",
-											new RockEnum[] { RockEnum.Chalk, RockEnum.Chert, RockEnum.Claystone, RockEnum.Conglomerate, RockEnum.Dolomite,
-													RockEnum.Limestone },
-											new RockEnum2[] { RockEnum2.RockSalt, RockEnum2.Shale }, 10), MAGNETITE("magnetite",
-													new RockEnum[] { RockEnum.Chalk, RockEnum.Chert, RockEnum.Claystone, RockEnum.Conglomerate,
-															RockEnum.Dolomite, RockEnum.Limestone },
-													new RockEnum2[] { RockEnum2.RockSalt, RockEnum2.Shale }, 10), MALACHITE("malachite",
-															new RockEnum[] { RockEnum.Marble, RockEnum.Limestone }, new RockEnum2[] {},
-															25), SPHALERITE("sphalerite",
-																	new RockEnum[] { RockEnum.Gneiss, RockEnum.Marble, RockEnum.Phyllite, RockEnum.Quartzite },
-																	new RockEnum2[] { RockEnum2.Schist, RockEnum2.Slate }, 15), TETRAHEDRITE("tetrahedrite",
-																			new RockEnum[] { RockEnum.Gneiss, RockEnum.Marble, RockEnum.Phyllite,
-																					RockEnum.Quartzite },
-																			new RockEnum2[] { RockEnum2.Schist, RockEnum2.Slate }, 30),;
+			5),
+	NATIVESILVER("nativesilver", new RockEnum[] { RockEnum.Granite, RockEnum.Gneiss }, new RockEnum2[] {}, 8),
+	BISMUTHINITE(
+			"bismuthinite",
+			new RockEnum[] { RockEnum.Andesite, RockEnum.Basalt, RockEnum.Dacite, RockEnum.Chalk, RockEnum.Chert, RockEnum.Claystone, RockEnum.Conglomerate,
+					RockEnum.Dolomite, RockEnum.Limestone },
+			new RockEnum2[] { RockEnum2.Rhyolite, RockEnum2.RockSalt, RockEnum2.Shale },
+			20),
+	CASSITERITE("cassiterite", new RockEnum[] { RockEnum.Diorite, RockEnum.Granite, RockEnum.Gabbro }, new RockEnum2[] {}, 15),
+	GARNIERITE("garnierite", new RockEnum[] { RockEnum.Gabbro }, new RockEnum2[] {}, 5),
+	HEMATITE("hematite", new RockEnum[] { RockEnum.Andesite, RockEnum.Basalt, RockEnum.Dacite }, new RockEnum2[] { RockEnum2.Rhyolite }, 10),
+	LIMONITE(
+			"limonite",
+			new RockEnum[] { RockEnum.Chalk, RockEnum.Chert, RockEnum.Claystone, RockEnum.Conglomerate, RockEnum.Dolomite, RockEnum.Limestone },
+			new RockEnum2[] { RockEnum2.RockSalt, RockEnum2.Shale },
+			10),
+	MAGNETITE(
+			"magnetite",
+			new RockEnum[] { RockEnum.Chalk, RockEnum.Chert, RockEnum.Claystone, RockEnum.Conglomerate, RockEnum.Dolomite, RockEnum.Limestone },
+			new RockEnum2[] { RockEnum2.RockSalt, RockEnum2.Shale },
+			10),
+	MALACHITE("malachite", new RockEnum[] { RockEnum.Marble, RockEnum.Limestone }, new RockEnum2[] {}, 25),
+	SPHALERITE(
+			"sphalerite",
+			new RockEnum[] { RockEnum.Gneiss, RockEnum.Marble, RockEnum.Phyllite, RockEnum.Quartzite },
+			new RockEnum2[] { RockEnum2.Schist, RockEnum2.Slate },
+			15),
+	TETRAHEDRITE(
+			"tetrahedrite",
+			new RockEnum[] { RockEnum.Gneiss, RockEnum.Marble, RockEnum.Phyllite, RockEnum.Quartzite },
+			new RockEnum2[] { RockEnum2.Schist, RockEnum2.Slate },
+			30),;
 
 	private String name;
 	private RockEnum[] rock1;

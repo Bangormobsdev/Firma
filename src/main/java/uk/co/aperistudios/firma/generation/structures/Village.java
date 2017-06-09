@@ -1,6 +1,7 @@
 package uk.co.aperistudios.firma.generation.structures;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -13,7 +14,7 @@ public class Village extends StructureCollectionBuilder {
 
 	public Village(World world, int x, int z, Random r) {
 		// Start with a middle point.
-		spacing = 1;
+		spacing = 2;
 		BlockPos top = Plan.getTopBlock(world, new BlockPos(x, 1, z));
 		allPlans = new ArrayList<Plan>();
 		allPlans.add(new PlanWell());
@@ -23,7 +24,10 @@ public class Village extends StructureCollectionBuilder {
 		for (int i = 0; i < r.nextInt(2); i++) {
 			allPlans.add(new PlanBlackSmith());
 		}
-		//Collections.shuffle(allPlans, r);
+		for (int i = 0; i < r.nextInt(6); i++) {
+			allPlans.add(new PlanGarden());
+		}
+		Collections.shuffle(allPlans, r);
 		for (Plan plan : allPlans) {
 			if (plan.getShape() == null) {
 				continue;
@@ -74,13 +78,13 @@ public class Village extends StructureCollectionBuilder {
 					if (wx == plan.getX() - spacing && wz == plan.getZ() - spacing) {
 						makeLeg(w, wx, plan.starty - 1, wz, Util.getPlank(wood));
 					}
-					if (wx == plan.getX() - spacing && wz == plan.getZ2()) {
+					if (wx == plan.getX() - spacing && wz == plan.getZ2() + spacing - 1) {
 						makeLeg(w, wx, plan.starty - 1, wz, Util.getPlank(wood));
 					}
-					if (wx == plan.getX2() && wz == plan.getZ() - spacing) {
+					if (wx == plan.getX2() + spacing - 1 && wz == plan.getZ() - spacing) {
 						makeLeg(w, wx, plan.starty - 1, wz, Util.getPlank(wood));
 					}
-					if (wx == plan.getX2() && wz == plan.getZ2()) {
+					if (wx == plan.getX2() + spacing - 1 && wz == plan.getZ2() + spacing - 1) {
 						makeLeg(w, wx, plan.starty - 1, wz, Util.getPlank(wood));
 					}
 					w.setBlockState(pos, Util.getPlank(wood));

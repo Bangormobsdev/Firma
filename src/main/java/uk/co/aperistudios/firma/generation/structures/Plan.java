@@ -16,7 +16,7 @@ public abstract class Plan {
 	public static void init() {
 		PlanWell.init();
 		PlanHouse.init();
-
+		PlanGarden.init();
 	}
 
 	public int getWidthX() {

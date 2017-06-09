@@ -20,6 +20,7 @@ import uk.co.aperistudios.firma.blocks.boring.BaseBlock;
 import uk.co.aperistudios.firma.blocks.tileentity.SoFTileEntity;
 
 public class ShitOnFloor extends Block implements ITileEntityProvider {
+	private AxisAlignedBB shitCollision = new AxisAlignedBB(0, 0, 0, 1f, 0.1f, 1f);
 
 	public ShitOnFloor(Material materialIn) {
 		super(materialIn);
@@ -52,12 +53,12 @@ public class ShitOnFloor extends Block implements ITileEntityProvider {
 
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-		return new AxisAlignedBB(0, 0, 0, 1f, 0.1f, 1f);
+		return shitCollision;
 	}
 
 	@Override
 	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState2, IBlockAccess worldIn, BlockPos pos) {
-		return null;
+		return shitCollision;
 	}
 
 	@Override
@@ -67,7 +68,7 @@ public class ShitOnFloor extends Block implements ITileEntityProvider {
 
 	@Override
 	public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World worldIn, BlockPos pos) {
-		return new AxisAlignedBB(0, 0, 0, 1f, 0.1f, 1f);
+		return shitCollision;
 	}
 
 	@Override
@@ -117,4 +118,5 @@ public class ShitOnFloor extends Block implements ITileEntityProvider {
 		super.harvestBlock(world, player, pos, state, te, tool);
 		world.setBlockToAir(pos);
 	}
+
 }

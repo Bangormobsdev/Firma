@@ -18,7 +18,6 @@ public abstract class StructureCollectionBuilder {
 			}
 			plan.startx = px;
 			plan.startz = pz;
-			//System.out.println(otherPlan + " " + plan + " overlap:" + rectOverlap(otherPlan, plan));
 			if (rectOverlap(otherPlan, plan)) {
 				return false;
 			}

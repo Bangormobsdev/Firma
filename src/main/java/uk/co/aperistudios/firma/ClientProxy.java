@@ -17,6 +17,7 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import uk.co.aperistudios.firma.blocks.FirmaDoor;
 import uk.co.aperistudios.firma.blocks.boring.BaseBlock;
 import uk.co.aperistudios.firma.blocks.liquids.BaseBlockLiquid;
 import uk.co.aperistudios.firma.blocks.liquids.BaseLiquid;
@@ -120,6 +121,15 @@ public class ClientProxy extends CommonProxy {
 				@Override
 				protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
 					return new ModelResourceLocation(f.getModelPath(), ((BaseBlockLiquid) f.getFluidBlock()).getFluid().getName());
+				}
+			});
+		}
+
+		for (FirmaDoor d : FirmaMod.doors) {
+			ModelLoader.setCustomStateMapper(d, new StateMapperBase() {
+				@Override
+				protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
+					return new ModelResourceLocation(d.getModelPath(), "variant=" + d.getModelSub());
 				}
 			});
 		}

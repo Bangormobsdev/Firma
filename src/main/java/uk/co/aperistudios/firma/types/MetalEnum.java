@@ -5,14 +5,27 @@ import java.util.List;
 import net.minecraft.util.IStringSerializable;
 
 public enum MetalEnum implements IStringSerializable {
-	// "copper", "tin", "bismuth", "bronze", "bismuthbronze", "blackbronze",
-	// "brass", "silver", "gold", "rosegold", "lead", "nickel",
-	// "platinum", "wroughtiron", "pigiron", "steel", "sterlingsilver", "zinc",
-	// "blacksteel", "redsteel", "bluesteel"
-	Copper("copper", 1), Tin("tin", 2), Bismuth("bismuth", 3), Bronze("bronze", 4), BismuthBronze("bismuthbronze", 5), BlackBronze("blackbronze", 6), Brass(
-			"brass", 7), Silver("silver", 8), Gold("gold", 9), RoseGold("rosegold", 10), Lead("lead", 11), Nickel("nickel", 12), Platinum("platinum",
-					13), WroughtIron("wroughtiron", 14), PigIron("pigiron", 15), Steel("steel", 16), SterlingSilver("sterlingsilver",
-							17), Zinc("zinc", 18), BlackSteel("blacksteel", 19), RedSteel("redsteel", 20), BlueSteel("bluesteel", 21);
+	Copper("copper", 1),
+	Tin("tin", 2),
+	Bismuth("bismuth", 3),
+	Bronze("bronze", 4),
+	BismuthBronze("bismuthbronze", 5),
+	BlackBronze("blackbronze", 6),
+	Brass("brass", 7),
+	Silver("silver", 8),
+	Gold("gold", 9),
+	RoseGold("rosegold", 10),
+	Lead("lead", 11),
+	Nickel("nickel", 12),
+	Platinum("platinum", 13),
+	WroughtIron("wroughtiron", 14),
+	PigIron("pigiron", 15),
+	Steel("steel", 16),
+	SterlingSilver("sterlingsilver", 17),
+	Zinc("zinc", 18),
+	BlackSteel("blacksteel", 19),
+	RedSteel("redsteel", 20),
+	BlueSteel("bluesteel", 21);
 
 	private int meta;
 	private String name;

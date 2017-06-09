@@ -22,7 +22,6 @@ public class FirmaTreeGen implements IWorldGenerator {
 
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
-		VoronoiNoise vRandom = getNoise(world);
 		FirmaTree ft = getTree(world, chunkX, chunkZ);
 		if (ft == null) {
 			return;
