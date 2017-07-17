@@ -1,4 +1,4 @@
-package uk.co.aperistudios.firma.blocks;
+package uk.co.aperistudios.firma.blocks.lessboring;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +16,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import uk.co.aperistudios.firma.blocks.boring.BaseBlock;
 import uk.co.aperistudios.firma.blocks.tileentity.SoFTileEntity;
 
@@ -29,6 +30,7 @@ public class ShitOnFloor extends Block implements ITileEntityProvider {
 		this.setCreativeTab(null);
 		this.blockHardness = 0;
 		this.lightOpacity = 0;
+		GameRegistry.register(this);
 	}
 
 	@Override

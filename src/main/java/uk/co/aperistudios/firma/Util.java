@@ -2,6 +2,7 @@ package uk.co.aperistudios.firma;
 
 import java.util.Random;
 import net.minecraft.block.Block;
+import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
@@ -312,5 +313,20 @@ public class Util {
 	public static IBlockState getRandomPlant() {
 		// TODO Plants
 		return FirmaMod.sapling.getDefaultState();
+	}
+
+	public static String makeStateString(IBlockState state, IProperty<?>... props) {
+		StringBuilder sb = new StringBuilder();
+		boolean comma = false;
+		for (IProperty<?> prop : props) {
+			if (comma) {
+				sb.append(",");
+			}
+			comma = true;
+			sb.append(prop.getName());
+			sb.append("=");
+			sb.append(state.getValue(prop));
+		}
+		return sb.toString();
 	}
 }

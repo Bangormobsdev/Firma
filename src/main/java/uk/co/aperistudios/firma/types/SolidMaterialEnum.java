@@ -87,4 +87,21 @@ public enum SolidMaterialEnum implements IStringSerializable {
 		return material;
 	}
 
+	public static String[] names() {
+		String[] names = new String[SolidMaterialEnum.values().length];
+		for (int i = 0; i < names.length; i++) {
+			names[i] = SolidMaterialEnum.values()[i].getName();
+		}
+		return names;
+	}
+
+	public static SolidMaterialEnum get(String name) {
+		for (SolidMaterialEnum sme : values()) {
+			if (sme.name.equals(name)) {
+				return sme;
+			}
+		}
+		return null;
+	}
+
 }

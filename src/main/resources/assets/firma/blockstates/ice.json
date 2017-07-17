@@ -1,5 +1,31 @@
-{"forge_marker":1,"defaults":{"model":"cube_all"},"variants":{    "normal": [{}],
-    "inventory": [{}],"variants":{
-"fresh":{"textures":{"all":"firma:blocks/ice/fresh"}}
-,"salt":{"textures":{"all":"firma:blocks/ice/salt"}}
-}}}
+{
+	"forge_marker": 1,
+	"defaults": {
+		"textures": {
+			"all": "firma:blocks/ice/fresh"
+		},
+		"model": "cube_all"
+	},
+	"variants": {
+		"normal": [
+			{
+			}
+		],
+		"inventory": [
+			{
+			}
+		],
+		"variants": {
+			"fresh": {
+				"textures": {
+					"all": "firma:blocks/ice/fresh"
+				}
+			},
+			"salt": {
+				"textures": {
+					"all": "firma:blocks/ice/salt"
+				}
+			}
+		}
+	}
+}

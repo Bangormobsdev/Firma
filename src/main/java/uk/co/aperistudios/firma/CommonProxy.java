@@ -1,11 +1,9 @@
 package uk.co.aperistudios.firma;
 
 import java.util.ArrayList;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.storage.MapStorage;
@@ -20,10 +18,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import uk.co.aperistudios.firma.blocks.CrucibleBlock;
-import uk.co.aperistudios.firma.blocks.FirmaDoor;
-import uk.co.aperistudios.firma.blocks.OreBlock;
-import uk.co.aperistudios.firma.blocks.ShitOnFloor;
 import uk.co.aperistudios.firma.blocks.boring.BaseBlock;
 import uk.co.aperistudios.firma.blocks.boring.BrickBlock;
 import uk.co.aperistudios.firma.blocks.boring.BrickBlock2;
@@ -44,6 +38,10 @@ import uk.co.aperistudios.firma.blocks.boring.SandBlock;
 import uk.co.aperistudios.firma.blocks.boring.SandBlock2;
 import uk.co.aperistudios.firma.blocks.boring.SmoothBlock;
 import uk.co.aperistudios.firma.blocks.boring.SmoothBlock2;
+import uk.co.aperistudios.firma.blocks.lessboring.FirmaDoor;
+import uk.co.aperistudios.firma.blocks.lessboring.FloorStorage;
+import uk.co.aperistudios.firma.blocks.lessboring.OreBlock;
+import uk.co.aperistudios.firma.blocks.lessboring.ShitOnFloor;
 import uk.co.aperistudios.firma.blocks.liquids.BaseLiquid;
 import uk.co.aperistudios.firma.blocks.living.GrassBlock;
 import uk.co.aperistudios.firma.blocks.living.GrassBlock2;
@@ -56,8 +54,9 @@ import uk.co.aperistudios.firma.blocks.living.SaplingBlock2;
 import uk.co.aperistudios.firma.blocks.living.SparseGrassBlock;
 import uk.co.aperistudios.firma.blocks.living.SparseGrassBlock2;
 import uk.co.aperistudios.firma.blocks.machine.AnvilBlock;
-import uk.co.aperistudios.firma.blocks.machine.FloorStorage;
+import uk.co.aperistudios.firma.blocks.machine.CrucibleBlock;
 import uk.co.aperistudios.firma.blocks.tileentity.AnvilTileEntity;
+import uk.co.aperistudios.firma.blocks.tileentity.FirmaDoorTileEntity;
 import uk.co.aperistudios.firma.blocks.tileentity.FirmaOreTileEntity;
 import uk.co.aperistudios.firma.blocks.tileentity.FloorStorageTileEntity;
 import uk.co.aperistudios.firma.blocks.tileentity.SoFTileEntity;
@@ -79,6 +78,7 @@ import uk.co.aperistudios.firma.handler.FirmaHandler;
 import uk.co.aperistudios.firma.items.BrickItem;
 import uk.co.aperistudios.firma.items.ClayItem;
 import uk.co.aperistudios.firma.items.DoubleIngotItem;
+import uk.co.aperistudios.firma.items.FirmaDoorItem;
 import uk.co.aperistudios.firma.items.FirmaItem;
 import uk.co.aperistudios.firma.items.GemItem;
 import uk.co.aperistudios.firma.items.HideItem;
@@ -96,10 +96,10 @@ import uk.co.aperistudios.firma.packet.KnapToServer;
 import uk.co.aperistudios.firma.packet.SetDayPacket;
 import uk.co.aperistudios.firma.types.AlcoholType;
 import uk.co.aperistudios.firma.types.ItemSize;
+import uk.co.aperistudios.firma.types.MetalLiquid;
 import uk.co.aperistudios.firma.types.OresEnum;
 import uk.co.aperistudios.firma.types.RockEnum;
 import uk.co.aperistudios.firma.types.RockEnum2;
-import uk.co.aperistudios.firma.types.SolidMaterialEnum;
 import uk.co.aperistudios.firma.types.ToolMaterials;
 import uk.co.aperistudios.firma.types.ToolType;
 
@@ -165,13 +165,13 @@ public abstract class CommonProxy {
 		FirmaMod.toolHeads = new ToolHeads("toolheads");
 		FirmaMod.clay = new ClayItem("clay");
 		FirmaMod.hide = new HideItem("hide");
+		FirmaMod.doorItem = new FirmaDoorItem();
 
 		FirmaMod.vesselItem = new StorageItem("vesselitem", ItemSize.SMALL, 4);
 
-		FirmaMod.doors = new ArrayList<FirmaDoor>();
-		for (SolidMaterialEnum mat : SolidMaterialEnum.values()) {
-			FirmaMod.doors.add(new FirmaDoor(mat, null));
-		}
+		//		FirmaMod.miniItems = new MiniBlockItem();
+		//		FirmaMod.miniBlocks = new FirmaMiniBlock();
+		FirmaMod.door = new FirmaDoor();
 
 		rockLayerTop = new IBlockState[] { FirmaMod.rock2.getStateFromMeta(RockEnum2.Shale.getMeta()),
 				FirmaMod.rock.getStateFromMeta(RockEnum.Claystone.getMeta()), FirmaMod.rock2.getStateFromMeta(RockEnum2.RockSalt.getMeta()),
@@ -212,6 +212,9 @@ public abstract class CommonProxy {
 		for (AlcoholType at : AlcoholType.values()) {
 			BaseLiquid.create(at.getName(), fluid -> fluid.setLuminosity(0).setDensity(800).setViscosity(1500), at.getCol(), false);
 		}
+		for (MetalLiquid ml : MetalLiquid.values()) {
+			BaseLiquid.create(ml.getName(), fluid -> fluid.setLuminosity(15).setDensity(1000).setViscosity(10), ml.getCol(), true);
+		}
 
 		NetworkRegistry.INSTANCE.registerGuiHandler(FirmaMod.instance, new HandlerGui());
 
@@ -225,10 +228,6 @@ public abstract class CommonProxy {
 			Item i = new MetaBlockItem(b);
 			GameRegistry.register(i);
 		}
-
-		// Other blocks
-		noModelResource(FirmaMod.floorStorage);
-		noModelResource(FirmaMod.shitOnFloor);
 
 		for (FirmaItem i : FirmaMod.allItems) {
 			GameRegistry.register(i);
@@ -264,6 +263,7 @@ public abstract class CommonProxy {
 		GameRegistry.registerTileEntity(SoFTileEntity.class, "firmasof");
 		GameRegistry.registerTileEntity(AnvilTileEntity.class, "firmaanvil");
 		GameRegistry.registerTileEntity(FloorStorageTileEntity.class, "firmafloor");
+		GameRegistry.registerTileEntity(FirmaDoorTileEntity.class, "firmadoor");
 		// TODO Non-vein ores.
 
 		ArrayList<FirmaOreVeinGen> topLayers = new ArrayList<FirmaOreVeinGen>();
@@ -361,13 +361,6 @@ public abstract class CommonProxy {
 		Plan.init(); // Prepare world gen structures
 
 		MinecraftForge.EVENT_BUS.register(this);
-	}
-
-	private static void noModelResource(Block block) {
-		GameRegistry.register(block);
-		ItemBlock ib = new ItemBlock(block);
-		ib.setRegistryName(block.getRegistryName());
-		GameRegistry.register(ib);
 	}
 
 	public void init(FMLInitializationEvent e) {

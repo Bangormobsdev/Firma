@@ -1,4 +1,28 @@
-{"forge_marker":1,"defaults":{"model":"cube_column"},"variants":{    "normal": [{}],
-    "inventory": [{}],"variants":{
-"willow":{"textures":{"side":"firma:blocks/log/willow", "end":"firma:blocks/log/willowtop"}}
-}}}
+{
+	"forge_marker": 1,
+	"defaults": {
+		"textures": {
+			"side": "firma:blocks/log/willow",
+			"end": "firma:blocks/log/willowtop"
+		},
+		"model": "cube_column"
+	},
+	"variants": {
+		"normal": [
+			{
+			}
+		],
+		"inventory": [
+			{
+			}
+		],
+		"variants": {
+			"willow": {
+				"textures": {
+					"side": "firma:blocks/log/willow",
+					"end": "firma:blocks/log/willowtop"
+				}
+			}
+		}
+	}
+}

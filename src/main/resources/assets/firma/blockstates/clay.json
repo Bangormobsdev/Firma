@@ -1,5 +1,32 @@
-{"forge_marker":1,"defaults":{"model":"firma:item/generated"},"variants":{    "normal": [{}],
-    "inventory": [{"model": "firma:item/generated"}],"variants":{
-"clay":{"textures":{"layer0":"firma:items/clay/clay"}}
-,"fireclay":{"textures":{"layer0":"firma:items/clay/fireclay"}}
-}}}
+{
+	"forge_marker": 1,
+	"defaults": {
+		"textures": {
+			"layer0": "firma:items/clay/clay"
+		},
+		"model": "firma:item/generated"
+	},
+	"variants": {
+		"normal": [
+			{
+			}
+		],
+		"inventory": [
+			{
+				"model": "firma:item/generated"
+			}
+		],
+		"variants": {
+			"clay": {
+				"textures": {
+					"layer0": "firma:items/clay/clay"
+				}
+			},
+			"fireclay": {
+				"textures": {
+					"layer0": "firma:items/clay/fireclay"
+				}
+			}
+		}
+	}
+}

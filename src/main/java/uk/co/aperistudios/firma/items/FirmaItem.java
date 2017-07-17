@@ -32,5 +32,4 @@ public abstract class FirmaItem extends Item {
 	public ItemSize getSize(ItemStack is) {
 		return iSize;
 	}
-
 }

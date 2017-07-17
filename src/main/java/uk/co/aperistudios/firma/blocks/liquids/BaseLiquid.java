@@ -57,9 +57,9 @@ public class BaseLiquid extends Fluid {
 		FluidRegistry.registerFluid(nL);
 		BaseBlockLiquid newblock;
 		if (isLava) {
-			newblock = new BaseBlockLiquid(nL, Material.LAVA);
+			newblock = new BaseBlockLiquid(nL, Material.LAVA, fluidName);
 		} else {
-			newblock = new BaseBlockLiquid(nL, Material.WATER);
+			newblock = new BaseBlockLiquid(nL, Material.WATER, fluidName);
 		}
 		nL.block = newblock;
 		nL.block.setRegistryName(FirmaMod.MODID + ":fluid." + fluidName);

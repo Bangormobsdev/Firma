@@ -1,4 +1,4 @@
-package uk.co.aperistudios.firma.blocks.liquids;
+package uk.co.aperistudios.firma.blocks.machine;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -6,56 +6,50 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.IStateMapper;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
-import net.minecraft.entity.Entity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
-import net.minecraftforge.fluids.BlockFluidClassic;
-import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import uk.co.aperistudios.firma.FirmaMod;
 import uk.co.aperistudios.firma.blocks.BlockState;
 
-public class BaseBlockLiquid extends BlockFluidClassic implements BlockState {
+public class CrucibleBlock extends Block implements BlockState {
 
-	private boolean fire;
-	private String subName;
+	public CrucibleBlock() {
+		super(Material.ROCK);
 
-	public BaseBlockLiquid(Fluid fluid, Material material, String subName) {
-		super(fluid, material);
-		this.subName = subName;
-	}
-
-	@Override
-	public boolean canBeReplacedByLeaves(IBlockState state, IBlockAccess world, BlockPos pos) {
-		return false;
-	}
-
-	public void setsOnFire(boolean y) {
-		this.fire = y;
-	}
-
-	@Override
-	public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
-		if (fire) {
-			entityIn.setFire(5);
-		}
-		super.onEntityWalk(worldIn, pos, entityIn);
+		this.setRegistryName("crucible");
+		this.setUnlocalizedName("crucible");
+		Item item = new ItemBlock(this);
+		item.setRegistryName("crucible");
+		item.setUnlocalizedName("crucible");
+		item.setCreativeTab(FirmaMod.deviceTab);
+		this.setCreativeTab(FirmaMod.deviceTab);
+		GameRegistry.register(this);
+		GameRegistry.register(item);
 	}
 
 	@Override
 	public ResourceLocation getModelPath() {
-		return new ResourceLocation(FirmaMod.MODID + ":fluid");
+		return new ResourceLocation(FirmaMod.MODID + ":crucible");
 	}
 
 	@Override
 	public String getModelSub() {
-		return subName;
+		return "";
 	}
 
 	@Override
 	public Block getBlock() {
 		return this;
+	}
+
+	@Override
+	public boolean doesSideBlockRendering(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing face) {
+		return false;
 	}
 
 	@Override
@@ -69,4 +63,5 @@ public class BaseBlockLiquid extends BlockFluidClassic implements BlockState {
 		};
 
 	}
+
 }

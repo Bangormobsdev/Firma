@@ -61,4 +61,12 @@ public abstract class MetaItem extends FirmaItem {
 			subItems.add(is);
 		}
 	}
+
+	public String getMainVariant() {
+		return "variants";
+	}
+
+	public boolean skipRegister() {
+		return false;
+	}
 }

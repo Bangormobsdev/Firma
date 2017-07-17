@@ -1,171 +1,355 @@
 {
 	"forge_marker": 1,
 	"defaults": {
-		"model": "forge:fluid",
 		"fluid": "normal",
 		"transform": "forge:default-item",
 		"custom": {
 			"tintindex": 255
-		}
+		},
+		"model": "forge:fluid"
 	},
 	"variants": {
 		"fluid": [
 			{
 				"custom": {
-					"fluid": "saltwater",					"tintindex": 255
-					
+					"fluid": "saltwater",
+					"tintindex": 255
 				}
 			}
 		],
 		"saltwater": [
 			{
 				"custom": {
-					"fluid": "saltwater",					"tintindex": 255
-					
+					"fluid": "saltwater",
+					"tintindex": 255
 				}
 			}
 		],
 		"freshwater": [
 			{
 				"custom": {
-					"fluid": "freshwater", 					"tintindex": 255
-					
+					"fluid": "freshwater",
+					"tintindex": 255
 				}
 			}
 		],
 		"lava": [
 			{
 				"custom": {
-					"fluid": "lava", 					"tintindex": 255
-					
+					"fluid": "lava",
+					"tintindex": 255
 				}
 			}
 		],
 		"beer": [
 			{
 				"custom": {
-					"fluid": "beer", 					"tintindex": 255
-					
+					"fluid": "beer",
+					"tintindex": 255
 				}
 			}
 		],
 		"ale": [
 			{
 				"custom": {
-					"fluid": "ale", 					"tintindex": 255
-					
+					"fluid": "ale",
+					"tintindex": 255
 				}
 			}
 		],
 		"whiskey": [
 			{
 				"custom": {
-					"fluid": "whiskey", 					"tintindex": 255
-					
+					"fluid": "whiskey",
+					"tintindex": 255
 				}
 			}
 		],
 		"bourbon": [
 			{
 				"custom": {
-					"fluid": "bourbon", 					"tintindex": 255
-					
+					"fluid": "bourbon",
+					"tintindex": 255
 				}
 			}
 		],
 		"rye": [
 			{
 				"custom": {
-					"fluid": "rye", 					"tintindex": 255
-					
+					"fluid": "rye",
+					"tintindex": 255
 				}
 			}
 		],
 		"cider": [
 			{
 				"custom": {
-					"fluid": "cider", 					"tintindex": 255
-					
+					"fluid": "cider",
+					"tintindex": 255
 				}
 			}
 		],
 		"brandy": [
 			{
 				"custom": {
-					"fluid": "brandy", 					"tintindex": 255
-					
+					"fluid": "brandy",
+					"tintindex": 255
 				}
 			}
 		],
 		"gin": [
 			{
 				"custom": {
-					"fluid": "gin", 					"tintindex": 255
-					
+					"fluid": "gin",
+					"tintindex": 255
 				}
 			}
 		],
 		"rum": [
 			{
 				"custom": {
-					"fluid": "rum", 					"tintindex": 255
-					
+					"fluid": "rum",
+					"tintindex": 255
 				}
 			}
 		],
 		"tequila": [
 			{
 				"custom": {
-					"fluid": "tequila", 					"tintindex": 255
-					
+					"fluid": "tequila",
+					"tintindex": 255
 				}
 			}
 		],
 		"liquour": [
 			{
 				"custom": {
-					"fluid": "liquour", 					"tintindex": 255
-					
+					"fluid": "liquour",
+					"tintindex": 255
 				}
 			}
 		],
 		"sake": [
 			{
 				"custom": {
-					"fluid": "sake", 					"tintindex": 255
-					
+					"fluid": "sake",
+					"tintindex": 255
 				}
 			}
 		],
 		"mead": [
 			{
 				"custom": {
-					"fluid": "mead", 					"tintindex": 255
-					
+					"fluid": "mead",
+					"tintindex": 255
 				}
 			}
 		],
 		"pangalacticgargleblaster": [
 			{
 				"custom": {
-					"fluid": "pangalacticgargleblaster", 					"tintindex": 255
-					
+					"fluid": "pangalacticgargleblaster",
+					"tintindex": 255
 				}
 			}
 		],
 		"absinthe": [
 			{
 				"custom": {
-					"fluid": "absinthe", 					"tintindex": 255
-					
+					"fluid": "absinthe",
+					"tintindex": 255
 				}
 			}
 		],
 		"vodka": [
 			{
 				"custom": {
-					"fluid": "vodka", 					"tintindex": 255
-					
+					"fluid": "vodka",
+					"tintindex": 255
+				}
+			}
+		],
+		"bismuthbronze": [
+			{
+				"custom": {
+					"fluid": "bismuthbronze",
+					"tintindex": 255
+				}
+			}
+		],
+		"bismuth": [
+			{
+				"custom": {
+					"fluid": "bismuth",
+					"tintindex": 255
+				}
+			}
+		],
+		"blackbronze": [
+			{
+				"custom": {
+					"fluid": "blackbronze",
+					"tintindex": 255
+				}
+			}
+		],
+		"blacksteel": [
+			{
+				"custom": {
+					"fluid": "blacksteel",
+					"tintindex": 255
+				}
+			}
+		],
+		"bluesteel": [
+			{
+				"custom": {
+					"fluid": "bluesteel",
+					"tintindex": 255
+				}
+			}
+		],
+		"brass": [
+			{
+				"custom": {
+					"fluid": "brass",
+					"tintindex": 255
+				}
+			}
+		],
+		"copper": [
+			{
+				"custom": {
+					"fluid": "copper",
+					"tintindex": 255
+				}
+			}
+		],
+		"bronze": [
+			{
+				"custom": {
+					"fluid": "bronze",
+					"tintindex": 255
+				}
+			}
+		],
+		"gold": [
+			{
+				"custom": {
+					"fluid": "gold",
+					"tintindex": 255
+				}
+			}
+		],
+		"lead": [
+			{
+				"custom": {
+					"fluid": "lead",
+					"tintindex": 255
+				}
+			}
+		],
+		"nickel": [
+			{
+				"custom": {
+					"fluid": "nickel",
+					"tintindex": 255
+				}
+			}
+		],
+		"pigiron": [
+			{
+				"custom": {
+					"fluid": "pigiron",
+					"tintindex": 255
+				}
+			}
+		],
+		"platinum": [
+			{
+				"custom": {
+					"fluid": "platinum",
+					"tintindex": 255
+				}
+			}
+		],
+		"redsteel": [
+			{
+				"custom": {
+					"fluid": "redsteel",
+					"tintindex": 255
+				}
+			}
+		],
+		"rosegold": [
+			{
+				"custom": {
+					"fluid": "rosegold",
+					"tintindex": 255
+				}
+			}
+		],
+		"silver": [
+			{
+				"custom": {
+					"fluid": "silver",
+					"tintindex": 255
+				}
+			}
+		],
+		"steel": [
+			{
+				"custom": {
+					"fluid": "steel",
+					"tintindex": 255
+				}
+			}
+		],
+		"sterlingsilver": [
+			{
+				"custom": {
+					"fluid": "sterlingsilver",
+					"tintindex": 255
+				}
+			}
+		],
+		"tin": [
+			{
+				"custom": {
+					"fluid": "tin",
+					"tintindex": 255
+				}
+			}
+		],
+		"unknown": [
+			{
+				"custom": {
+					"fluid": "unknown",
+					"tintindex": 255
+				}
+			}
+		],
+		"wroughtiron": [
+			{
+				"custom": {
+					"fluid": "wroughtiron",
+					"tintindex": 255
+				}
+			}
+		],
+		"zinc": [
+			{
+				"custom": {
+					"fluid": "zinc",
+					"tintindex": 255
+				}
+			}
+		],
+		"milk": [
+			{
+				"custom": {
+					"fluid": "milk",
+					"tintindex": 255
 				}
 			}
 		]

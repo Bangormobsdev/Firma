@@ -1,18 +1,131 @@
-{"forge_marker":1,"defaults":{"model":"firma:firmasparsegrass"},"variants":{"inventory": [{}],"variants":{
-"andesite":{"textures":{"dirt":"firma:blocks/dirt/andesite", "grass":"firma:blocks/grasssparsetop","particle":"#dirt"}}
-,"basalt":{"textures":{"dirt":"firma:blocks/dirt/basalt", "grass":"firma:blocks/grasssparsetop","particle":"#dirt"}}
-,"chalk":{"textures":{"dirt":"firma:blocks/dirt/chalk", "grass":"firma:blocks/grasssparsetop","particle":"#dirt"}}
-,"chert":{"textures":{"dirt":"firma:blocks/dirt/chert", "grass":"firma:blocks/grasssparsetop","particle":"#dirt"}}
-,"claystone":{"textures":{"dirt":"firma:blocks/dirt/claystone", "grass":"firma:blocks/grasssparsetop","particle":"#dirt"}}
-,"conglomerate":{"textures":{"dirt":"firma:blocks/dirt/conglomerate", "grass":"firma:blocks/grasssparsetop","particle":"#dirt"}}
-,"dacite":{"textures":{"dirt":"firma:blocks/dirt/dacite", "grass":"firma:blocks/grasssparsetop","particle":"#dirt"}}
-,"diorite":{"textures":{"dirt":"firma:blocks/dirt/diorite", "grass":"firma:blocks/grasssparsetop","particle":"#dirt"}}
-,"dolomite":{"textures":{"dirt":"firma:blocks/dirt/dolomite", "grass":"firma:blocks/grasssparsetop","particle":"#dirt"}}
-,"gabbro":{"textures":{"dirt":"firma:blocks/dirt/gabbro", "grass":"firma:blocks/grasssparsetop","particle":"#dirt"}}
-,"gneiss":{"textures":{"dirt":"firma:blocks/dirt/gneiss", "grass":"firma:blocks/grasssparsetop","particle":"#dirt"}}
-,"granite":{"textures":{"dirt":"firma:blocks/dirt/granite", "grass":"firma:blocks/grasssparsetop","particle":"#dirt"}}
-,"limestone":{"textures":{"dirt":"firma:blocks/dirt/limestone", "grass":"firma:blocks/grasssparsetop","particle":"#dirt"}}
-,"marble":{"textures":{"dirt":"firma:blocks/dirt/marble", "grass":"firma:blocks/grasssparsetop","particle":"#dirt"}}
-,"phyllite":{"textures":{"dirt":"firma:blocks/dirt/phyllite", "grass":"firma:blocks/grasssparsetop","particle":"#dirt"}}
-,"quartzite":{"textures":{"dirt":"firma:blocks/dirt/quartzite", "grass":"firma:blocks/grasssparsetop","particle":"#dirt"}}
-}}}
+{
+	"forge_marker": 1,
+	"defaults": {
+		"textures": {
+			"dirt": "firma:blocks/dirt/andesite",
+			"grass": "firma:blocks/grasssparsetop",
+			"particle": "#dirt"
+		},
+		"model": "firma:firmasparsegrass"
+	},
+	"variants": {
+		"inventory": [
+			{
+			}
+		],
+		"variants": {
+			"andesite": {
+				"textures": {
+					"dirt": "firma:blocks/dirt/andesite",
+					"grass": "firma:blocks/grasssparsetop",
+					"particle": "#dirt"
+				}
+			},
+			"basalt": {
+				"textures": {
+					"dirt": "firma:blocks/dirt/basalt",
+					"grass": "firma:blocks/grasssparsetop",
+					"particle": "#dirt"
+				}
+			},
+			"chalk": {
+				"textures": {
+					"dirt": "firma:blocks/dirt/chalk",
+					"grass": "firma:blocks/grasssparsetop",
+					"particle": "#dirt"
+				}
+			},
+			"chert": {
+				"textures": {
+					"dirt": "firma:blocks/dirt/chert",
+					"grass": "firma:blocks/grasssparsetop",
+					"particle": "#dirt"
+				}
+			},
+			"claystone": {
+				"textures": {
+					"dirt": "firma:blocks/dirt/claystone",
+					"grass": "firma:blocks/grasssparsetop",
+					"particle": "#dirt"
+				}
+			},
+			"conglomerate": {
+				"textures": {
+					"dirt": "firma:blocks/dirt/conglomerate",
+					"grass": "firma:blocks/grasssparsetop",
+					"particle": "#dirt"
+				}
+			},
+			"dacite": {
+				"textures": {
+					"dirt": "firma:blocks/dirt/dacite",
+					"grass": "firma:blocks/grasssparsetop",
+					"particle": "#dirt"
+				}
+			},
+			"diorite": {
+				"textures": {
+					"dirt": "firma:blocks/dirt/diorite",
+					"grass": "firma:blocks/grasssparsetop",
+					"particle": "#dirt"
+				}
+			},
+			"dolomite": {
+				"textures": {
+					"dirt": "firma:blocks/dirt/dolomite",
+					"grass": "firma:blocks/grasssparsetop",
+					"particle": "#dirt"
+				}
+			},
+			"gabbro": {
+				"textures": {
+					"dirt": "firma:blocks/dirt/gabbro",
+					"grass": "firma:blocks/grasssparsetop",
+					"particle": "#dirt"
+				}
+			},
+			"gneiss": {
+				"textures": {
+					"dirt": "firma:blocks/dirt/gneiss",
+					"grass": "firma:blocks/grasssparsetop",
+					"particle": "#dirt"
+				}
+			},
+			"granite": {
+				"textures": {
+					"dirt": "firma:blocks/dirt/granite",
+					"grass": "firma:blocks/grasssparsetop",
+					"particle": "#dirt"
+				}
+			},
+			"limestone": {
+				"textures": {
+					"dirt": "firma:blocks/dirt/limestone",
+					"grass": "firma:blocks/grasssparsetop",
+					"particle": "#dirt"
+				}
+			},
+			"marble": {
+				"textures": {
+					"dirt": "firma:blocks/dirt/marble",
+					"grass": "firma:blocks/grasssparsetop",
+					"particle": "#dirt"
+				}
+			},
+			"phyllite": {
+				"textures": {
+					"dirt": "firma:blocks/dirt/phyllite",
+					"grass": "firma:blocks/grasssparsetop",
+					"particle": "#dirt"
+				}
+			},
+			"quartzite": {
+				"textures": {
+					"dirt": "firma:blocks/dirt/quartzite",
+					"grass": "firma:blocks/grasssparsetop",
+					"particle": "#dirt"
+				}
+			}
+		}
+	}
+}

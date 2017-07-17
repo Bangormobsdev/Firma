@@ -1,4 +1,26 @@
-{"forge_marker":1,"defaults":{"model":"leaves"},"variants":{    "normal": [{}],
-    "inventory": [{}],"variants":{
-"willow":{"textures":{"all":"firma:blocks/log/willowleavesfancy"}}
-}}}
+{
+	"forge_marker": 1,
+	"defaults": {
+		"textures": {
+			"all": "firma:blocks/log/willowleavesfancy"
+		},
+		"model": "leaves"
+	},
+	"variants": {
+		"normal": [
+			{
+			}
+		],
+		"inventory": [
+			{
+			}
+		],
+		"variants": {
+			"willow": {
+				"textures": {
+					"all": "firma:blocks/log/willowleavesfancy"
+				}
+			}
+		}
+	}
+}
