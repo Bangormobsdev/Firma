@@ -1,12 +1,16 @@
 package uk.co.aperistudios.firma.blocks.living;
 
 import java.util.ArrayList;
+import java.util.List;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
@@ -15,7 +19,10 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+import scala.util.Random;
 import uk.co.aperistudios.firma.FirmaMod;
+import uk.co.aperistudios.firma.Util;
 import uk.co.aperistudios.firma.blocks.boring.BaseBlock;
 import uk.co.aperistudios.firma.types.WoodEnum;
 
@@ -122,4 +129,89 @@ public class LeafBlock extends BaseBlock {
 		return false;
 	}
 
+	@Override
+	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
+		super.neighborChanged(state, worldIn, pos, blockIn, fromPos);
+		//checkForTree(worldIn, pos, state);
+	}
+
+	@Override
+	public void randomTick(World worldIn, BlockPos pos, IBlockState state, java.util.Random random) {
+		if (worldIn.isRemote) {
+			return;
+		}
+		//super.randomTick(worldIn, pos, state, random);
+		checkForTree(worldIn, pos, state);
+	}
+
+	@Override
+	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
+		ArrayList<ItemStack> list = new ArrayList<ItemStack>();
+		Random r = new Random();
+		if (r.nextFloat() > 0.8) {
+			list.add(Util.getSapling(state));
+		}
+		if (r.nextFloat() > 0.3) {
+			list.add(new ItemStack(Items.STICK));
+		}
+		return list;
+	}
+
+	@Override
+	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+		if (worldIn.isRemote) {
+			return;
+		}
+		for (ItemStack is : getDrops(worldIn, pos, state, 0)) {
+			worldIn.spawnEntity(new EntityItem(worldIn, pos.getX() + .5, pos.getY() + .5, pos.getZ() + .5, is));
+		}
+		worldIn.setBlockToAir(pos);
+	}
+
+	private void checkForTree(World worldIn, BlockPos pos, IBlockState state) {
+		WoodEnum woodType = Util.getWoodEnum(state);
+		ArrayList<BlockPos> leafLocations = new ArrayList<BlockPos>();
+		ArrayList<BlockPos> checkedLocations = new ArrayList<BlockPos>();
+		int checkCount = 0;
+		leafLocations.add(pos);
+		while (leafLocations.size() > 0 && checkCount < 100) {
+			if (checkNeighbours(worldIn, leafLocations.remove(0), woodType, checkedLocations, leafLocations)) {
+				return;
+			}
+		}
+		System.out.println(leafLocations.size() + " " + checkCount);
+		this.breakBlock(worldIn, pos, state);
+		worldIn.setBlockToAir(pos);
+	}
+
+	public boolean checkNeighbours(World worldIn, BlockPos pos, WoodEnum type, ArrayList<BlockPos> checkedLocations, ArrayList<BlockPos> leafLocations) {
+		checkedLocations.add(pos);
+		for (EnumFacing facing : EnumFacing.VALUES) {
+			BlockPos pos2 = pos.offset(facing);
+			IBlockState bs = worldIn.getBlockState(pos2);
+			if (contains(checkedLocations, pos2)) {
+				continue;
+			}
+			if (Util.getWoodEnum(bs) == type) {
+
+				if (bs.getBlock() == FirmaMod.log) {
+					return true;
+				} else if (bs.getBlock() == FirmaMod.leaf) {
+					if (!contains(leafLocations, pos2)) {
+						leafLocations.add(pos2);
+					}
+				}
+			}
+		}
+		return false;
+	}
+
+	public boolean contains(ArrayList<BlockPos> list, BlockPos item) {
+		for (BlockPos pos : list) {
+			if (pos.getX() == item.getX() && pos.getY() == item.getY() && pos.getZ() == item.getZ()) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

@@ -11,6 +11,8 @@ import uk.co.aperistudios.firma.items.OreItem;
 import uk.co.aperistudios.firma.types.OresEnum;
 import uk.co.aperistudios.firma.types.RockEnum;
 import uk.co.aperistudios.firma.types.RockEnum2;
+import uk.co.aperistudios.firma.types.WoodEnum;
+import uk.co.aperistudios.firma.types.WoodEnum2;
 
 public class Util {
 	public static int daysInMonth = 28, monthsInYear = 12, daysInYear = daysInMonth * monthsInYear;
@@ -99,6 +101,32 @@ public class Util {
 		return null;
 	}
 
+	public static WoodEnum getWoodEnum(IBlockState b) {
+		if (isWoodEnum1(b.getBlock())) {
+			return WoodEnum.get(b.getBlock().getMetaFromState(b));
+		}
+		return null;
+	}
+
+	public static WoodEnum2 getWoodEnum2(IBlockState b) {
+		if (isWoodEnum2(b.getBlock())) {
+			return WoodEnum2.get(b.getBlock().getMetaFromState(b));
+		}
+		return null;
+	}
+
+	public static ItemStack getSapling(IBlockState s) {
+		WoodEnum we = getWoodEnum(s);
+		WoodEnum2 we2 = getWoodEnum2(s);
+		if (we != null) {
+			return new ItemStack(FirmaMod.sapling, we.getMeta());
+		}
+		if (we2 != null) {
+			return new ItemStack(FirmaMod.sapling, we2.getMeta() + 16);
+		}
+		return new ItemStack(FirmaMod.sapling);
+	}
+
 	public static IBlockState getSparseGrass(IBlockState in) {
 		int meta = in.getBlock().getMetaFromState(in);
 		Block b = in.getBlock();
@@ -156,8 +184,8 @@ public class Util {
 	}
 
 	/**
-	 * Get Temperature ignoring given season and any heat producing blocks.
-	 * Mostly used for world gen.
+	 * Get Temperature ignoring given season and any heat producing blocks. Mostly
+	 * used for world gen.
 	 * 
 	 * @param pos
 	 * @return
@@ -167,8 +195,8 @@ public class Util {
 	}
 
 	/**
-	 * Get Temperature ignoring given season and any heat producing blocks.
-	 * Mostly used for world gen.
+	 * Get Temperature ignoring given season and any heat producing blocks. Mostly
+	 * used for world gen.
 	 * 
 	 * @param z
 	 * @return

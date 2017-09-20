@@ -56,6 +56,7 @@ import uk.co.aperistudios.firma.blocks.living.SparseGrassBlock2;
 import uk.co.aperistudios.firma.blocks.machine.AnvilBlock;
 import uk.co.aperistudios.firma.blocks.machine.CrucibleBlock;
 import uk.co.aperistudios.firma.blocks.tileentity.AnvilTileEntity;
+import uk.co.aperistudios.firma.blocks.tileentity.CrucibleTileEntity;
 import uk.co.aperistudios.firma.blocks.tileentity.FirmaDoorTileEntity;
 import uk.co.aperistudios.firma.blocks.tileentity.FirmaOreTileEntity;
 import uk.co.aperistudios.firma.blocks.tileentity.FloorStorageTileEntity;
@@ -264,6 +265,7 @@ public abstract class CommonProxy {
 		GameRegistry.registerTileEntity(AnvilTileEntity.class, "firmaanvil");
 		GameRegistry.registerTileEntity(FloorStorageTileEntity.class, "firmafloor");
 		GameRegistry.registerTileEntity(FirmaDoorTileEntity.class, "firmadoor");
+		GameRegistry.registerTileEntity(CrucibleTileEntity.class, "firmacrucible");
 		// TODO Non-vein ores.
 
 		ArrayList<FirmaOreVeinGen> topLayers = new ArrayList<FirmaOreVeinGen>();
