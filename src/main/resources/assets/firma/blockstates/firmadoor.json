@@ -3,7 +3,8 @@
 	"defaults": {
 		"y": 0,
 		"textures": {
-			"0": "firma:blocks/rock/andesite"
+			"0": "firma:blocks/rock/andesite",
+			"1": "firma:blocks/rock/andesite"
 		},
 		"model": "firma:door"
 	},
@@ -46,302 +47,302 @@
 		"material": {
 			"andesite": {
 				"textures": {
-					"0": "firma:blocks/door/andesite"
+					"0": "firma:blocks/door/andesite","1": "firma:blocks/door/andesite"
 				}
 			},
 			"basalt": {
 				"textures": {
-					"0": "firma:blocks/door/basalt"
+					"0": "firma:blocks/door/basalt","1": "firma:blocks/door/basalt"
 				}
 			},
 			"chalk": {
 				"textures": {
-					"0": "firma:blocks/door/chalk"
+					"0": "firma:blocks/door/chalk","1": "firma:blocks/door/chalk"
 				}
 			},
 			"chert": {
 				"textures": {
-					"0": "firma:blocks/door/chert"
+					"0": "firma:blocks/door/chert","1": "firma:blocks/door/chert"
 				}
 			},
 			"claystone": {
 				"textures": {
-					"0": "firma:blocks/door/claystone"
+					"0": "firma:blocks/door/claystone","1": "firma:blocks/door/claystone"
 				}
 			},
 			"conglomerate": {
 				"textures": {
-					"0": "firma:blocks/door/conglomerate"
+					"0": "firma:blocks/door/conglomerate","1": "firma:blocks/door/conglomerate"
 				}
 			},
 			"dacite": {
 				"textures": {
-					"0": "firma:blocks/door/dacite"
+					"0": "firma:blocks/door/dacite","1": "firma:blocks/door/dacite"
 				}
 			},
 			"diorite": {
 				"textures": {
-					"0": "firma:blocks/door/diorite"
+					"0": "firma:blocks/door/diorite","1": "firma:blocks/door/diorite"
 				}
 			},
 			"dolomite": {
 				"textures": {
-					"0": "firma:blocks/door/dolomite"
+					"0": "firma:blocks/door/dolomite","1": "firma:blocks/door/dolomite"
 				}
 			},
 			"gabbro": {
 				"textures": {
-					"0": "firma:blocks/door/gabbro"
+					"0": "firma:blocks/door/gabbro","1": "firma:blocks/door/gabbro"
 				}
 			},
 			"gneiss": {
 				"textures": {
-					"0": "firma:blocks/door/gneiss"
+					"0": "firma:blocks/door/gneiss","1": "firma:blocks/door/gneiss"
 				}
 			},
 			"granite": {
 				"textures": {
-					"0": "firma:blocks/door/granite"
+					"0": "firma:blocks/door/granite","1": "firma:blocks/door/granite"
 				}
 			},
 			"limestone": {
 				"textures": {
-					"0": "firma:blocks/door/limestone"
+					"0": "firma:blocks/door/limestone","1": "firma:blocks/door/limestone"
 				}
 			},
 			"marble": {
 				"textures": {
-					"0": "firma:blocks/door/marble"
+					"0": "firma:blocks/door/marble","1": "firma:blocks/door/marble"
 				}
 			},
 			"phyllite": {
 				"textures": {
-					"0": "firma:blocks/door/phyllite"
+					"0": "firma:blocks/door/phyllite","1": "firma:blocks/door/phyllite"
 				}
 			},
 			"quartzite": {
 				"textures": {
-					"0": "firma:blocks/door/quartzite"
+					"0": "firma:blocks/door/quartzite","1": "firma:blocks/door/quartzite"
 				}
 			},
 			"rhyolite": {
 				"textures": {
-					"0": "firma:blocks/door/rhyolite"
+					"0": "firma:blocks/door/rhyolite","1": "firma:blocks/door/rhyolite"
 				}
 			},
 			"rocksalt": {
 				"textures": {
-					"0": "firma:blocks/door/rocksalt"
+					"0": "firma:blocks/door/rocksalt","1": "firma:blocks/door/rocksalt"
 				}
 			},
 			"schist": {
 				"textures": {
-					"0": "firma:blocks/door/schist"
+					"0": "firma:blocks/door/schist","1": "firma:blocks/door/schist"
 				}
 			},
 			"shale": {
 				"textures": {
-					"0": "firma:blocks/door/shale"
+					"0": "firma:blocks/door/shale","1": "firma:blocks/door/shale"
 				}
 			},
 			"slate": {
 				"textures": {
-					"0": "firma:blocks/door/slate"
+					"0": "firma:blocks/door/slate","1": "firma:blocks/door/slate"
 				}
 			},
 			"acacia": {
 				"textures": {
-					"0": "firma:blocks/door/acacia"
+					"0": "firma:blocks/door/acacialower","1": "firma:blocks/door/acaciaupper"
 				}
 			},
 			"ash": {
 				"textures": {
-					"0": "firma:blocks/door/ash"
+					"0": "firma:blocks/door/ashlower","1": "firma:blocks/door/ashupper"
 				}
 			},
 			"aspen": {
 				"textures": {
-					"0": "firma:blocks/door/aspen"
+					"0": "firma:blocks/door/aspenlower","1": "firma:blocks/door/aspenupper"
 				}
 			},
 			"birch": {
 				"textures": {
-					"0": "firma:blocks/door/birch"
+					"0": "firma:blocks/door/birchlower","1": "firma:blocks/door/birchupper"
 				}
 			},
 			"chestnut": {
 				"textures": {
-					"0": "firma:blocks/door/chestnut"
+					"0": "firma:blocks/door/chestnutlower","1": "firma:blocks/door/chestnutupper"
 				}
 			},
 			"douglasfir": {
 				"textures": {
-					"0": "firma:blocks/door/douglasfir"
+					"0": "firma:blocks/door/douglasfirlower","1": "firma:blocks/door/douglasfirupper"
 				}
 			},
 			"hickory": {
 				"textures": {
-					"0": "firma:blocks/door/hickory"
+					"0": "firma:blocks/door/hickorylower","1": "firma:blocks/door/hickoryupper"
 				}
 			},
 			"kapok": {
 				"textures": {
-					"0": "firma:blocks/door/kapok"
+					"0": "firma:blocks/door/kapoklower","1": "firma:blocks/door/kapokupper"
 				}
 			},
 			"maple": {
 				"textures": {
-					"0": "firma:blocks/door/maple"
+					"0": "firma:blocks/door/maplelower","1": "firma:blocks/door/mapleupper"
 				}
 			},
 			"oak": {
 				"textures": {
-					"0": "firma:blocks/door/oak"
+					"0": "firma:blocks/door/oaklower","1": "firma:blocks/door/oakupper"
 				}
 			},
 			"pine": {
 				"textures": {
-					"0": "firma:blocks/door/pine"
+					"0": "firma:blocks/door/pinelower","1": "firma:blocks/door/pineupper"
 				}
 			},
 			"sequoia": {
 				"textures": {
-					"0": "firma:blocks/door/sequoia"
+					"0": "firma:blocks/door/sequoialower","1": "firma:blocks/door/sequoiaupper"
 				}
 			},
 			"spruce": {
 				"textures": {
-					"0": "firma:blocks/door/spruce"
+					"0": "firma:blocks/door/sprucelower","1": "firma:blocks/door/spruceupper"
 				}
 			},
 			"sycamore": {
 				"textures": {
-					"0": "firma:blocks/door/sycamore"
+					"0": "firma:blocks/door/sycamorelower","1": "firma:blocks/door/sycamoreupper"
 				}
 			},
 			"whitecedar": {
 				"textures": {
-					"0": "firma:blocks/door/whitecedar"
+					"0": "firma:blocks/door/whitecedarlower","1": "firma:blocks/door/whitecedarupper"
 				}
 			},
 			"whiteelm": {
 				"textures": {
-					"0": "firma:blocks/door/whiteelm"
+					"0": "firma:blocks/door/whiteelmlower","1": "firma:blocks/door/whiteelmupper"
 				}
 			},
 			"willow": {
 				"textures": {
-					"0": "firma:blocks/door/willow"
+					"0": "firma:blocks/door/willowlower","1": "firma:blocks/door/willowupper"
 				}
 			},
 			"bismuthbronze": {
 				"textures": {
-					"0": "firma:blocks/door/bismuthbronze"
+					"0": "firma:blocks/door/bismuthbronze","1": "firma:blocks/door/bismuthbronze"
 				}
 			},
 			"bismuth": {
 				"textures": {
-					"0": "firma:blocks/door/bismuth"
+					"0": "firma:blocks/door/bismuth","1": "firma:blocks/door/bismuth"
 				}
 			},
 			"blackbronze": {
 				"textures": {
-					"0": "firma:blocks/door/blackbronze"
+					"0": "firma:blocks/door/blackbronze","1": "firma:blocks/door/blackbronze"
 				}
 			},
 			"blacksteel": {
 				"textures": {
-					"0": "firma:blocks/door/blacksteel"
+					"0": "firma:blocks/door/blacksteel","1": "firma:blocks/door/blacksteel"
 				}
 			},
 			"bluesteel": {
 				"textures": {
-					"0": "firma:blocks/door/bluesteel"
+					"0": "firma:blocks/door/bluesteel","1": "firma:blocks/door/bluesteel"
 				}
 			},
 			"brass": {
 				"textures": {
-					"0": "firma:blocks/door/brass"
+					"0": "firma:blocks/door/brass","1": "firma:blocks/door/brass"
 				}
 			},
 			"bronze": {
 				"textures": {
-					"0": "firma:blocks/door/bronze"
+					"0": "firma:blocks/door/bronze","1": "firma:blocks/door/bronze"
 				}
 			},
 			"copper": {
 				"textures": {
-					"0": "firma:blocks/door/copper"
+					"0": "firma:blocks/door/copper","1": "firma:blocks/door/copper"
 				}
 			},
 			"gold": {
 				"textures": {
-					"0": "firma:blocks/door/gold"
+					"0": "firma:blocks/door/gold","1": "firma:blocks/door/gold"
 				}
 			},
 			"lead": {
 				"textures": {
-					"0": "firma:blocks/door/lead"
+					"0": "firma:blocks/door/lead","1": "firma:blocks/door/lead"
 				}
 			},
 			"nickel": {
 				"textures": {
-					"0": "firma:blocks/door/nickel"
+					"0": "firma:blocks/door/nickel","1": "firma:blocks/door/nickel"
 				}
 			},
 			"pigiron": {
 				"textures": {
-					"0": "firma:blocks/door/pigiron"
+					"0": "firma:blocks/door/pigiron","1": "firma:blocks/door/pigiron"
 				}
 			},
 			"platinum": {
 				"textures": {
-					"0": "firma:blocks/door/platinum"
+					"0": "firma:blocks/door/platinum","1": "firma:blocks/door/platinum"
 				}
 			},
 			"redsteel": {
 				"textures": {
-					"0": "firma:blocks/metal/redsteel"
+					"0": "firma:blocks/metal/redsteel","1": "firma:blocks/metal/redsteel"
 				}
 			},
 			"rosegold": {
 				"textures": {
-					"0": "firma:blocks/door/rosegold"
+					"0": "firma:blocks/door/rosegold","1": "firma:blocks/door/rosegold"
 				}
 			},
 			"silver": {
 				"textures": {
-					"0": "firma:blocks/door/silver"
+					"0": "firma:blocks/door/silver","1": "firma:blocks/door/silver"
 				}
 			},
 			"steel": {
 				"textures": {
-					"0": "firma:blocks/door/steel"
+					"0": "firma:blocks/door/steel","1": "firma:blocks/door/steel"
 				}
 			},
 			"sterlingsilver": {
 				"textures": {
-					"0": "firma:blocks/door/sterlingsilver"
+					"0": "firma:blocks/door/sterlingsilver","1": "firma:blocks/door/sterlingsilver"
 				}
 			},
 			"tin": {
 				"textures": {
-					"0": "firma:blocks/door/tin"
+					"0": "firma:blocks/door/tin","1": "firma:blocks/door/tin"
 				}
 			},
 			"unknown": {
 				"textures": {
-					"0": "firma:blocks/door/unknown"
+					"0": "firma:blocks/door/unknown","1": "firma:blocks/door/unknown"
 				}
 			},
 			"wroughtiron": {
 				"textures": {
-					"0": "firma:blocks/door/wroughtiron"
+					"0": "firma:blocks/door/wroughtiron","1": "firma:blocks/door/wroughtiron"
 				}
 			},
 			"zinc": {
 				"textures": {
-					"0": "firma:blocks/door/zinc"
+					"0": "firma:blocks/door/zinc","1": "firma:blocks/door/zinc"
 				}
 			}
 		}

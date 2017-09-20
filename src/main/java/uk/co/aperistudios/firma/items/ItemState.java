@@ -9,4 +9,6 @@ public interface ItemState {
 	public String getModelSub();
 
 	public Item getItem();
+
+	public String getModelSub(int metadata);
 }

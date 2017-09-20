@@ -97,7 +97,7 @@ public class ClientProxy extends CommonProxy {
 					ModelLoader.setCustomModelResourceLocation(i, f, mrl);
 					list[f] = res;
 				}
-				ModelBakery.registerItemVariants(mi, list);
+				//ModelBakery.registerItemVariants(mi, list);
 			} else {
 				FirmaItem fi = i;
 				String loc = FirmaMod.MODID + ":" + fi.getBlockStateName();
@@ -130,14 +130,10 @@ public class ClientProxy extends CommonProxy {
 	private static void register(ItemState is) {
 		if (is.getItem() instanceof MetaItem) {
 			MetaItem mi = (MetaItem) is.getItem();
-			ResourceLocation[] list = new ResourceLocation[mi.getSubCount()];
-			ResourceLocation res = is.getModelPath();
 			for (int f = 0; f < mi.getSubCount(); f++) {
-				ModelResourceLocation mrl = new ModelResourceLocation(res, "inventory");// + mi.getMainVariant() + "=" + mi.getSubName(f));
+				ModelResourceLocation mrl = new ModelResourceLocation(is.getModelPath(), is.getModelSub(f));
 				ModelLoader.setCustomModelResourceLocation(mi, f, mrl);
-				list[f] = res;
 			}
-			//ModelBakery.registerItemVariants(mi, list);
 			return;
 		}
 		ModelBakery.registerItemVariants(is.getItem());
