@@ -131,8 +131,14 @@ public class LeafBlock2 extends BaseBlock {
 
 	@Override
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
+		if (worldIn.isRemote) {
+			return;
+		}
+		if (!Util.allowPhysics) {
+			return;
+		}
 		super.neighborChanged(state, worldIn, pos, blockIn, fromPos);
-		//	checkForTree(worldIn, pos, state);
+		checkForTree(worldIn, pos, state);
 	}
 
 	@Override
@@ -145,19 +151,24 @@ public class LeafBlock2 extends BaseBlock {
 	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
 		ArrayList<ItemStack> list = new ArrayList<ItemStack>();
 		Random r = new Random();
-		if (r.nextFloat() > 0.8) {
+		if (r.nextFloat() > 0.97) {
 			list.add(Util.getSapling(state));
 		}
-		if (r.nextFloat() > 0.3) {
-			list.add(new ItemStack(Items.STICK));
+		if (r.nextFloat() > 0.7) {
+			list.add(new ItemStack(Items.STICK, 1));
 		}
 		return list;
 	}
 
 	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
-		for (ItemStack is : getDrops(worldIn, pos, state, 0)) {
-			worldIn.spawnEntity(new EntityItem(worldIn, pos.getX() + .5, pos.getY() + .5, pos.getZ() + .5, is));
+		if (worldIn.isRemote) {
+			return;
+		}
+		if (Util.allowDrops) {
+			for (ItemStack is : getDrops(worldIn, pos, state, 0)) {
+				worldIn.spawnEntity(new EntityItem(worldIn, pos.getX() + .5, pos.getY() + .5, pos.getZ() + .5, is));
+			}
 		}
 		worldIn.setBlockToAir(pos);
 	}

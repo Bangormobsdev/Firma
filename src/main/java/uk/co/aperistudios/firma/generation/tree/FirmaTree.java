@@ -41,12 +41,17 @@ public abstract class FirmaTree extends WorldGenerator implements IWorldGenerato
 																	// willows
 		boolean canGrow = Util.isDirt(b) || Util.isGrass(b) || Util.isClay(b);
 		if (canGrow && b2 == Blocks.AIR) {
-			return generateTree(worldIn, rand, position);
+			Util.allowPhysics = false;
+			Util.allowDrops = false;
+			boolean a = generateTree(worldIn, rand, position);
+			Util.allowPhysics = true;
+			Util.allowDrops = true;
+			return a;
 		}
 		return false;
 	}
 
-	public abstract boolean generateTree(World worldIn, Random rand, BlockPos position);
+	protected abstract boolean generateTree(World worldIn, Random rand, BlockPos position);
 
 	public void set(IBlockState log, IBlockState leaf) {
 		this.bs = log;
@@ -54,6 +59,11 @@ public abstract class FirmaTree extends WorldGenerator implements IWorldGenerato
 	}
 
 	public void fill(World w, BlockPos p) {
+		IBlockState bs1 = bs;
+		IBlockState bs2 = w.getBlockState(p);
+		if (w.getBlockState(p).equals(bs)) {
+			return;
+		}
 		this.setBlockAndNotifyAdequately(w, p, bs);
 	}
 

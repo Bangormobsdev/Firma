@@ -17,6 +17,8 @@ import uk.co.aperistudios.firma.types.WoodEnum2;
 public class Util {
 	public static int daysInMonth = 28, monthsInYear = 12, daysInYear = daysInMonth * monthsInYear;
 	public static int ticksInDay = 24000;
+	public static boolean allowPhysics = true;// Set to false when world genning to stop excess checking/item spawning etcetc
+	public static boolean allowDrops = true;// Set to false when world genning to stop items spawning while genning world
 
 	public static boolean isGrass(Block b) {
 		return b == FirmaMod.grass || b == FirmaMod.grass2 || b == FirmaMod.grasss || b == FirmaMod.grasss2;
@@ -119,10 +121,10 @@ public class Util {
 		WoodEnum we = getWoodEnum(s);
 		WoodEnum2 we2 = getWoodEnum2(s);
 		if (we != null) {
-			return new ItemStack(FirmaMod.sapling, we.getMeta());
+			return new ItemStack(FirmaMod.sapling, 1, we.getMeta());
 		}
 		if (we2 != null) {
-			return new ItemStack(FirmaMod.sapling, we2.getMeta() + 16);
+			return new ItemStack(FirmaMod.sapling, 1, we2.getMeta() + 16);
 		}
 		return new ItemStack(FirmaMod.sapling);
 	}

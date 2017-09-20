@@ -14,6 +14,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
 import uk.co.aperistudios.firma.FirmaMod;
+import uk.co.aperistudios.firma.Util;
 import uk.co.aperistudios.firma.blocks.BlockState;
 
 public class BaseBlockLiquid extends BlockFluidClassic implements BlockState {
@@ -68,5 +69,12 @@ public class BaseBlockLiquid extends BlockFluidClassic implements BlockState {
 			}
 		};
 
+	}
+
+	@Override
+	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block neighborBlock, BlockPos neighbourPos) {
+		if (Util.allowPhysics) {
+			super.neighborChanged(state, world, pos, neighborBlock, neighbourPos);
+		}
 	}
 }

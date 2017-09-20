@@ -9,6 +9,7 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.fml.common.IWorldGenerator;
 import uk.co.aperistudios.firma.CommonProxy;
 import uk.co.aperistudios.firma.FirmaMod;
+import uk.co.aperistudios.firma.Util;
 import uk.co.aperistudios.firma.generation.VoronoiNoise.DistanceType;
 import uk.co.aperistudios.firma.generation.structures.Village;
 import uk.co.aperistudios.firma.generation.tree.FirmaTree;
@@ -46,6 +47,8 @@ public class FirmaVillageGen implements IWorldGenerator {
 			wood = t.getWood();
 		}
 		IBlockState rock = FirmaRockStrata.getTop(world.getSeed(), villageChunkX * 16, villageChunkZ * 16);
+		Util.allowPhysics = false;
 		v.buildChunk(world, chunkX, chunkZ, rock, wood);
+		Util.allowPhysics = false;
 	}
 }
