@@ -29,8 +29,8 @@ public class SaplingBlock2 extends BaseBlock {
 
 	public static final IProperty<WoodEnum2> properties = PropertyEnum.create("variants", WoodEnum2.class);
 
-	public SaplingBlock2(Material materialIn) {
-		super(materialIn, "sapling2");
+	public SaplingBlock2() {
+		super(Material.PLANTS, "sapling2");
 		this.setHardness(10);
 		this.setResistance(10);
 		this.setCreativeTab(FirmaMod.blockTab);

@@ -19,8 +19,8 @@ import uk.co.aperistudios.firma.types.RockEnum;
 public class GravelBlock extends BaseBlock {
 	public static final IProperty<RockEnum> properties = PropertyEnum.create("variants", RockEnum.class);
 
-	public GravelBlock(Material materialIn) {
-		super(materialIn, "gravel");
+	public GravelBlock() {
+		super(Material.GROUND, "gravel");
 		this.setHardness(10);
 		this.setResistance(10);
 		this.setCreativeTab(FirmaMod.blockTab);

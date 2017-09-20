@@ -50,6 +50,7 @@ import uk.co.aperistudios.firma.blocks.living.SparseGrassBlock;
 import uk.co.aperistudios.firma.blocks.living.SparseGrassBlock2;
 import uk.co.aperistudios.firma.blocks.machine.AnvilBlock;
 import uk.co.aperistudios.firma.blocks.machine.CrucibleBlock;
+import uk.co.aperistudios.firma.blocks.machine.FurnaceBlock;
 import uk.co.aperistudios.firma.crafting.CraftingManager;
 import uk.co.aperistudios.firma.items.BrickItem;
 import uk.co.aperistudios.firma.items.ClayItem;
@@ -142,6 +143,7 @@ public class FirmaMod {
 	public static MiniBlockItem miniItems;
 	public static FirmaDoor door;
 	public static FirmaDoorItem doorItem;
+	public static FurnaceBlock furnace;
 
 	public FirmaMod() {
 		instance = this;

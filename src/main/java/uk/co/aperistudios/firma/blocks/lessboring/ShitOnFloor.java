@@ -23,8 +23,8 @@ import uk.co.aperistudios.firma.blocks.tileentity.SoFTileEntity;
 public class ShitOnFloor extends Block implements ITileEntityProvider {
 	private AxisAlignedBB shitCollision = new AxisAlignedBB(0, 0, 0, 1f, 0.1f, 1f);
 
-	public ShitOnFloor(Material materialIn) {
-		super(materialIn);
+	public ShitOnFloor() {
+		super(Material.LEAVES);
 		this.setRegistryName("shitonfloor");
 		this.setUnlocalizedName("shitonfloor");
 		this.setCreativeTab(null);

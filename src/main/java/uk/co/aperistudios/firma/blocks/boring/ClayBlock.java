@@ -22,8 +22,8 @@ import uk.co.aperistudios.firma.types.RockEnum;
 public class ClayBlock extends BaseBlock {
 	public static final IProperty<RockEnum> properties = PropertyEnum.create("variants", RockEnum.class);
 
-	public ClayBlock(Material materialIn) {
-		super(materialIn, "clayBlock");
+	public ClayBlock() {
+		super(Material.CLAY, "clayBlock");
 		this.setHardness(10);
 		this.setResistance(10);
 		this.setCreativeTab(FirmaMod.blockTab);

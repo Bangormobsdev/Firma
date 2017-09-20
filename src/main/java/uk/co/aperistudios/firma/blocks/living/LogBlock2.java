@@ -17,8 +17,8 @@ import uk.co.aperistudios.firma.types.WoodEnum2;
 public class LogBlock2 extends BaseBlock {
 	public static final IProperty<WoodEnum2> properties = PropertyEnum.create("variants", WoodEnum2.class);
 
-	public LogBlock2(Material materialIn) {
-		super(materialIn, "log2");
+	public LogBlock2() {
+		super(Material.WOOD, "log2");
 		this.setHardness(10);
 		this.setResistance(10);
 		this.setCreativeTab(FirmaMod.blockTab);

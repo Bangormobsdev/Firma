@@ -16,8 +16,8 @@ import uk.co.aperistudios.firma.types.WoodEnum;
 public class PlankBlock extends BaseBlock {
 	public static final IProperty<WoodEnum> properties = PropertyEnum.create("variants", WoodEnum.class);
 
-	public PlankBlock(Material materialIn) {
-		super(materialIn, "plank");
+	public PlankBlock() {
+		super(Material.WOOD, "plank");
 		this.setHardness(10);
 		this.setResistance(10);
 		this.setCreativeTab(FirmaMod.blockTab);

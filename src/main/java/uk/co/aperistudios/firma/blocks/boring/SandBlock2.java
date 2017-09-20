@@ -16,8 +16,8 @@ import uk.co.aperistudios.firma.types.RockEnum2;
 public class SandBlock2 extends BaseBlock {
 	public static final IProperty<RockEnum2> properties = PropertyEnum.create("variants", RockEnum2.class);
 
-	public SandBlock2(Material materialIn) {
-		super(materialIn, "sand2");
+	public SandBlock2() {
+		super(Material.GROUND, "sand2");
 		this.setHardness(10);
 		this.setResistance(10);
 		this.setCreativeTab(FirmaMod.blockTab);

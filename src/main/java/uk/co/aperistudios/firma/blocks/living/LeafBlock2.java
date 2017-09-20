@@ -29,8 +29,8 @@ import uk.co.aperistudios.firma.types.WoodEnum2;
 public class LeafBlock2 extends BaseBlock {
 	public static final IProperty<WoodEnum2> properties = PropertyEnum.create("variants", WoodEnum2.class);
 
-	public LeafBlock2(Material materialIn) {
-		super(materialIn, "leaf2");
+	public LeafBlock2() {
+		super(Material.LEAVES, "leaf2");
 		this.setHardness(10);
 		this.setResistance(10);
 		this.setCreativeTab(FirmaMod.blockTab);

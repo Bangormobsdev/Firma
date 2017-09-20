@@ -21,8 +21,8 @@ import uk.co.aperistudios.firma.types.RockEnum2;
 public class GrassBlock2 extends BaseBlock {
 	public static final IProperty<RockEnum2> properties = PropertyEnum.create("variants", RockEnum2.class);
 
-	public GrassBlock2(Material materialIn) {
-		super(materialIn, "grass2");
+	public GrassBlock2() {
+		super(Material.GROUND, "grass2");
 		this.setHardness(10);
 		this.setResistance(10);
 		this.setCreativeTab(null);

@@ -33,8 +33,8 @@ import uk.co.aperistudios.firma.types.ToolType;
 public class AnvilBlock extends BaseBlock implements ITileEntityProvider {
 	public static final IProperty<ToolMaterials> properties = PropertyEnum.create("variants", ToolMaterials.class);
 
-	public AnvilBlock(Material materialIn) {
-		super(materialIn, "anvil");
+	public AnvilBlock() {
+		super(Material.ANVIL, "anvil");
 		this.setHardness(10);
 		this.setResistance(10);
 		this.lightOpacity = 0;

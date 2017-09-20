@@ -22,8 +22,8 @@ import uk.co.aperistudios.firma.types.RockEnum;
 public class SparseGrassBlock extends BaseBlock {
 	public static final IProperty<RockEnum> properties = PropertyEnum.create("variants", RockEnum.class);
 
-	public SparseGrassBlock(Material materialIn) {
-		super(materialIn, "sparsegrass");
+	public SparseGrassBlock() {
+		super(Material.GROUND, "sparsegrass");
 		this.setHardness(10);
 		this.setResistance(10);
 		this.setCreativeTab(FirmaMod.blockTab);

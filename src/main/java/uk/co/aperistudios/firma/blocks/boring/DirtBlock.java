@@ -20,8 +20,8 @@ import uk.co.aperistudios.firma.types.RockEnum;
 public class DirtBlock extends BaseBlock {
 	public static final IProperty<RockEnum> properties = PropertyEnum.create("variants", RockEnum.class);
 
-	public DirtBlock(Material materialIn) {
-		super(materialIn, "dirt");
+	public DirtBlock() {
+		super(Material.GROUND, "dirt");
 		this.setHardness(10);
 		this.setResistance(10);
 		this.setCreativeTab(FirmaMod.blockTab);

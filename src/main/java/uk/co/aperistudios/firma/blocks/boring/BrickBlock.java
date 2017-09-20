@@ -16,8 +16,8 @@ import uk.co.aperistudios.firma.types.RockEnum;
 public class BrickBlock extends BaseBlock {
 	public static final IProperty<RockEnum> properties = PropertyEnum.create("variants", RockEnum.class);
 
-	public BrickBlock(Material materialIn) {
-		super(materialIn, "brick");
+	public BrickBlock() {
+		super(Material.ROCK, "brick");
 		this.setHardness(10);
 		this.setResistance(10);
 		this.setCreativeTab(FirmaMod.blockTab);

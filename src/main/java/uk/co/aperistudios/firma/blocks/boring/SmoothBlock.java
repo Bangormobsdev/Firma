@@ -16,8 +16,8 @@ import uk.co.aperistudios.firma.types.RockEnum;
 public class SmoothBlock extends BaseBlock {
 	public static final IProperty<RockEnum> properties = PropertyEnum.create("variants", RockEnum.class);
 
-	public SmoothBlock(Material materialIn) {
-		super(materialIn, "smooth");
+	public SmoothBlock() {
+		super(Material.ROCK, "smooth");
 		this.setHardness(10);
 		this.setResistance(10);
 		this.setCreativeTab(FirmaMod.blockTab);

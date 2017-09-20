@@ -16,8 +16,8 @@ import uk.co.aperistudios.firma.types.RockEnum;
 public class CobbleBlock extends BaseBlock {
 	public static final IProperty<RockEnum> properties = PropertyEnum.create("variants", RockEnum.class);
 
-	public CobbleBlock(Material materialIn) {
-		super(materialIn, "cobble");
+	public CobbleBlock() {
+		super(Material.ROCK, "cobble");
 		this.setHardness(10);
 		this.setResistance(10);
 		this.setCreativeTab(FirmaMod.blockTab);

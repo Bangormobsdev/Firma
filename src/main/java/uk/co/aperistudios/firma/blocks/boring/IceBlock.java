@@ -18,8 +18,8 @@ public class IceBlock extends BaseBlock {
 
 	public static final IProperty<IceEnum> properties = PropertyEnum.create("variants", IceEnum.class);
 
-	public IceBlock(Material materialIn) {
-		super(materialIn, "ice");
+	public IceBlock() {
+		super(Material.ICE, "ice");
 		this.setHardness(10);
 		this.setResistance(10);
 		this.setCreativeTab(FirmaMod.blockTab);
