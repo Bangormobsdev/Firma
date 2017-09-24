@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.world.DimensionType;
+import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.storage.MapStorage;
 import net.minecraftforge.common.DimensionManager;
@@ -42,6 +43,7 @@ import uk.co.aperistudios.firma.blocks.lessboring.FloorStorage;
 import uk.co.aperistudios.firma.blocks.lessboring.OreBlock;
 import uk.co.aperistudios.firma.blocks.lessboring.ShitOnFloor;
 import uk.co.aperistudios.firma.blocks.liquids.BaseLiquid;
+import uk.co.aperistudios.firma.blocks.living.CropBlock;
 import uk.co.aperistudios.firma.blocks.living.GrassBlock;
 import uk.co.aperistudios.firma.blocks.living.GrassBlock2;
 import uk.co.aperistudios.firma.blocks.living.LeafBlock;
@@ -56,6 +58,7 @@ import uk.co.aperistudios.firma.blocks.machine.AnvilBlock;
 import uk.co.aperistudios.firma.blocks.machine.CrucibleBlock;
 import uk.co.aperistudios.firma.blocks.machine.FurnaceBlock;
 import uk.co.aperistudios.firma.blocks.tileentity.AnvilTileEntity;
+import uk.co.aperistudios.firma.blocks.tileentity.CropTileEntity;
 import uk.co.aperistudios.firma.blocks.tileentity.CrucibleTileEntity;
 import uk.co.aperistudios.firma.blocks.tileentity.FirmaDoorTileEntity;
 import uk.co.aperistudios.firma.blocks.tileentity.FirmaOreTileEntity;
@@ -89,6 +92,7 @@ import uk.co.aperistudios.firma.items.MetalSheetItem;
 import uk.co.aperistudios.firma.items.OreItem;
 import uk.co.aperistudios.firma.items.PebbleItem;
 import uk.co.aperistudios.firma.items.ScrapMetalItem;
+import uk.co.aperistudios.firma.items.SeedItem;
 import uk.co.aperistudios.firma.items.StorageItem;
 import uk.co.aperistudios.firma.items.ToolHeads;
 import uk.co.aperistudios.firma.items.ToolItem;
@@ -142,7 +146,6 @@ public abstract class CommonProxy {
 		FirmaMod.ice = new IceBlock();
 		FirmaMod.clayBlock = new ClayBlock();
 		FirmaMod.clayBlock2 = new ClayBlock2();
-
 		FirmaMod.sapling = new SaplingBlock();
 		FirmaMod.sapling2 = new SaplingBlock2();
 		FirmaMod.log = new LogBlock();
@@ -154,6 +157,7 @@ public abstract class CommonProxy {
 		FirmaMod.anvil = new AnvilBlock();
 		FirmaMod.furnace = new FurnaceBlock();
 		FirmaMod.ore = new OreBlock();
+		FirmaMod.crops = new CropBlock();
 
 		FirmaMod.pebble = new PebbleItem("pebble");
 		FirmaMod.oreItem = new OreItem("oreitem");
@@ -168,6 +172,7 @@ public abstract class CommonProxy {
 		FirmaMod.clay = new ClayItem("clay");
 		FirmaMod.hide = new HideItem("hide");
 		FirmaMod.doorItem = new FirmaDoorItem();
+		FirmaMod.seedItem = new SeedItem();
 
 		FirmaMod.vesselItem = new StorageItem("vesselitem", ItemSize.SMALL, 4);
 
@@ -267,6 +272,7 @@ public abstract class CommonProxy {
 		GameRegistry.registerTileEntity(FloorStorageTileEntity.class, "firmafloor");
 		GameRegistry.registerTileEntity(FirmaDoorTileEntity.class, "firmadoor");
 		GameRegistry.registerTileEntity(CrucibleTileEntity.class, "firmacrucible");
+		GameRegistry.registerTileEntity(CropTileEntity.class, "firmacrop");
 		// TODO Non-vein ores.
 
 		ArrayList<FirmaOreVeinGen> topLayers = new ArrayList<FirmaOreVeinGen>();
@@ -397,5 +403,17 @@ public abstract class CommonProxy {
 			// new Exception().printStackTrace();
 			System.out.println("Day inceremented on Server " + td.toString());
 		}
+	}
+
+	public TimeData getTimeData(World world) {
+		if (world.isRemote) { // Client
+			return ClientProxy.staticDate;
+		}
+		MapStorage storage = world.getPerWorldStorage();
+		TimeData td = (TimeData) storage.getOrLoadData(TimeData.class, "firmatime");
+		if (td == null) {
+			td = new TimeData("");
+		}
+		return td;
 	}
 }

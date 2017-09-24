@@ -76,4 +76,8 @@ public class TimeData extends WorldSavedData {
 		// System.out.println((int) (((day*1f) / (Util.daysInMonth*1f))*8f));
 		return (int) (((day * 1f) / (Util.daysInMonth * 1f)) * 8f);
 	}
+
+	public int getTotalDays() {
+		return year * Util.daysInYear + month * Util.daysInMonth + day;
+	}
 }

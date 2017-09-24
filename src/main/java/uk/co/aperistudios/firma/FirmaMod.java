@@ -38,6 +38,7 @@ import uk.co.aperistudios.firma.blocks.lessboring.FloorStorage;
 import uk.co.aperistudios.firma.blocks.lessboring.OreBlock;
 import uk.co.aperistudios.firma.blocks.lessboring.ShitOnFloor;
 import uk.co.aperistudios.firma.blocks.liquids.BaseLiquid;
+import uk.co.aperistudios.firma.blocks.living.CropBlock;
 import uk.co.aperistudios.firma.blocks.living.GrassBlock;
 import uk.co.aperistudios.firma.blocks.living.GrassBlock2;
 import uk.co.aperistudios.firma.blocks.living.LeafBlock;
@@ -65,6 +66,7 @@ import uk.co.aperistudios.firma.items.MiniBlockItem;
 import uk.co.aperistudios.firma.items.OreItem;
 import uk.co.aperistudios.firma.items.PebbleItem;
 import uk.co.aperistudios.firma.items.ScrapMetalItem;
+import uk.co.aperistudios.firma.items.SeedItem;
 import uk.co.aperistudios.firma.items.StorageItem;
 import uk.co.aperistudios.firma.items.ToolHeads;
 import uk.co.aperistudios.firma.items.ToolItem;
@@ -94,6 +96,8 @@ public class FirmaMod {
 	public static DirtBlock2 dirt2;
 	public static GrassBlock grass;
 	public static GrassBlock2 grass2;
+	public static SparseGrassBlock2 grasss2;
+	public static SparseGrassBlock grasss;
 	public static GravelBlock gravel;
 	public static GravelBlock2 gravel2;
 	public static SandBlock sand;
@@ -106,6 +110,13 @@ public class FirmaMod {
 	public static LogBlock2 log2;
 	public static ClayBlock clayBlock;
 	public static ClayBlock2 clayBlock2;
+	public static IceBlock ice;
+	public static OreBlock ore;
+	public static FloorStorage floorStorage;
+	public static FirmaMiniBlock miniBlocks;
+	public static FirmaDoor door;
+	public static FurnaceBlock furnace;
+	public static CropBlock crops;
 
 	public static PebbleItem pebble;
 	public static OreItem oreItem;
@@ -116,6 +127,10 @@ public class FirmaMod {
 	public static MetalSheetItem metalsheet;
 	public static ScrapMetalItem scrapmetal;
 	public static HideItem hide;
+	public static FirmaDoorItem doorItem;
+	public static StorageItem vesselItem;
+	public static MiniBlockItem miniItems;
+	public static SeedItem seedItem;
 
 	public static BaseLiquid freshwater, saltwater, lava, milk;
 
@@ -132,18 +147,6 @@ public class FirmaMod {
 	public static CrucibleBlock crucible;
 	public static ShitOnFloor shitOnFloor;
 	public static AnvilBlock anvil;
-
-	public static IceBlock ice;
-	public static OreBlock ore;
-	public static SparseGrassBlock2 grasss2;
-	public static SparseGrassBlock grasss;
-	public static FloorStorage floorStorage;
-	public static StorageItem vesselItem;
-	public static FirmaMiniBlock miniBlocks;
-	public static MiniBlockItem miniItems;
-	public static FirmaDoor door;
-	public static FirmaDoorItem doorItem;
-	public static FurnaceBlock furnace;
 
 	public FirmaMod() {
 		instance = this;

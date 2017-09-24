@@ -1,0 +1,122 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"textures": {
+			"layer0": "firma:items/seed/barley"
+		},
+		"model": "firma:item/generated"
+	},
+	"variants": {
+		"normal": [
+			{
+			}
+		],
+		"inventory": [
+			{
+				"model": "firma:item/generated"
+			}
+		],
+		"variants": {
+			"barley": {
+				"textures": {
+					"layer0": "firma:items/seed/barley"
+				}
+			},
+			"cabbage": {
+				"textures": {
+					"layer0": "firma:items/seed/cabbage"
+				}
+			},
+			"carrot": {
+				"textures": {
+					"layer0": "firma:items/seed/carrot"
+				}
+			},
+			"garlic": {
+				"textures": {
+					"layer0": "firma:items/seed/garlic"
+				}
+			},
+			"greenbean": {
+				"textures": {
+					"layer0": "firma:items/seed/greenbean"
+				}
+			},
+			"hemp": {
+				"textures": {
+					"layer0": "firma:items/seed/hemp"
+				}
+			},
+			"jute": {
+				"textures": {
+					"layer0": "firma:items/seed/jute"
+				}
+			},
+			"corn": {
+				"textures": {
+					"layer0": "firma:items/seed/corn"
+				}
+			},
+			"oat": {
+				"textures": {
+					"layer0": "firma:items/seed/oat"
+				}
+			},
+			"onion": {
+				"textures": {
+					"layer0": "firma:items/seed/onion"
+				}
+			},
+			"potato": {
+				"textures": {
+					"layer0": "firma:items/seed/potato"
+				}
+			},
+			"redbellpepper": {
+				"textures": {
+					"layer0": "firma:items/seed/redbellpepper"
+				}
+			},
+			"rice": {
+				"textures": {
+					"layer0": "firma:items/seed/rice"
+				}
+			},
+			"rye": {
+				"textures": {
+					"layer0": "firma:items/seed/rye"
+				}
+			},
+			"soybean": {
+				"textures": {
+					"layer0": "firma:items/seed/soybean"
+				}
+			},
+			"squash": {
+				"textures": {
+					"layer0": "firma:items/seed/squash"
+				}
+			},
+			"sugarcane": {
+				"textures": {
+					"layer0": "firma:items/seed/sugarcane"
+				}
+			},
+			"tomato": {
+				"textures": {
+					"layer0": "firma:items/seed/tomato"
+				}
+			},
+			"wheat": {
+				"textures": {
+					"layer0": "firma:items/seed/wheat"
+				}
+			},
+			"yellowbellpepper": {
+				"textures": {
+					"layer0": "firma:items/seed/yellowbellpepper"
+				}
+			}
+		}
+	}
+}

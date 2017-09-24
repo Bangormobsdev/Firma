@@ -302,7 +302,7 @@
 			},
 			"redsteel": {
 				"textures": {
-					"0": "firma:blocks/metal/redsteel","1": "firma:blocks/metal/redsteel"
+					"0": "firma:blocks/door/redsteel","1": "firma:blocks/door/redsteel"
 				}
 			},
 			"rosegold": {
