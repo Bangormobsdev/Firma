@@ -58,6 +58,7 @@ import uk.co.aperistudios.firma.items.ClayItem;
 import uk.co.aperistudios.firma.items.DoubleIngotItem;
 import uk.co.aperistudios.firma.items.FirmaDoorItem;
 import uk.co.aperistudios.firma.items.FirmaItem;
+import uk.co.aperistudios.firma.items.FoodIngredientItem;
 import uk.co.aperistudios.firma.items.GemItem;
 import uk.co.aperistudios.firma.items.HideItem;
 import uk.co.aperistudios.firma.items.IngotItem;
@@ -131,6 +132,7 @@ public class FirmaMod {
 	public static StorageItem vesselItem;
 	public static MiniBlockItem miniItems;
 	public static SeedItem seedItem;
+	public static FoodIngredientItem foodItem;
 
 	public static BaseLiquid freshwater, saltwater, lava, milk;
 

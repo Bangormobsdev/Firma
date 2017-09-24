@@ -1,5 +1,7 @@
 package uk.co.aperistudios.firma.types;
 
+import java.util.ArrayList;
+import java.util.List;
 import net.minecraft.util.IStringSerializable;
 
 /**
@@ -115,6 +117,14 @@ public enum FoodEnum implements IStringSerializable {
 
 	public boolean isEdible() {
 		return edible;
+	}
+
+	public static List<String> strings() {
+		ArrayList<String> s = new ArrayList<String>();
+		for (FoodEnum ct : values()) {
+			s.add(ct.getName());
+		}
+		return s;
 	}
 
 }

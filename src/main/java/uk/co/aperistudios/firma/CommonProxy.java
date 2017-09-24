@@ -84,6 +84,7 @@ import uk.co.aperistudios.firma.items.ClayItem;
 import uk.co.aperistudios.firma.items.DoubleIngotItem;
 import uk.co.aperistudios.firma.items.FirmaDoorItem;
 import uk.co.aperistudios.firma.items.FirmaItem;
+import uk.co.aperistudios.firma.items.FoodIngredientItem;
 import uk.co.aperistudios.firma.items.GemItem;
 import uk.co.aperistudios.firma.items.HideItem;
 import uk.co.aperistudios.firma.items.IngotItem;
@@ -173,6 +174,7 @@ public abstract class CommonProxy {
 		FirmaMod.hide = new HideItem("hide");
 		FirmaMod.doorItem = new FirmaDoorItem();
 		FirmaMod.seedItem = new SeedItem();
+		FirmaMod.foodItem = new FoodIngredientItem();
 
 		FirmaMod.vesselItem = new StorageItem("vesselitem", ItemSize.SMALL, 4);
 
