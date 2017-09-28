@@ -73,4 +73,9 @@ public class CrucibleBlock extends Block implements BlockState, ITileEntityProvi
 		return new CrucibleTileEntity();
 	}
 
+	@Override
+	public void setState(World worldIn, BlockPos pos, Object property) {
+		// TODO Set liquid mix
+	}
+
 }

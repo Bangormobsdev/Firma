@@ -10,7 +10,7 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import uk.co.aperistudios.firma.FirmaMod;
 import uk.co.aperistudios.firma.Util;
 import uk.co.aperistudios.firma.blocks.boring.BaseBlock;
-import uk.co.aperistudios.firma.blocks.tileentity.FirmaOreTileEntity;
+import uk.co.aperistudios.firma.blocks.tileentity.OreTileEntity;
 import uk.co.aperistudios.firma.types.OresEnum;
 import uk.co.aperistudios.firma.types.RockEnum;
 import uk.co.aperistudios.firma.types.RockEnum2;
@@ -121,7 +121,7 @@ public class FirmaMinable extends WorldGenerator {
 
 	public void setToOre(World world, BlockPos pos, IBlockState currentBlockState, OresEnum ore, int grade) {
 		world.setBlockState(pos, FirmaMod.ore.getDefaultState(), 2);
-		FirmaOreTileEntity te = (FirmaOreTileEntity) world.getTileEntity(pos);
+		OreTileEntity te = (OreTileEntity) world.getTileEntity(pos);
 		if (te != null) {
 			te.setState(currentBlockState);
 			te.grade = grade;

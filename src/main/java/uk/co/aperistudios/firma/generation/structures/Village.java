@@ -25,7 +25,7 @@ public class Village extends StructureCollectionBuilder {
 			allPlans.add(new PlanBlackSmith());
 		}
 		for (int i = 0; i < r.nextInt(6); i++) {
-			allPlans.add(new PlanGarden());
+			allPlans.add(new PlanGarden(r));
 		}
 		Collections.shuffle(allPlans, r);
 		for (Plan plan : allPlans) {

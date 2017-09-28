@@ -27,6 +27,8 @@ import uk.co.aperistudios.firma.blocks.boring.CobbleBlock;
 import uk.co.aperistudios.firma.blocks.boring.CobbleBlock2;
 import uk.co.aperistudios.firma.blocks.boring.DirtBlock;
 import uk.co.aperistudios.firma.blocks.boring.DirtBlock2;
+import uk.co.aperistudios.firma.blocks.boring.FarmBlock;
+import uk.co.aperistudios.firma.blocks.boring.FarmBlock2;
 import uk.co.aperistudios.firma.blocks.boring.GravelBlock;
 import uk.co.aperistudios.firma.blocks.boring.GravelBlock2;
 import uk.co.aperistudios.firma.blocks.boring.IceBlock;
@@ -38,8 +40,9 @@ import uk.co.aperistudios.firma.blocks.boring.SandBlock;
 import uk.co.aperistudios.firma.blocks.boring.SandBlock2;
 import uk.co.aperistudios.firma.blocks.boring.SmoothBlock;
 import uk.co.aperistudios.firma.blocks.boring.SmoothBlock2;
-import uk.co.aperistudios.firma.blocks.lessboring.FirmaDoor;
+import uk.co.aperistudios.firma.blocks.lessboring.DoorBlock;
 import uk.co.aperistudios.firma.blocks.lessboring.FloorStorage;
+import uk.co.aperistudios.firma.blocks.lessboring.MiniBlock;
 import uk.co.aperistudios.firma.blocks.lessboring.OreBlock;
 import uk.co.aperistudios.firma.blocks.lessboring.ShitOnFloor;
 import uk.co.aperistudios.firma.blocks.liquids.BaseLiquid;
@@ -60,9 +63,10 @@ import uk.co.aperistudios.firma.blocks.machine.FurnaceBlock;
 import uk.co.aperistudios.firma.blocks.tileentity.AnvilTileEntity;
 import uk.co.aperistudios.firma.blocks.tileentity.CropTileEntity;
 import uk.co.aperistudios.firma.blocks.tileentity.CrucibleTileEntity;
-import uk.co.aperistudios.firma.blocks.tileentity.FirmaDoorTileEntity;
-import uk.co.aperistudios.firma.blocks.tileentity.FirmaOreTileEntity;
+import uk.co.aperistudios.firma.blocks.tileentity.DoorTileEntity;
 import uk.co.aperistudios.firma.blocks.tileentity.FloorStorageTileEntity;
+import uk.co.aperistudios.firma.blocks.tileentity.MiniBlockTileEntity;
+import uk.co.aperistudios.firma.blocks.tileentity.OreTileEntity;
 import uk.co.aperistudios.firma.blocks.tileentity.SoFTileEntity;
 import uk.co.aperistudios.firma.container.HandlerGui;
 import uk.co.aperistudios.firma.crafting.CraftingManager;
@@ -151,6 +155,8 @@ public abstract class CommonProxy {
 		FirmaMod.sapling2 = new SaplingBlock2();
 		FirmaMod.log = new LogBlock();
 		FirmaMod.log2 = new LogBlock2();
+		FirmaMod.farm = new FarmBlock();
+		FirmaMod.farm2 = new FarmBlock2();
 
 		FirmaMod.shitOnFloor = new ShitOnFloor();
 		FirmaMod.floorStorage = new FloorStorage();
@@ -178,9 +184,9 @@ public abstract class CommonProxy {
 
 		FirmaMod.vesselItem = new StorageItem("vesselitem", ItemSize.SMALL, 4);
 
-		//		FirmaMod.miniItems = new MiniBlockItem();
-		//		FirmaMod.miniBlocks = new FirmaMiniBlock();
-		FirmaMod.door = new FirmaDoor();
+		//FirmaMod.miniItems = new MiniBlockItem();
+		FirmaMod.miniBlocks = new MiniBlock();
+		FirmaMod.door = new DoorBlock();
 
 		rockLayerTop = new IBlockState[] { FirmaMod.rock2.getStateFromMeta(RockEnum2.Shale.getMeta()),
 				FirmaMod.rock.getStateFromMeta(RockEnum.Claystone.getMeta()), FirmaMod.rock2.getStateFromMeta(RockEnum2.RockSalt.getMeta()),
@@ -268,13 +274,14 @@ public abstract class CommonProxy {
 
 		Layer.prep();
 
-		GameRegistry.registerTileEntity(FirmaOreTileEntity.class, "firmaorete");
+		GameRegistry.registerTileEntity(OreTileEntity.class, "firmaorete");
 		GameRegistry.registerTileEntity(SoFTileEntity.class, "firmasof");
 		GameRegistry.registerTileEntity(AnvilTileEntity.class, "firmaanvil");
 		GameRegistry.registerTileEntity(FloorStorageTileEntity.class, "firmafloor");
-		GameRegistry.registerTileEntity(FirmaDoorTileEntity.class, "firmadoor");
+		GameRegistry.registerTileEntity(DoorTileEntity.class, "firmadoor");
 		GameRegistry.registerTileEntity(CrucibleTileEntity.class, "firmacrucible");
 		GameRegistry.registerTileEntity(CropTileEntity.class, "firmacrop");
+		GameRegistry.registerTileEntity(MiniBlockTileEntity.class, "firmamini");
 		// TODO Non-vein ores.
 
 		ArrayList<FirmaOreVeinGen> topLayers = new ArrayList<FirmaOreVeinGen>();

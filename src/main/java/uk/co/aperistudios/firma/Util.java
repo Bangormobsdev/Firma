@@ -2,15 +2,20 @@ package uk.co.aperistudios.firma;
 
 import java.util.Random;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockDoor.EnumDoorHalf;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import uk.co.aperistudios.firma.blocks.lessboring.MiniBlock;
+import uk.co.aperistudios.firma.generation.structures.BlockStateWithProperties;
 import uk.co.aperistudios.firma.items.OreItem;
+import uk.co.aperistudios.firma.types.CropType;
 import uk.co.aperistudios.firma.types.OresEnum;
 import uk.co.aperistudios.firma.types.RockEnum;
 import uk.co.aperistudios.firma.types.RockEnum2;
+import uk.co.aperistudios.firma.types.SolidMaterialEnum;
 import uk.co.aperistudios.firma.types.WoodEnum;
 import uk.co.aperistudios.firma.types.WoodEnum2;
 
@@ -79,14 +84,20 @@ public class Util {
 		return isRockEnum1(b) ? FirmaMod.dirt.getStateFromMeta(meta) : FirmaMod.dirt2.getStateFromMeta(meta);
 	}
 
+	public static IBlockState getFarm(IBlockState in) {
+		int meta = in.getBlock().getMetaFromState(in);
+		Block b = in.getBlock();
+		return isRockEnum1(b) ? FirmaMod.farm.getStateFromMeta(meta) : FirmaMod.farm2.getStateFromMeta(meta);
+	}
+
 	public static boolean isRockEnum1(Block b) {
 		return b == FirmaMod.rock || b == FirmaMod.dirt || b == FirmaMod.grass || b == FirmaMod.gravel || b == FirmaMod.sand || b == FirmaMod.rockb
-				|| b == FirmaMod.rockc || b == FirmaMod.rocks || b == FirmaMod.grasss || b == FirmaMod.clayBlock;
+				|| b == FirmaMod.rockc || b == FirmaMod.rocks || b == FirmaMod.grasss || b == FirmaMod.clayBlock || b == FirmaMod.farm;
 	}
 
 	public static boolean isRockEnum2(Block b) {
 		return b == FirmaMod.rock2 || b == FirmaMod.dirt2 || b == FirmaMod.grass2 || b == FirmaMod.gravel2 || b == FirmaMod.sand2 || b == FirmaMod.rockb2
-				|| b == FirmaMod.rockc2 || b == FirmaMod.rocks2 || b == FirmaMod.grasss2 || b == FirmaMod.clayBlock2;
+				|| b == FirmaMod.rockc2 || b == FirmaMod.rocks2 || b == FirmaMod.grasss2 || b == FirmaMod.clayBlock2 || b == FirmaMod.farm2;
 	}
 
 	public static RockEnum getRockEnum(IBlockState b) {
@@ -328,21 +339,40 @@ public class Util {
 		return isWoodEnum1(b) ? FirmaMod.plank.getStateFromMeta(meta) : isWoodEnum2(b) ? FirmaMod.plank2.getStateFromMeta(meta) : null;
 	}
 
-	public static IBlockState getHalfPlank(IBlockState in) {
-		int meta = in.getBlock().getMetaFromState(in); // TODO Half Plank. Microblock?
-		Block b = in.getBlock();
-		return isWoodEnum1(b) ? FirmaMod.plank.getStateFromMeta(meta) : isWoodEnum2(b) ? FirmaMod.plank2.getStateFromMeta(meta) : null;
+	public static BlockStateWithProperties getHalfPlank(IBlockState in) {
+		SolidMaterialEnum sme = getSolidMaterial(in);
+		return new BlockStateWithProperties(FirmaMod.miniBlocks.getDefaultState(), MiniBlock.lne, MiniBlock.lnw, MiniBlock.lsw, MiniBlock.lse, sme);
 	}
 
-	public static IBlockState getDoor(IBlockState in, boolean topHalf) {
-		int meta = in.getBlock().getMetaFromState(in); // TODO Door
+	private static SolidMaterialEnum getSolidMaterial(IBlockState in) {
 		Block b = in.getBlock();
-		return isWoodEnum1(b) ? FirmaMod.plank.getStateFromMeta(meta) : isWoodEnum2(b) ? FirmaMod.plank2.getStateFromMeta(meta) : null;
+		if (isWoodEnum1(b)) {
+			WoodEnum we = getWoodEnum(in);
+			return SolidMaterialEnum.get(we);
+		} else if (isWoodEnum2(b)) {
+			WoodEnum2 we2 = getWoodEnum2(in);
+			return SolidMaterialEnum.get(we2);
+		} else if (isRockEnum1(b)) {
+			RockEnum re = getRockEnum(in);
+			return SolidMaterialEnum.get(re);
+		} else if (isRockEnum2(b)) {
+			RockEnum2 re2 = getRockEnum2(in);
+			return SolidMaterialEnum.get(re2);
+		}
+
+		return null;
 	}
 
-	public static IBlockState getRandomPlant() {
-		// TODO Plants
-		return FirmaMod.sapling.getDefaultState();
+	public static BlockStateWithProperties getDoor(IBlockState in, boolean topHalf) {
+		SolidMaterialEnum sme = getSolidMaterial(in);
+		EnumDoorHalf edh = topHalf ? EnumDoorHalf.UPPER : EnumDoorHalf.LOWER;
+		return new BlockStateWithProperties(FirmaMod.door.getDefaultState(), edh, sme);
+	}
+
+	public static CropType getRandomPlant(Random r) {
+		float f = r.nextFloat();
+		int index = (int) (CropType.values().length * f);
+		return CropType.values()[index];
 	}
 
 	public static String makeStateString(IBlockState state, IProperty<?>... props) {

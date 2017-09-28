@@ -25,4 +25,9 @@ public class CropTileEntity extends TileEntity {
 		return planted;
 	}
 
+	public void setCropType(CropType ct) {
+		type = ct;
+		this.markDirty();
+	}
+
 }

@@ -13,7 +13,7 @@ import uk.co.aperistudios.firma.types.RockEnum;
 import uk.co.aperistudios.firma.types.RockEnum2;
 import uk.co.aperistudios.firma.types.RocksEnum;
 
-public class FirmaOreTileEntity extends TileEntity {
+public class OreTileEntity extends TileEntity {
 
 	public int grade = 0;
 	public OresEnum ore;

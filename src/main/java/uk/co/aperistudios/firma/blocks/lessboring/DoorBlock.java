@@ -35,10 +35,10 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import uk.co.aperistudios.firma.FirmaMod;
 import uk.co.aperistudios.firma.Util;
 import uk.co.aperistudios.firma.blocks.BlockState;
-import uk.co.aperistudios.firma.blocks.tileentity.FirmaDoorTileEntity;
+import uk.co.aperistudios.firma.blocks.tileentity.DoorTileEntity;
 import uk.co.aperistudios.firma.types.SolidMaterialEnum;
 
-public class FirmaDoor extends Block implements BlockState {
+public class DoorBlock extends Block implements BlockState {
 	public static final PropertyDirection FACING = BlockHorizontal.FACING;
 	public static final PropertyBool OPEN = PropertyBool.create("open");
 	public static final PropertyEnum<EnumHingePosition> HINGE = PropertyEnum.<EnumHingePosition>create("hinge", EnumHingePosition.class);
@@ -49,7 +49,7 @@ public class FirmaDoor extends Block implements BlockState {
 	protected static final AxisAlignedBB WEST_AABB = new AxisAlignedBB(0.9375, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
 	protected static final AxisAlignedBB EAST_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.0625, 1.0D, 1.0D);
 
-	public FirmaDoor() {
+	public DoorBlock() {
 		super(Material.ROCK);
 		this.setRegistryName("firmadoor");
 		this.setUnlocalizedName("firmadoor");
@@ -114,12 +114,12 @@ public class FirmaDoor extends Block implements BlockState {
 	}
 
 	private static int getCloseSound(World worldIn, BlockPos pos) {
-		FirmaDoorTileEntity te = (FirmaDoorTileEntity) worldIn.getTileEntity(pos);
+		DoorTileEntity te = (DoorTileEntity) worldIn.getTileEntity(pos);
 		return te.getMaterial().getMaterial() == Material.IRON ? 1011 : 1012;
 	}
 
 	private static int getOpenSound(World worldIn, BlockPos pos) {
-		FirmaDoorTileEntity te = (FirmaDoorTileEntity) worldIn.getTileEntity(pos);
+		DoorTileEntity te = (DoorTileEntity) worldIn.getTileEntity(pos);
 		return te.getMaterial().getMaterial() == Material.IRON ? 1005 : 1006;
 	}
 
@@ -218,7 +218,7 @@ public class FirmaDoor extends Block implements BlockState {
 
 	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
-		FirmaDoorTileEntity te = (FirmaDoorTileEntity) worldIn.getTileEntity(pos);
+		DoorTileEntity te = (DoorTileEntity) worldIn.getTileEntity(pos);
 		return new ItemStack(FirmaMod.doorItem, 1, FirmaMod.doorItem.getSubMeta(te.getMaterial().getName()));
 	}
 
@@ -246,7 +246,7 @@ public class FirmaDoor extends Block implements BlockState {
 		if (te == null) {
 			return state;
 		}
-		state = state.withProperty(MATERIAL, ((FirmaDoorTileEntity) te).getMaterial());
+		state = state.withProperty(MATERIAL, ((DoorTileEntity) te).getMaterial());
 		if (state.getValue(HALF) == EnumDoorHalf.LOWER) {
 			EnumHingePosition hinge = state.getValue(HINGE);
 			Boolean open = state.getValue(OPEN);
@@ -280,8 +280,9 @@ public class FirmaDoor extends Block implements BlockState {
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		return (meta & 8) > 0 ? this.getDefaultState().withProperty(HALF, EnumDoorHalf.UPPER)
-				.withProperty(HINGE, (meta & 1) > 0 ? EnumHingePosition.RIGHT : EnumHingePosition.LEFT)
+		return (meta & 8) > 0
+				? this.getDefaultState().withProperty(HALF, EnumDoorHalf.UPPER)
+						.withProperty(HINGE, (meta & 1) > 0 ? EnumHingePosition.RIGHT : EnumHingePosition.LEFT)
 
 				: this.getDefaultState().withProperty(HALF, EnumDoorHalf.LOWER).withProperty(FACING, EnumFacing.getHorizontal(meta & 3).rotateYCCW())
 						.withProperty(OPEN, Boolean.valueOf((meta & 4) > 0));
@@ -359,7 +360,7 @@ public class FirmaDoor extends Block implements BlockState {
 
 	@Override
 	public TileEntity createTileEntity(World world, IBlockState state) {
-		return new FirmaDoorTileEntity();
+		return new DoorTileEntity();
 	}
 
 	@Override
@@ -380,9 +381,18 @@ public class FirmaDoor extends Block implements BlockState {
 
 			@Override
 			protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
-				return new ModelResourceLocation(getModelPath(), Util.makeStateString(state, FirmaDoor.FACING, FirmaDoor.MATERIAL));
+				return new ModelResourceLocation(getModelPath(), Util.makeStateString(state, DoorBlock.FACING, DoorBlock.MATERIAL));
 			}
 
 		};
+	}
+
+	@Override
+	public void setState(World worldIn, BlockPos pos, Object property) {
+		if (property instanceof SolidMaterialEnum) {
+			DoorTileEntity fdte = (DoorTileEntity) worldIn.getTileEntity(pos);
+			fdte.setMaterial((SolidMaterialEnum) property);
+		}
+
 	}
 }

@@ -20,15 +20,14 @@ public class PlanHouse extends Plan {
 	}
 
 	@Override
-	public HashMap<String, IBlockState> getBlocks(IBlockState rock, IBlockState wood) {
-		HashMap<String, IBlockState> blocks = new HashMap<String, IBlockState>();
-		blocks.put(" ", Blocks.AIR.getDefaultState());
-		blocks.put("S", Util.getBricks(rock));
-		blocks.put("P", Util.getPlank(wood));
+	public HashMap<String, BlockStateWithProperties> getBlocks(IBlockState rock, IBlockState wood) {
+		HashMap<String, BlockStateWithProperties> blocks = new HashMap<String, BlockStateWithProperties>();
+		blocks.put(" ", new BlockStateWithProperties(Blocks.AIR.getDefaultState()));
+		blocks.put("S", new BlockStateWithProperties(Util.getBricks(rock)));
+		blocks.put("P", new BlockStateWithProperties(Util.getPlank(wood)));
 		blocks.put("H", Util.getHalfPlank(wood));
 		blocks.put("D", Util.getDoor(wood, false));
 		blocks.put("E", Util.getDoor(wood, true));
 		return blocks;
 	}
-
 }

@@ -27,7 +27,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import uk.co.aperistudios.firma.FirmaMod;
 import uk.co.aperistudios.firma.Util;
 import uk.co.aperistudios.firma.blocks.BlockState;
-import uk.co.aperistudios.firma.blocks.tileentity.FirmaOreTileEntity;
+import uk.co.aperistudios.firma.blocks.tileentity.OreTileEntity;
 import uk.co.aperistudios.firma.types.OresEnum;
 import uk.co.aperistudios.firma.types.RocksEnum;
 
@@ -45,7 +45,7 @@ public class OreBlock extends Block implements ITileEntityProvider, BlockState {
 
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		return new FirmaOreTileEntity();
+		return new OreTileEntity();
 	}
 
 	@Override
@@ -69,7 +69,7 @@ public class OreBlock extends Block implements ITileEntityProvider, BlockState {
 	@Override
 	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
 		// Mouse.setGrabbed(false);
-		FirmaOreTileEntity te = (FirmaOreTileEntity) worldIn.getTileEntity(pos);
+		OreTileEntity te = (OreTileEntity) worldIn.getTileEntity(pos);
 		if (te != null && te.ore != null && te.rock != null) {
 			return super.getActualState(state, worldIn, pos).withProperty(oreLayer, te.ore).withProperty(rockLayer, te.rock);
 		}
@@ -89,9 +89,9 @@ public class OreBlock extends Block implements ITileEntityProvider, BlockState {
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX,
 			float hitY, float hitZ) {
-		FirmaOreTileEntity te = (FirmaOreTileEntity) worldIn.getTileEntity(pos);
+		OreTileEntity te = (OreTileEntity) worldIn.getTileEntity(pos);
 		if (te != null && te.ore != null && te.rock != null) { // TODO
-																	// Prospectors
+																// Prospectors
 																// pick
 			playerIn.sendMessage(new TextComponentString(te.ore + " " + te.rock));
 		}
@@ -101,7 +101,7 @@ public class OreBlock extends Block implements ITileEntityProvider, BlockState {
 	@Override
 	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
 		// return super.getDrops(world, pos, state, fortune);
-		FirmaOreTileEntity fote = (FirmaOreTileEntity) world.getTileEntity(pos);
+		OreTileEntity fote = (OreTileEntity) world.getTileEntity(pos);
 		List<ItemStack> ret = new ArrayList<ItemStack>();
 		ret.add(Util.getOreItemStack(fote.ore, fote.grade, 1));
 		return ret;
@@ -131,5 +131,19 @@ public class OreBlock extends Block implements ITileEntityProvider, BlockState {
 				return new ModelResourceLocation(getModelPath(), Util.makeStateString(state, oreLayer, rockLayer));
 			}
 		};
+	}
+
+	@Override
+	public void setState(World worldIn, BlockPos pos, Object property) {
+		if (property instanceof OresEnum) {
+			OreTileEntity ote = (OreTileEntity) worldIn.getTileEntity(pos);
+			ote.ore = (OresEnum) property;
+		} else if (property instanceof Integer) {
+			OreTileEntity ote = (OreTileEntity) worldIn.getTileEntity(pos);
+			ote.grade = (int) property;
+		} else if (property instanceof RocksEnum) {
+			OreTileEntity ote = (OreTileEntity) worldIn.getTileEntity(pos);
+			ote.rock = (RocksEnum) property;
+		}
 	}
 }

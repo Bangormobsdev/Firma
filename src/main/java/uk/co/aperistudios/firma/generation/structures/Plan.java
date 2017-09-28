@@ -33,7 +33,7 @@ public abstract class Plan {
 
 	public abstract PlanShape getShape();
 
-	public abstract HashMap<String, IBlockState> getBlocks(IBlockState rock, IBlockState wood);
+	public abstract HashMap<String, BlockStateWithProperties> getBlocks(IBlockState rock, IBlockState wood);
 
 	public void setPos(int x, int y, int z) {
 		this.startx = x;
@@ -65,7 +65,7 @@ public abstract class Plan {
 			return;
 		}
 		System.out.println("building " + this.toString() + " " + x + "," + y + "," + z);
-		HashMap<String, IBlockState> blocks = getBlocks(rock, wood);
+		HashMap<String, BlockStateWithProperties> blocks = getBlocks(rock, wood);
 		if (blocks != null) {
 			getShape().build(blocks, world, x, starty, z, x - startx, z - startz, rock);
 		}

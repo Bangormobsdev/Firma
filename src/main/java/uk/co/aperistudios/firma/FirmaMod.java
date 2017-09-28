@@ -21,6 +21,8 @@ import uk.co.aperistudios.firma.blocks.boring.CobbleBlock;
 import uk.co.aperistudios.firma.blocks.boring.CobbleBlock2;
 import uk.co.aperistudios.firma.blocks.boring.DirtBlock;
 import uk.co.aperistudios.firma.blocks.boring.DirtBlock2;
+import uk.co.aperistudios.firma.blocks.boring.FarmBlock;
+import uk.co.aperistudios.firma.blocks.boring.FarmBlock2;
 import uk.co.aperistudios.firma.blocks.boring.GravelBlock;
 import uk.co.aperistudios.firma.blocks.boring.GravelBlock2;
 import uk.co.aperistudios.firma.blocks.boring.IceBlock;
@@ -32,8 +34,8 @@ import uk.co.aperistudios.firma.blocks.boring.SandBlock;
 import uk.co.aperistudios.firma.blocks.boring.SandBlock2;
 import uk.co.aperistudios.firma.blocks.boring.SmoothBlock;
 import uk.co.aperistudios.firma.blocks.boring.SmoothBlock2;
-import uk.co.aperistudios.firma.blocks.lessboring.FirmaDoor;
-import uk.co.aperistudios.firma.blocks.lessboring.FirmaMiniBlock;
+import uk.co.aperistudios.firma.blocks.lessboring.DoorBlock;
+import uk.co.aperistudios.firma.blocks.lessboring.MiniBlock;
 import uk.co.aperistudios.firma.blocks.lessboring.FloorStorage;
 import uk.co.aperistudios.firma.blocks.lessboring.OreBlock;
 import uk.co.aperistudios.firma.blocks.lessboring.ShitOnFloor;
@@ -114,8 +116,8 @@ public class FirmaMod {
 	public static IceBlock ice;
 	public static OreBlock ore;
 	public static FloorStorage floorStorage;
-	public static FirmaMiniBlock miniBlocks;
-	public static FirmaDoor door;
+	public static MiniBlock miniBlocks;
+	public static DoorBlock door;
 	public static FurnaceBlock furnace;
 	public static CropBlock crops;
 
@@ -149,6 +151,8 @@ public class FirmaMod {
 	public static CrucibleBlock crucible;
 	public static ShitOnFloor shitOnFloor;
 	public static AnvilBlock anvil;
+	public static FarmBlock2 farm2;
+	public static FarmBlock farm;
 
 	public FirmaMod() {
 		instance = this;

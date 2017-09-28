@@ -1,0 +1,52 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"textures": {
+			"dirt": "firma:blocks/dirt2/rhyolite",
+			"top": "firma:blocks/farm/rhyolite"
+		},
+		"model": "block/farmland"
+	},
+	"variants": {
+		"normal": [
+			{
+			}
+		],
+		"inventory": [
+			{
+			}
+		],
+		"variants": {
+			"rhyolite": {
+				"textures": {
+					"dirt": "firma:blocks/dirt2/rhyolite",
+					"top": "firma:blocks/farm/rhyolite"
+				}
+			},
+			"rocksalt": {
+				"textures": {
+					"dirt": "firma:blocks/dirt2/rocksalt",
+					"top": "firma:blocks/farm/rocksalt"
+				}
+			},
+			"schist": {
+				"textures": {
+					"dirt": "firma:blocks/dirt2/schist",
+					"top": "firma:blocks/farm/schist"
+				}
+			},
+			"shale": {
+				"textures": {
+					"dirt": "firma:blocks/dirt2/shale",
+					"top": "firma:blocks/farm/shale"
+				}
+			},
+			"slate": {
+				"textures": {
+					"dirt": "firma:blocks/dirt2/slate",
+					"top": "firma:blocks/farm/slate"
+				}
+			}
+		}
+	}
+}

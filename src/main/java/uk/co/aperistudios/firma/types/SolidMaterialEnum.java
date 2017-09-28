@@ -104,4 +104,100 @@ public enum SolidMaterialEnum implements IStringSerializable {
 		return null;
 	}
 
+	public static SolidMaterialEnum get(WoodEnum we) {
+		switch (we) {
+		case Acacia:
+			return Acacia;
+		case Ash:
+			return Ash;
+		case Aspen:
+			return Aspen;
+		case Birch:
+			return Birch;
+		case Chestnut:
+			return Chestnut;
+		case Douglasfir:
+			return Douglasfir;
+		case Hickory:
+			return Hickory;
+		case Kapok:
+			return Kapok;
+		case Maple:
+			return Maple;
+		case Oak:
+			return Oak;
+		case Pine:
+			return Pine;
+		case Sequoia:
+			return Sequoia;
+		case Spruce:
+			return Spruce;
+		case Sycamore:
+			return Sycamore;
+		case Whitecedar:
+			return Whitecedar;
+		case Whiteelm:
+			return Whiteelm;
+		}
+		return null;
+	}
+
+	public static SolidMaterialEnum get(WoodEnum2 we2) {
+		return Willow;
+	}
+
+	public static SolidMaterialEnum get(RockEnum re) {
+		switch (re) {
+		case Andesite:
+			return Andesite;
+		case Basalt:
+			return Basalt;
+		case Chalk:
+			return Chalk;
+		case Chert:
+			return Chert;
+		case Claystone:
+			return Claystone;
+		case Conglomerate:
+			return Conglomerate;
+		case Dacite:
+			return Dacite;
+		case Diorite:
+			return Diorite;
+		case Dolomite:
+			return Dolomite;
+		case Gabbro:
+			return Gabbro;
+		case Gneiss:
+			return Gneiss;
+		case Granite:
+			return Granite;
+		case Limestone:
+			return Limestone;
+		case Marble:
+			return Marble;
+		case Phyllite:
+			return Phyllite;
+		case Quartzite:
+			return Quartzite;
+		}
+		return null;
+	}
+
+	public static SolidMaterialEnum get(RockEnum2 re2) {
+		switch (re2) {
+		case Rhyolite:
+			return Rhyolite;
+		case RockSalt:
+			return RockSalt;
+		case Schist:
+			return Schist;
+		case Shale:
+			return Shale;
+		case Slate:
+			return Slate;
+		}
+		return null;
+	}
+
 }

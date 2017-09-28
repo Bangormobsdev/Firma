@@ -9,11 +9,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import uk.co.aperistudios.firma.types.SolidMaterialEnum;
 
-public class FirmaDoorTileEntity extends TileEntity {
+public class DoorTileEntity extends TileEntity {
 
 	private SolidMaterialEnum sme;
 
-	public FirmaDoorTileEntity() {
+	public DoorTileEntity() {
 		sme = SolidMaterialEnum.Acacia;
 		markDirty();
 	}

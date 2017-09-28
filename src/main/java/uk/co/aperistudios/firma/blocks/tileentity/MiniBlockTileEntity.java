@@ -4,7 +4,7 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import uk.co.aperistudios.firma.blocks.lessboring.FirmaMiniBlock;
+import uk.co.aperistudios.firma.blocks.lessboring.MiniBlock;
 import uk.co.aperistudios.firma.types.SolidMaterialEnum;
 
 public class MiniBlockTileEntity extends TileEntity {
@@ -31,63 +31,65 @@ public class MiniBlockTileEntity extends TileEntity {
 	}
 
 	public boolean getPart(PropertyBool part) {
-		if (part == FirmaMiniBlock.lse) {
+		if (part == MiniBlock.lse) {
 			return (val & 1) > 0;
-		} else if (part == FirmaMiniBlock.lne) {
+		} else if (part == MiniBlock.lne) {
 			return (val & 2) > 0;
-		} else if (part == FirmaMiniBlock.lsw) {
+		} else if (part == MiniBlock.lsw) {
 			return (val & 4) > 0;
-		} else if (part == FirmaMiniBlock.lnw) {
+		} else if (part == MiniBlock.lnw) {
 			return (val & 8) > 0;
-		} else if (part == FirmaMiniBlock.use) {
+		} else if (part == MiniBlock.use) {
 			return (val & 16) > 0;
-		} else if (part == FirmaMiniBlock.une) {
+		} else if (part == MiniBlock.une) {
 			return (val & 32) > 0;
-		} else if (part == FirmaMiniBlock.usw) {
+		} else if (part == MiniBlock.usw) {
 			return (val & 64) > 0;
-		} else if (part == FirmaMiniBlock.unw) {
+		} else if (part == MiniBlock.unw) {
 			return (val & 128) > 0;
 		}
 		throw new RuntimeException("Not a part of the whole");
 	}
 
 	public int setPart(PropertyBool part) {
-		if (part == FirmaMiniBlock.lse) {
+		this.markDirty();
+		if (part == MiniBlock.lse) {
 			return val | 1;
-		} else if (part == FirmaMiniBlock.lne) {
+		} else if (part == MiniBlock.lne) {
 			return val | 2;
-		} else if (part == FirmaMiniBlock.lsw) {
+		} else if (part == MiniBlock.lsw) {
 			return val | 4;
-		} else if (part == FirmaMiniBlock.lnw) {
+		} else if (part == MiniBlock.lnw) {
 			return val | 8;
-		} else if (part == FirmaMiniBlock.use) {
+		} else if (part == MiniBlock.use) {
 			return val | 16;
-		} else if (part == FirmaMiniBlock.une) {
+		} else if (part == MiniBlock.une) {
 			return val | 32;
-		} else if (part == FirmaMiniBlock.usw) {
+		} else if (part == MiniBlock.usw) {
 			return val | 64;
-		} else if (part == FirmaMiniBlock.unw) {
+		} else if (part == MiniBlock.unw) {
 			return val | 128;
 		}
 		throw new RuntimeException("Not a part of the whole");
 	}
 
 	public void removePart(PropertyBool part) {
-		if (part == FirmaMiniBlock.lse) {
+		this.markDirty();
+		if (part == MiniBlock.lse) {
 			val = val & (255 ^ 1);
-		} else if (part == FirmaMiniBlock.lne) {
+		} else if (part == MiniBlock.lne) {
 			val = val & (255 ^ 2);
-		} else if (part == FirmaMiniBlock.lsw) {
+		} else if (part == MiniBlock.lsw) {
 			val = val & (255 ^ 4);
-		} else if (part == FirmaMiniBlock.lnw) {
+		} else if (part == MiniBlock.lnw) {
 			val = val & (255 ^ 8);
-		} else if (part == FirmaMiniBlock.use) {
+		} else if (part == MiniBlock.use) {
 			val = val & (255 ^ 16);
-		} else if (part == FirmaMiniBlock.une) {
+		} else if (part == MiniBlock.une) {
 			val = val & (255 ^ 32);
-		} else if (part == FirmaMiniBlock.usw) {
+		} else if (part == MiniBlock.usw) {
 			val = val & (255 ^ 64);
-		} else if (part == FirmaMiniBlock.unw) {
+		} else if (part == MiniBlock.unw) {
 			val = val & (255 ^ 128);
 		}
 		throw new RuntimeException("Not a part of the whole");
@@ -95,28 +97,28 @@ public class MiniBlockTileEntity extends TileEntity {
 
 	public int getCount() {
 		int i = 0;
-		if (getPart(FirmaMiniBlock.lse)) {
+		if (getPart(MiniBlock.lse)) {
 			i++;
 		}
-		if (getPart(FirmaMiniBlock.lne)) {
+		if (getPart(MiniBlock.lne)) {
 			i++;
 		}
-		if (getPart(FirmaMiniBlock.lsw)) {
+		if (getPart(MiniBlock.lsw)) {
 			i++;
 		}
-		if (getPart(FirmaMiniBlock.lnw)) {
+		if (getPart(MiniBlock.lnw)) {
 			i++;
 		}
-		if (getPart(FirmaMiniBlock.use)) {
+		if (getPart(MiniBlock.use)) {
 			i++;
 		}
-		if (getPart(FirmaMiniBlock.une)) {
+		if (getPart(MiniBlock.une)) {
 			i++;
 		}
-		if (getPart(FirmaMiniBlock.usw)) {
+		if (getPart(MiniBlock.usw)) {
 			i++;
 		}
-		if (getPart(FirmaMiniBlock.unw)) {
+		if (getPart(MiniBlock.unw)) {
 			i++;
 		}
 		return i;
@@ -134,6 +136,12 @@ public class MiniBlockTileEntity extends TileEntity {
 			}
 		}
 		return -1;
+	}
+
+	public void setMaterial(SolidMaterialEnum property) {
+		this.sme = property;
+		this.markDirty();
+
 	}
 
 }

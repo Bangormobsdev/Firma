@@ -1,0 +1,118 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"textures": {
+			"dirt": "firma:blocks/dirt/andesite",
+			"top": "firma:blocks/farm/andesite"
+		},
+		"model": "farmland"
+	},
+	"variants": {
+		"normal": [
+			{
+			}
+		],
+		"inventory": [
+			{
+			}
+		],
+		"variants": {
+			"andesite": {
+				"textures": {
+					"dirt": "firma:blocks/dirt/andesite",
+					"top": "firma:blocks/farm/andesite"
+				}
+			},
+			"basalt": {
+				"textures": {
+					"dirt": "firma:blocks/dirt/basalt",
+					"top": "firma:blocks/farm/basalt"
+				}
+			},
+			"chalk": {
+				"textures": {
+					"dirt": "firma:blocks/dirt/chalk",
+					"top": "firma:blocks/farm/chalk"
+				}
+			},
+			"chert": {
+				"textures": {
+					"dirt": "firma:blocks/dirt/chert",
+					"top": "firma:blocks/farm/chert"
+				}
+			},
+			"claystone": {
+				"textures": {
+					"dirt": "firma:blocks/dirt/claystone",
+					"top": "firma:blocks/farm/claystone"
+				}
+			},
+			"conglomerate": {
+				"textures": {
+					"dirt": "firma:blocks/dirt/conglomerate",
+					"top": "firma:blocks/farm/congolmerate"
+				}
+			},
+			"dacite": {
+				"textures": {
+					"dirt": "firma:blocks/dirt/dacite",
+					"top": "firma:blocks/farm/dacite"
+				}
+			},
+			"diorite": {
+				"textures": {
+					"dirt": "firma:blocks/dirt/diorite",
+					"top": "firma:blocks/farm/diorite"
+				}
+			},
+			"dolomite": {
+				"textures": {
+					"dirt": "firma:blocks/dirt/dolomite",
+					"top": "firma:blocks/farm/dolomite"
+				}
+			},
+			"gabbro": {
+				"textures": {
+					"dirt": "firma:blocks/dirt/gabbro",
+					"top": "firma:blocks/farm/gabbro"
+				}
+			},
+			"gneiss": {
+				"textures": {
+					"dirt": "firma:blocks/dirt/gneiss",
+					"top": "firma:blocks/farm/gneiss"
+				}
+			},
+			"granite": {
+				"textures": {
+					"dirt": "firma:blocks/dirt/granite",
+					"top": "firma:blocks/farm/granite"
+				}
+			},
+			"limestone": {
+				"textures": {
+					"dirt": "firma:blocks/dirt/limestone",
+					"top": "firma:blocks/farm/limestone"
+				}
+			},
+			"marble": {
+				"textures": {
+					"dirt": "firma:blocks/dirt/marble",
+					"top": "firma:blocks/farm/marble"
+				}
+			},
+			"phyllite": {
+				"textures": {
+					"dirt": "firma:blocks/dirt/phyllite",
+					"top": "firma:blocks/farm/phyllite"
+				}
+			},
+			"quartzite": {
+				"textures": {
+					"dirt": "firma:blocks/dirt/quartzite",
+					"top": "firma:blocks/farm/quartzite"
+				}
+			}
+		}
+	}
+}

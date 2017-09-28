@@ -2,9 +2,11 @@ package uk.co.aperistudios.firma.generation.structures;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import uk.co.aperistudios.firma.blocks.BlockState;
 
 public class PlanShape {
 	private int sizex, sizey, sizez, offsetY;
@@ -40,14 +42,23 @@ public class PlanShape {
 		return map.get((sizex * posz) + (sizex * sizez * posy) + posx);
 	}
 
-	public void build(HashMap<String, IBlockState> blocks, World world, int worldx, int worldy, int worldz, int planx, int planz, IBlockState rock) {
+	public void build(HashMap<String, BlockStateWithProperties> blocks, World world, int worldx, int worldy, int worldz, int planx, int planz,
+			IBlockState rock) {
 		if (planx < 0 || planz < 0 || planx > getWidthX() || planz > getWidthZ()) {
 			throw new RuntimeException("Using plan out of bounds x:" + planx + " z:" + planz);
 		}
 		for (int incy = 0; incy < sizey; incy++) {
-			IBlockState b = blocks.get(getMapAt(planx, incy, planz));
+			BlockStateWithProperties bswp = blocks.get(getMapAt(planx, incy, planz));
+			IBlockState b = bswp.state;
 			if (b != null) {
-				world.setBlockState(new BlockPos(worldx, worldy + incy + offsetY, worldz), b);
+				BlockPos pos = new BlockPos(worldx, worldy + incy + offsetY, worldz);
+				world.setBlockState(pos, b);
+				Block block = b.getBlock();
+				if (block instanceof BlockState) {
+					for (Object o : bswp.properties) {
+						((BlockState) block).setState(world, pos, o);
+					}
+				}
 			}
 		}
 

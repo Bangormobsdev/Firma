@@ -16,8 +16,8 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import uk.co.aperistudios.firma.FirmaMod;
-import uk.co.aperistudios.firma.blocks.lessboring.FirmaDoor;
-import uk.co.aperistudios.firma.blocks.tileentity.FirmaDoorTileEntity;
+import uk.co.aperistudios.firma.blocks.lessboring.DoorBlock;
+import uk.co.aperistudios.firma.blocks.tileentity.DoorTileEntity;
 import uk.co.aperistudios.firma.types.ItemSize;
 import uk.co.aperistudios.firma.types.SolidMaterialEnum;
 
@@ -75,12 +75,12 @@ public class FirmaDoorItem extends MetaItem implements ItemState {
 		}
 
 		BlockPos blockpos2 = pos.up();
-		IBlockState iblockstate = FirmaMod.door.getDefaultState().withProperty(FirmaDoor.FACING, facing)
-				.withProperty(FirmaDoor.HINGE, isRightHinge ? EnumHingePosition.RIGHT : EnumHingePosition.LEFT).withProperty(FirmaDoor.OPEN, false);
-		worldIn.setBlockState(pos, iblockstate.withProperty(FirmaDoor.HALF, EnumDoorHalf.LOWER), 2);
-		worldIn.setBlockState(blockpos2, iblockstate.withProperty(FirmaDoor.HALF, EnumDoorHalf.UPPER), 2);
-		((FirmaDoorTileEntity) worldIn.getTileEntity(pos)).setMaterial(material);
-		((FirmaDoorTileEntity) worldIn.getTileEntity(blockpos2)).setMaterial(material);
+		IBlockState iblockstate = FirmaMod.door.getDefaultState().withProperty(DoorBlock.FACING, facing)
+				.withProperty(DoorBlock.HINGE, isRightHinge ? EnumHingePosition.RIGHT : EnumHingePosition.LEFT).withProperty(DoorBlock.OPEN, false);
+		worldIn.setBlockState(pos, iblockstate.withProperty(DoorBlock.HALF, EnumDoorHalf.LOWER), 2);
+		worldIn.setBlockState(blockpos2, iblockstate.withProperty(DoorBlock.HALF, EnumDoorHalf.UPPER), 2);
+		((DoorTileEntity) worldIn.getTileEntity(pos)).setMaterial(material);
+		((DoorTileEntity) worldIn.getTileEntity(blockpos2)).setMaterial(material);
 		worldIn.notifyNeighborsOfStateChange(pos, FirmaMod.door, false);
 		worldIn.notifyNeighborsOfStateChange(blockpos2, FirmaMod.door, false);
 	}
