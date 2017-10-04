@@ -341,7 +341,7 @@ public class Util {
 
 	public static BlockStateWithProperties getHalfPlank(IBlockState in) {
 		SolidMaterialEnum sme = getSolidMaterial(in);
-		return new BlockStateWithProperties(FirmaMod.miniBlocks.getDefaultState(), MiniBlock.lne, MiniBlock.lnw, MiniBlock.lsw, MiniBlock.lse, sme);
+		return new BlockStateWithProperties(FirmaMod.miniBlocks.getHalfBlock(sme), MiniBlock.lne, MiniBlock.lnw, MiniBlock.lsw, MiniBlock.lse, sme);
 	}
 
 	private static SolidMaterialEnum getSolidMaterial(IBlockState in) {

@@ -386,13 +386,4 @@ public class DoorBlock extends Block implements BlockState {
 
 		};
 	}
-
-	@Override
-	public void setState(World worldIn, BlockPos pos, Object property) {
-		if (property instanceof SolidMaterialEnum) {
-			DoorTileEntity fdte = (DoorTileEntity) worldIn.getTileEntity(pos);
-			fdte.setMaterial((SolidMaterialEnum) property);
-		}
-
-	}
 }

@@ -35,8 +35,8 @@ import uk.co.aperistudios.firma.blocks.boring.SandBlock2;
 import uk.co.aperistudios.firma.blocks.boring.SmoothBlock;
 import uk.co.aperistudios.firma.blocks.boring.SmoothBlock2;
 import uk.co.aperistudios.firma.blocks.lessboring.DoorBlock;
-import uk.co.aperistudios.firma.blocks.lessboring.MiniBlock;
 import uk.co.aperistudios.firma.blocks.lessboring.FloorStorage;
+import uk.co.aperistudios.firma.blocks.lessboring.MiniBlock;
 import uk.co.aperistudios.firma.blocks.lessboring.OreBlock;
 import uk.co.aperistudios.firma.blocks.lessboring.ShitOnFloor;
 import uk.co.aperistudios.firma.blocks.liquids.BaseLiquid;
@@ -132,7 +132,6 @@ public class FirmaMod {
 	public static HideItem hide;
 	public static FirmaDoorItem doorItem;
 	public static StorageItem vesselItem;
-	public static MiniBlockItem miniItems;
 	public static SeedItem seedItem;
 	public static FoodIngredientItem foodItem;
 
@@ -153,6 +152,7 @@ public class FirmaMod {
 	public static AnvilBlock anvil;
 	public static FarmBlock2 farm2;
 	public static FarmBlock farm;
+	public static MiniBlockItem miniBlockItem;
 
 	public FirmaMod() {
 		instance = this;

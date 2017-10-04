@@ -77,9 +77,4 @@ public class BaseBlockLiquid extends BlockFluidClassic implements BlockState {
 			super.neighborChanged(state, world, pos, neighborBlock, neighbourPos);
 		}
 	}
-
-	@Override
-	public void setState(World worldIn, BlockPos pos, Object property) {
-		// TODO Auto-generated method stub		
-	}
 }

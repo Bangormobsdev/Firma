@@ -96,11 +96,6 @@ public class FirmaDoorItem extends MetaItem implements ItemState {
 	}
 
 	@Override
-	public String getModelSub() {
-		return "";
-	}
-
-	@Override
 	public Item getItem() {
 		return this;
 	}
@@ -114,5 +109,10 @@ public class FirmaDoorItem extends MetaItem implements ItemState {
 	public String getModelSub(int metadata) {
 		return "facing=south,material=" + getSubName(metadata); // TODO Wrangle #inventory in somewhere?
 		//return getMainVariant() + "=" + this.getSubName(metadata);
+	}
+
+	@Override
+	public int getModelCount() {
+		return this.getSubCount();
 	}
 }

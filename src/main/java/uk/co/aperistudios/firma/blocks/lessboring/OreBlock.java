@@ -132,18 +132,4 @@ public class OreBlock extends Block implements ITileEntityProvider, BlockState {
 			}
 		};
 	}
-
-	@Override
-	public void setState(World worldIn, BlockPos pos, Object property) {
-		if (property instanceof OresEnum) {
-			OreTileEntity ote = (OreTileEntity) worldIn.getTileEntity(pos);
-			ote.ore = (OresEnum) property;
-		} else if (property instanceof Integer) {
-			OreTileEntity ote = (OreTileEntity) worldIn.getTileEntity(pos);
-			ote.grade = (int) property;
-		} else if (property instanceof RocksEnum) {
-			OreTileEntity ote = (OreTileEntity) worldIn.getTileEntity(pos);
-			ote.rock = (RocksEnum) property;
-		}
-	}
 }

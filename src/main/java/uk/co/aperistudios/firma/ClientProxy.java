@@ -116,6 +116,7 @@ public class ClientProxy extends CommonProxy {
 		register(FirmaMod.doorItem);
 		register(FirmaMod.ore);
 		register(FirmaMod.crucible);
+		register(FirmaMod.miniBlockItem);
 
 		for (BaseLiquid f : FirmaMod.allFluids) {
 			register((BlockState) f.getBlock());
@@ -128,23 +129,10 @@ public class ClientProxy extends CommonProxy {
 	}
 
 	private static void register(ItemState is) {
-		if (is.getItem() instanceof MetaItem) {
-			MetaItem mi = (MetaItem) is.getItem();
-			for (int f = 0; f < mi.getSubCount(); f++) {
-				ModelResourceLocation mrl = new ModelResourceLocation(is.getModelPath(), is.getModelSub(f));
-				ModelLoader.setCustomModelResourceLocation(mi, f, mrl);
-			}
-			return;
+		for (int f = 0; f < is.getModelCount(); f++) {
+			ModelResourceLocation mrl = new ModelResourceLocation(is.getModelPath(), is.getModelSub(f));
+			ModelLoader.setCustomModelResourceLocation(is.getItem(), f, mrl);
 		}
-		ModelBakery.registerItemVariants(is.getItem());
-
-		ItemMeshDefinition imd = new ItemMeshDefinition() {
-			@Override
-			public ModelResourceLocation getModelLocation(ItemStack stack) {
-				return new ModelResourceLocation(is.getModelPath(), is.getModelSub());
-			}
-		};
-		ModelLoader.setCustomMeshDefinition(is.getItem(), imd);
 	}
 
 	private static void register(BlockState block) {

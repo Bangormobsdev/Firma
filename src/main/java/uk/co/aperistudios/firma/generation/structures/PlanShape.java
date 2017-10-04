@@ -2,11 +2,9 @@ package uk.co.aperistudios.firma.generation.structures;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import uk.co.aperistudios.firma.blocks.BlockState;
 
 public class PlanShape {
 	private int sizex, sizey, sizez, offsetY;
@@ -53,12 +51,12 @@ public class PlanShape {
 			if (b != null) {
 				BlockPos pos = new BlockPos(worldx, worldy + incy + offsetY, worldz);
 				world.setBlockState(pos, b);
-				Block block = b.getBlock();
-				if (block instanceof BlockState) {
-					for (Object o : bswp.properties) {
-						((BlockState) block).setState(world, pos, o);
-					}
-				}
+				//Block block = b.getBlock();
+				//if (block instanceof BlockState) {
+				//	for (Object o : bswp.properties) {
+				//		((BlockState) block).setState(world, pos, o);
+				//	}
+				//}
 			}
 		}
 

@@ -6,9 +6,9 @@ import net.minecraft.util.ResourceLocation;
 public interface ItemState {
 	public ResourceLocation getModelPath();
 
-	public String getModelSub();
-
 	public Item getItem();
 
 	public String getModelSub(int metadata);
+
+	public int getModelCount();
 }

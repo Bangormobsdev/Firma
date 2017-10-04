@@ -94,6 +94,7 @@ import uk.co.aperistudios.firma.items.HideItem;
 import uk.co.aperistudios.firma.items.IngotItem;
 import uk.co.aperistudios.firma.items.MetaBlockItem;
 import uk.co.aperistudios.firma.items.MetalSheetItem;
+import uk.co.aperistudios.firma.items.MiniBlockItem;
 import uk.co.aperistudios.firma.items.OreItem;
 import uk.co.aperistudios.firma.items.PebbleItem;
 import uk.co.aperistudios.firma.items.ScrapMetalItem;
@@ -184,8 +185,8 @@ public abstract class CommonProxy {
 
 		FirmaMod.vesselItem = new StorageItem("vesselitem", ItemSize.SMALL, 4);
 
-		//FirmaMod.miniItems = new MiniBlockItem();
 		FirmaMod.miniBlocks = new MiniBlock();
+		FirmaMod.miniBlockItem = new MiniBlockItem(FirmaMod.miniBlocks);
 		FirmaMod.door = new DoorBlock();
 
 		rockLayerTop = new IBlockState[] { FirmaMod.rock2.getStateFromMeta(RockEnum2.Shale.getMeta()),
@@ -247,6 +248,7 @@ public abstract class CommonProxy {
 		for (FirmaItem i : FirmaMod.allItems) {
 			GameRegistry.register(i);
 		}
+
 		for (Fluid f : FirmaMod.allFluids) {
 
 			FluidRegistry.addBucketForFluid(f);

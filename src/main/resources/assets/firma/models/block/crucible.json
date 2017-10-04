@@ -2,7 +2,11 @@
 	"parent": "block/orientable",
     "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
     "textures": {
-        "0": "blocks/crucible"
+        "0": "blocks/crucible",
+        "front":"#0",
+        "side":"#0",
+        "top":"#0",
+        "bottom":"#0"
     },
     "display": {
         "gui": {

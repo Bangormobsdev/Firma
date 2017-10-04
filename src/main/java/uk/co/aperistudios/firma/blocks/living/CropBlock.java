@@ -135,12 +135,4 @@ public class CropBlock extends Block implements BlockState {
 		TileEntity tileentity = worldIn.getTileEntity(pos);
 		return tileentity == null ? false : tileentity.receiveClientEvent(id, param);
 	}
-
-	@Override
-	public void setState(World worldIn, BlockPos pos, Object property) {
-		if (property instanceof CropType) {
-			CropTileEntity cte = (CropTileEntity) worldIn.getTileEntity(pos);
-			cte.setCropType((CropType) property);
-		}
-	}
 }
