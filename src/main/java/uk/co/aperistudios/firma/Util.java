@@ -7,9 +7,9 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.IBlockAccess;
+import uk.co.aperistudios.firma.blocks.lessboring.DoorBlock;
 import uk.co.aperistudios.firma.blocks.lessboring.MiniBlock;
-import uk.co.aperistudios.firma.generation.structures.BlockStateWithProperties;
 import uk.co.aperistudios.firma.items.OreItem;
 import uk.co.aperistudios.firma.types.CropType;
 import uk.co.aperistudios.firma.types.OresEnum;
@@ -203,7 +203,7 @@ public class Util {
 	 * @param pos
 	 * @return
 	 */
-	public static int getEquatorialHeat(BlockPos pos) {
+	public static double getEquatorialHeat(BlockPos pos) {
 		return getEquatorialHeat(pos.getZ());
 	}
 
@@ -214,7 +214,7 @@ public class Util {
 	 * @param z
 	 * @return
 	 */
-	public static int getEquatorialHeat(int z) {
+	public static double getEquatorialHeat(int z) {
 		z = Math.abs(z);
 		int temp = 25 - (z / 250);
 		if (temp < -20) {
@@ -237,14 +237,6 @@ public class Util {
 
 	public static boolean isWoodEnum2(Block b) {
 		return b == FirmaMod.log2 || b == FirmaMod.leaf2 || b == FirmaMod.plank2 || b == FirmaMod.sapling2;
-	}
-
-	public static float getHeat(World worldIn, BlockPos pos) {
-		return getEquatorialHeat(pos) + getSeasonModifier(worldIn.getTotalWorldTime());
-	}
-
-	public static float getSeasonModifier(long time) {
-		return 0; // TODO this
 	}
 
 	public static long getYear(long time) {
@@ -339,9 +331,10 @@ public class Util {
 		return isWoodEnum1(b) ? FirmaMod.plank.getStateFromMeta(meta) : isWoodEnum2(b) ? FirmaMod.plank2.getStateFromMeta(meta) : null;
 	}
 
-	public static BlockStateWithProperties getHalfPlank(IBlockState in) {
+	public static IBlockState getHalfPlank(IBlockState in) {
 		SolidMaterialEnum sme = getSolidMaterial(in);
-		return new BlockStateWithProperties(FirmaMod.miniBlocks.getHalfBlock(sme), MiniBlock.lne, MiniBlock.lnw, MiniBlock.lsw, MiniBlock.lse, sme);
+		return FirmaMod.miniBlocks.getHalfBlock(sme).withProperty(MiniBlock.lne, true).withProperty(MiniBlock.lnw, true).withProperty(MiniBlock.lsw, true)
+				.withProperty(MiniBlock.lse, true);
 	}
 
 	private static SolidMaterialEnum getSolidMaterial(IBlockState in) {
@@ -363,10 +356,10 @@ public class Util {
 		return null;
 	}
 
-	public static BlockStateWithProperties getDoor(IBlockState in, boolean topHalf) {
+	public static IBlockState getDoor(IBlockState in, boolean topHalf) {
 		SolidMaterialEnum sme = getSolidMaterial(in);
 		EnumDoorHalf edh = topHalf ? EnumDoorHalf.UPPER : EnumDoorHalf.LOWER;
-		return new BlockStateWithProperties(FirmaMod.door.getDefaultState(), edh, sme);
+		return FirmaMod.door.getDefaultState().withProperty(DoorBlock.HALF, edh).withProperty(DoorBlock.MATERIAL, sme);
 	}
 
 	public static CropType getRandomPlant(Random r) {
@@ -388,5 +381,31 @@ public class Util {
 			sb.append(state.getValue(prop));
 		}
 		return sb.toString();
+	}
+
+	/**
+	 * Return how much to change an areas heat by based on day of year and how
+	 * hot/cold a year is
+	 * 
+	 * @param worldIn
+	 * 
+	 * @return
+	 */
+	public static double getHeatForDate(IBlockAccess worldIn, TimeData td) {
+		// Each year has a different overall heat
+		// TODO Get World seed to add to year to make each worlds temperature procedural?
+		if (td == null) {
+			return 0;
+		}
+		Random rand = new Random(td.getYear());
+		double yearHeat = rand.nextDouble() * 2.0 + 1.0;// Between -1 and 1 non-inclusive
+		double dayOfYear = ((Util.daysInMonth * td.getMonth() + td.getDay()) * 1.0) / (Util.daysInYear * 1.0); // 0 = first day of year 0.9999 = last day of year
+		double sineTemperature = Math.sin(dayOfYear * Math.PI * 2) * 0.25;
+		return yearHeat + sineTemperature;
+
+	}
+
+	public static double getHeat(IBlockAccess worldIn, BlockPos pos, TimeData td) {
+		return getEquatorialHeat(pos) + (getHeatForDate(worldIn, td) * 20.0);
 	}
 }

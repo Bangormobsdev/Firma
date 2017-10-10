@@ -360,7 +360,7 @@ public class DoorBlock extends Block implements BlockState {
 
 	@Override
 	public TileEntity createTileEntity(World world, IBlockState state) {
-		return new DoorTileEntity();
+		return new DoorTileEntity(state);
 	}
 
 	@Override

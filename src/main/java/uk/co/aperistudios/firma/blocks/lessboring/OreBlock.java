@@ -90,9 +90,7 @@ public class OreBlock extends Block implements ITileEntityProvider, BlockState {
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX,
 			float hitY, float hitZ) {
 		OreTileEntity te = (OreTileEntity) worldIn.getTileEntity(pos);
-		if (te != null && te.ore != null && te.rock != null) { // TODO
-																// Prospectors
-																// pick
+		if (te != null && te.ore != null && te.rock != null) { // TODO Prospectors pick
 			playerIn.sendMessage(new TextComponentString(te.ore + " " + te.rock));
 		}
 		return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);

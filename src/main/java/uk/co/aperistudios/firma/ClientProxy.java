@@ -12,6 +12,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemAir;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.GuiIngameForge;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -33,6 +34,9 @@ import uk.co.aperistudios.firma.renderer.ShitOnFloorRenderer;
 public class ClientProxy extends CommonProxy {
 
 	public static TimeData staticDate;
+	public static boolean isRaining;
+	public static boolean isSnowing;
+	public static boolean isSandstorm;
 
 	@Override
 	public void preInit(FMLPreInitializationEvent e) {
@@ -183,4 +187,11 @@ public class ClientProxy extends CommonProxy {
 	public void setDate(TimeData data) {
 		staticDate = data;
 	}
+
+	public void setupGui() {
+		GuiIngameForge.renderHealth = false;
+		GuiIngameForge.renderArmor = false;
+		GuiIngameForge.renderExperiance = false;
+	}
+
 }

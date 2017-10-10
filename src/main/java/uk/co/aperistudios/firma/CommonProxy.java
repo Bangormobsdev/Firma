@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.world.DimensionType;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.storage.MapStorage;
@@ -426,5 +427,12 @@ public abstract class CommonProxy {
 			td = new TimeData("");
 		}
 		return td;
+	}
+
+	public TimeData getTimeData(IBlockAccess worldIn) {
+		if (worldIn instanceof World) {
+			return getTimeData((World) worldIn);
+		}
+		return new TimeData("");
 	}
 }

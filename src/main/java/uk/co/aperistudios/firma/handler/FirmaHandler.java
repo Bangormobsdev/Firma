@@ -2,6 +2,7 @@ package uk.co.aperistudios.firma.handler;
 
 import java.util.List;
 import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityCow;
@@ -17,6 +18,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.WorldType;
 import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerChangedDimensionEvent;
@@ -44,7 +46,7 @@ public class FirmaHandler {
 		WorldServer worldTo = event.player.getServer().worldServerForDimension(event.toDim);
 		if (worldTo.getWorldType() instanceof FirmaWorld) {
 			// One of us
-			TimeData td = (TimeData) worldTo.getPerWorldStorage().getOrLoadData(TimeData.class, "firmatime");
+			TimeData td = FirmaMod.proxy.getTimeData(worldTo);
 			SetDayPacket setDayPacket = new SetDayPacket(td);
 			FirmaMod.dispatcher.sendTo(setDayPacket, (EntityPlayerMP) event.player);
 
@@ -52,15 +54,28 @@ public class FirmaHandler {
 	}
 
 	@SubscribeEvent
-	public void move(TickEvent.PlayerTickEvent event) {
-
-		if (event.player.world.isRemote) {
-			// System.out.println("CLIENT
-			// "+event.player.world.getBiome(event.player.getPosition()).getBiomeName());
-
+	public void join(EntityJoinWorldEvent event) {
+		if (event.getWorld().isRemote) {
 			return;
 		}
-		// System.out.println(event.player.world.getBiome(event.player.getPosition()).getBiomeName());
+		Entity e = event.getEntity();
+		if (e instanceof EntityPlayerMP) {
+			World worldTo = event.getWorld();
+			if (worldTo.getWorldType() instanceof FirmaWorld) {
+				// One of us
+				TimeData td = FirmaMod.proxy.getTimeData(worldTo);
+				SetDayPacket setDayPacket = new SetDayPacket(td);
+				FirmaMod.dispatcher.sendTo(setDayPacket, (EntityPlayerMP) e);
+
+			}
+		}
+	}
+
+	@SubscribeEvent
+	public void move(TickEvent.PlayerTickEvent event) {
+		if (event.player.world.isRemote) {
+			return;
+		}
 		if (CommonProxy.d == 0) {
 			return;
 		}

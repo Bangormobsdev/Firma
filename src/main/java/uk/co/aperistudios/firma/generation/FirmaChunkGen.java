@@ -102,7 +102,7 @@ public class FirmaChunkGen implements IChunkGenerator {
 				FirmaBiome biome = (FirmaBiome) biomesForBiomeGen[(cz + 1) * 18 + (cx + 1)];
 				if (isDirtBiome(biome)) {
 					dirt = Util.getDirt(topRock);
-					int heat = Util.getEquatorialHeat(z * 16);
+					int heat = (int) Util.getEquatorialHeat(z * 16);
 					if (heat > 21) {
 						grass = Util.getSparseGrass(topRock);
 					} else {

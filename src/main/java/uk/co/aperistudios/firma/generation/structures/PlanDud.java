@@ -37,7 +37,7 @@ public class PlanDud extends Plan {
 	}
 
 	@Override
-	public HashMap<String, BlockStateWithProperties> getBlocks(IBlockState rock, IBlockState wood) {
+	public HashMap<String, IBlockState> getBlocks(IBlockState rock, IBlockState wood) {
 		return null;
 	}
 

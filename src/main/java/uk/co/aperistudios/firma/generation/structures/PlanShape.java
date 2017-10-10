@@ -40,23 +40,15 @@ public class PlanShape {
 		return map.get((sizex * posz) + (sizex * sizez * posy) + posx);
 	}
 
-	public void build(HashMap<String, BlockStateWithProperties> blocks, World world, int worldx, int worldy, int worldz, int planx, int planz,
-			IBlockState rock) {
+	public void build(HashMap<String, IBlockState> blocks, World world, int worldx, int worldy, int worldz, int planx, int planz, IBlockState rock) {
 		if (planx < 0 || planz < 0 || planx > getWidthX() || planz > getWidthZ()) {
 			throw new RuntimeException("Using plan out of bounds x:" + planx + " z:" + planz);
 		}
 		for (int incy = 0; incy < sizey; incy++) {
-			BlockStateWithProperties bswp = blocks.get(getMapAt(planx, incy, planz));
-			IBlockState b = bswp.state;
+			IBlockState b = blocks.get(getMapAt(planx, incy, planz));
 			if (b != null) {
 				BlockPos pos = new BlockPos(worldx, worldy + incy + offsetY, worldz);
 				world.setBlockState(pos, b);
-				//Block block = b.getBlock();
-				//if (block instanceof BlockState) {
-				//	for (Object o : bswp.properties) {
-				//		((BlockState) block).setState(world, pos, o);
-				//	}
-				//}
 			}
 		}
 

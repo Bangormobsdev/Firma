@@ -7,6 +7,7 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import uk.co.aperistudios.firma.blocks.lessboring.DoorBlock;
 import uk.co.aperistudios.firma.types.SolidMaterialEnum;
 
 public class DoorTileEntity extends TileEntity {
@@ -15,6 +16,11 @@ public class DoorTileEntity extends TileEntity {
 
 	public DoorTileEntity() {
 		sme = SolidMaterialEnum.Acacia;
+		markDirty();
+	}
+
+	public DoorTileEntity(IBlockState state) {
+		sme = (SolidMaterialEnum) state.getProperties().get(DoorBlock.MATERIAL);
 		markDirty();
 	}
 

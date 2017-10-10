@@ -23,12 +23,12 @@ public class PlanWell extends Plan {
 	}
 
 	@Override
-	public HashMap<String, BlockStateWithProperties> getBlocks(IBlockState rock, IBlockState wood) {
-		HashMap<String, BlockStateWithProperties> blocks = new HashMap<String, BlockStateWithProperties>();
-		blocks.put(" ", new BlockStateWithProperties(Blocks.AIR.getDefaultState()));
-		blocks.put("S", new BlockStateWithProperties(Util.getBricks(rock)));
-		blocks.put("F", new BlockStateWithProperties(Util.getFence(wood)));
-		blocks.put("W", new BlockStateWithProperties(FirmaMod.freshwater.getBlock().getDefaultState()));
+	public HashMap<String, IBlockState> getBlocks(IBlockState rock, IBlockState wood) {
+		HashMap<String, IBlockState> blocks = new HashMap<String, IBlockState>();
+		blocks.put(" ", Blocks.AIR.getDefaultState());
+		blocks.put("S", Util.getBricks(rock));
+		blocks.put("F", Util.getFence(wood));
+		blocks.put("W", FirmaMod.freshwater.getBlock().getDefaultState());
 		return blocks;
 	}
 }

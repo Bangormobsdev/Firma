@@ -3,10 +3,17 @@ package uk.co.aperistudios.firma.generation;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.ColorizerGrass;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import uk.co.aperistudios.firma.FirmaMod;
+import uk.co.aperistudios.firma.TimeData;
 import uk.co.aperistudios.firma.Util;
 import uk.co.aperistudios.firma.generation.layers.Layer;
 import uk.co.aperistudios.firma.generation.tree.BasicLeafFiller;
@@ -71,33 +78,32 @@ public class FirmaBiome extends Biome {
 		return treeList;
 	}
 
-	public static FirmaBiome GRAVELBEACH = (FirmaBiome) new FirmaBiome(
-			new BiomeProperties("firmagravelbeach").setBaseBiome("").setBaseHeight(0.01f).setHeightVariation(0.02f), 17, Type.BEACH).setDirtDepth(5)
-					.setBiomeColor(Color.YELLOW).setRegistryName("firmagravelbeach");
-	public static FirmaBiome BEACH = (FirmaBiome) new FirmaBiome(new BiomeProperties("firmabeach").setBaseHeight(0.01f).setHeightVariation(0.02f), 16,
-			Type.BEACH).setBiomeColor(Color.YELLOW).setDirtDepth(5).setRegistryName("firmabeach");
-	public static FirmaBiome PLAINS = (FirmaBiome) new FirmaBiome(new BiomeProperties("firmaplains").setBaseHeight(0.1f).setHeightVariation(0.16f), 1,
-			Type.PLAINS).setTreeCount(3).setDirtDepth(3).setBiomeColor(Color.GREEN).setRegistryName("firmaplains");
+	public static FirmaBiome GRAVELBEACH = (FirmaBiome) new FirmaBiome(new BiomeProperties("firmagravelbeach").setBaseBiome("").setBaseHeight(0.01f)
+			.setHeightVariation(0.02f), 17, Type.BEACH).setDirtDepth(5).setBiomeColor(Color.YELLOW).setRegistryName("firmagravelbeach");
+	public static FirmaBiome BEACH = (FirmaBiome) new FirmaBiome(new BiomeProperties("firmabeach").setBaseHeight(0.01f)
+			.setHeightVariation(0.02f), 16, Type.BEACH).setBiomeColor(Color.YELLOW).setDirtDepth(5).setRegistryName("firmabeach");
+	public static FirmaBiome PLAINS = (FirmaBiome) new FirmaBiome(new BiomeProperties("firmaplains").setBaseHeight(0.1f)
+			.setHeightVariation(0.16f), 1, Type.PLAINS).setTreeCount(3).setDirtDepth(3).setBiomeColor(Color.GREEN).setRegistryName("firmaplains");
 	public static FirmaBiome HILLS = (FirmaBiome) new FirmaBiome(new BiomeProperties("firmahills").setBaseHeight(0.8f).setHeightVariation(1.6f), 30, Type.HILLS)
 			.setTreeCount(1).setDirtDepth(1).setBiomeColor(Color.LIGHT_GRAY).setRegistryName("firmahills");
-	public static FirmaBiome EXHILLS = (FirmaBiome) new FirmaBiome(new BiomeProperties("firmaexhills").setBaseHeight(0.8f).setHeightVariation(1.8f), 3,
-			Type.MOUNTAIN).setDirtDepth(1).setTreeCount(1).setBiomeColor(Color.GRAY).setRegistryName("firmaexhills");
-	public static FirmaBiome OCEAN = (FirmaBiome) new FirmaBiome(new BiomeProperties("firmaocean").setBaseHeight(-0.9f).setHeightVariation(0.0001f), 0,
-			Type.OCEAN).setDirtDepth(1).setBiomeColor(new Color(0f, 0f, 1f)).setRegistryName("firmaocean");
-	public static FirmaBiome FOREST = (FirmaBiome) new FirmaBiome(new BiomeProperties("firmaforest").setBaseHeight(0.1f).setHeightVariation(0.16f), 35,
-			Type.FOREST).setDirtDepth(5).setTreeCount(30).setBiomeColor(Color.GREEN).setRegistryName("firmaforest");
-	public static FirmaBiome DEEPOCEAN = (FirmaBiome) new FirmaBiome(new BiomeProperties("firmadocean").setBaseHeight(-1.5f).setHeightVariation(0.0001f), 36,
-			Type.OCEAN).setDirtDepth(1).setBiomeColor(new Color(0f, 0f, .5f)).setRegistryName("firmadocean");
+	public static FirmaBiome EXHILLS = (FirmaBiome) new FirmaBiome(new BiomeProperties("firmaexhills").setBaseHeight(0.8f)
+			.setHeightVariation(1.8f), 3, Type.MOUNTAIN).setDirtDepth(1).setTreeCount(1).setBiomeColor(Color.GRAY).setRegistryName("firmaexhills");
+	public static FirmaBiome OCEAN = (FirmaBiome) new FirmaBiome(new BiomeProperties("firmaocean").setBaseHeight(-0.9f)
+			.setHeightVariation(0.0001f), 0, Type.OCEAN).setDirtDepth(1).setBiomeColor(new Color(0f, 0f, 1f)).setRegistryName("firmaocean");
+	public static FirmaBiome FOREST = (FirmaBiome) new FirmaBiome(new BiomeProperties("firmaforest").setBaseHeight(0.1f)
+			.setHeightVariation(0.16f), 35, Type.FOREST).setDirtDepth(5).setTreeCount(30).setBiomeColor(Color.GREEN).setRegistryName("firmaforest");
+	public static FirmaBiome DEEPOCEAN = (FirmaBiome) new FirmaBiome(new BiomeProperties("firmadocean").setBaseHeight(-1.5f)
+			.setHeightVariation(0.0001f), 36, Type.OCEAN).setDirtDepth(1).setBiomeColor(new Color(0f, 0f, .5f)).setRegistryName("firmadocean");
 	public static FirmaBiome LAKE = (FirmaBiome) new FirmaBiome(new BiomeProperties("firmalake").setBaseHeight(-0.8f).setHeightVariation(0.001f), 2, Type.RIVER)
 			.setDirtDepth(3).setTreeCount(1).setBiomeColor(new Color(.3f, .3f, .8f)).setRegistryName("firmalake");
-	public static FirmaBiome SWAMP = (FirmaBiome) new FirmaBiome(new BiomeProperties("firmaswamp").setBaseHeight(-0.05f).setHeightVariation(0.05f), 6,
-			Type.SWAMP).setDirtDepth(7).setTreeCount(1).setBiomeColor(new Color(0f, .4f, .8f)).setRegistryName("firmaswmap");
-	public static FirmaBiome EXHILLSEDGE = (FirmaBiome) new FirmaBiome(new BiomeProperties("firmaexhillsedge").setBaseHeight(0.4f).setHeightVariation(0.8f), 32,
-			Type.MOUNTAIN).setDirtDepth(1).setTreeCount(1).setBiomeColor(Color.DARK_GRAY).setRegistryName("firmaexhillsedge");
-	public static FirmaBiome HILLSEDGE = (FirmaBiome) new FirmaBiome(new BiomeProperties("firmahillsedge").setBaseHeight(0.2f).setHeightVariation(0.4f), 20,
-			Type.HILLS).setDirtDepth(1).setTreeCount(1).setBiomeColor(Color.GRAY).setRegistryName("firmahillsedge");
-	public static FirmaBiome RIVER = (FirmaBiome) new FirmaBiome(new BiomeProperties("firmariver").setBaseHeight(-0.5f).setHeightVariation(-0.0f), 7,
-			Type.RIVER).setDirtDepth(3).setTreeCount(1).setBiomeColor(new Color(.3f, .3f, .8f)).setRegistryName("firmariver");
+	public static FirmaBiome SWAMP = (FirmaBiome) new FirmaBiome(new BiomeProperties("firmaswamp").setBaseHeight(-0.05f)
+			.setHeightVariation(0.05f), 6, Type.SWAMP).setDirtDepth(7).setTreeCount(1).setBiomeColor(new Color(0f, .4f, .8f)).setRegistryName("firmaswmap");
+	public static FirmaBiome EXHILLSEDGE = (FirmaBiome) new FirmaBiome(new BiomeProperties("firmaexhillsedge").setBaseHeight(0.4f)
+			.setHeightVariation(0.8f), 32, Type.MOUNTAIN).setDirtDepth(1).setTreeCount(1).setBiomeColor(Color.DARK_GRAY).setRegistryName("firmaexhillsedge");
+	public static FirmaBiome HILLSEDGE = (FirmaBiome) new FirmaBiome(new BiomeProperties("firmahillsedge").setBaseHeight(0.2f)
+			.setHeightVariation(0.4f), 20, Type.HILLS).setDirtDepth(1).setTreeCount(1).setBiomeColor(Color.GRAY).setRegistryName("firmahillsedge");
+	public static FirmaBiome RIVER = (FirmaBiome) new FirmaBiome(new BiomeProperties("firmariver").setBaseHeight(-0.5f)
+			.setHeightVariation(-0.0f), 7, Type.RIVER).setDirtDepth(3).setTreeCount(1).setBiomeColor(new Color(.3f, .3f, .8f)).setRegistryName("firmariver");
 
 	// All Biomes
 	public static FirmaBiome[] biomes = { GRAVELBEACH, BEACH, PLAINS, HILLS, EXHILLS, OCEAN, FOREST, DEEPOCEAN, LAKE, SWAMP, EXHILLSEDGE, HILLSEDGE, RIVER };
@@ -127,7 +133,7 @@ public class FirmaBiome extends Biome {
 
 	public static FirmaTree[] getTreeForBiome(int biome, int z) {
 		// TODO More trees, possibly care about equator/locations
-		int heat = Util.getEquatorialHeat(z);
+		int heat = (int) Util.getEquatorialHeat(z);
 		if (heat < 0) {
 			return new FirmaTree[] {};
 		}
@@ -169,5 +175,56 @@ public class FirmaBiome extends Biome {
 
 	public int getDirtDepth() {
 		return this.dirtDepth;
+	}
+
+	public int getColourForMonth(TimeData td) {
+		switch (td.getMonth()) {
+		case 0:
+			return 0xff00ff00;
+		case 1:
+			return 0xff00ff00;
+		case 2:
+			return 0xff00ff00;
+		case 3:
+			return 0xff00ff00;
+		case 4:
+			return 0xff00ff00;
+		case 5:
+			return 0xff00ff00;
+		case 6:
+			return 0xff00ff00;
+		case 7:
+			return 0xff00ff00;
+		case 8:
+			return 0xff00ff00;
+		case 9:
+			return 0xff00ff00;
+		case 10:
+			return 0xff00ff00;
+		case 11:
+			return 0xff00ff00;
+		default:
+			return 0;
+		}
+	}
+
+	public int getFoliageColour(IBlockAccess worldIn, BlockPos pos, int tintIndex, TimeData td) {
+		IBlockState above = worldIn.getBlockState(pos.up());
+		if (above.getBlock() == FirmaMod.snow) {// TODO Add Snow
+			return 0xffffffff;
+		}
+		return 0;
+	}
+
+	public int getGrassColour(IBlockAccess worldIn, BlockPos pos, int tintIndex, TimeData td) {
+		double temperature = Util.getHeat(worldIn, pos, td);
+		double tempPercent = (temperature + 25.0) / 65f;
+		IBlockState above = worldIn.getBlockState(pos.up());
+		if (above.getBlock() == FirmaMod.snow) {// TODO Add Snow
+			return 0xffffffff;
+		}
+		tempPercent = MathHelper.clamp(tempPercent, 0.0, 1.0);
+		return ColorizerGrass.getGrassColor(tempPercent, 0.5f);
+		//return 0;
 	}
 }

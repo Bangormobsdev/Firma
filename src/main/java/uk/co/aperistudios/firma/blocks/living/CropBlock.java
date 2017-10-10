@@ -17,6 +17,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import uk.co.aperistudios.firma.FirmaMod;
+import uk.co.aperistudios.firma.TimeData;
 import uk.co.aperistudios.firma.Util;
 import uk.co.aperistudios.firma.blocks.BlockState;
 import uk.co.aperistudios.firma.blocks.tileentity.CropTileEntity;
@@ -78,8 +79,12 @@ public class CropBlock extends Block implements BlockState {
 
 	@Override
 	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
-
-		return getDefaultState();
+		CropTileEntity te = (CropTileEntity) worldIn.getTileEntity(pos);
+		TimeData td = FirmaMod.proxy.getTimeData(worldIn);
+		if (td == null) {
+			return getDefaultState().withProperty(crop, te.getType());
+		}
+		return getDefaultState().withProperty(crop, te.getType()).withProperty(stage, CropStage.values()[te.getStage(td)]);
 	}
 
 	@Override
@@ -89,7 +94,7 @@ public class CropBlock extends Block implements BlockState {
 
 	@Override
 	public TileEntity createTileEntity(World world, IBlockState state) {
-		return new CropTileEntity();
+		return new CropTileEntity(state);
 	}
 
 	@Override

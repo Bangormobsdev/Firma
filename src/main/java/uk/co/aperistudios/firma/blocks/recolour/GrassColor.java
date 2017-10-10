@@ -5,21 +5,21 @@ import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.biome.Biome;
+import uk.co.aperistudios.firma.ClientProxy;
+import uk.co.aperistudios.firma.TimeData;
 import uk.co.aperistudios.firma.generation.FirmaBiome;
 
 public class GrassColor implements IBlockColor {
 	@Override
 	public int colorMultiplier(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex) {
-		// return worldIn.getBiome(pos).getFoliageColorAtPos(pos);
-		// Mouse.setGrabbed(false);
 
 		Biome b = worldIn.getBiome(pos);
-		if (!(b instanceof FirmaBiome)) {
-			// Mouse.setGrabbed(false);
-			// throw new RuntimeException("Non-Firma Biome!");
+		if (b instanceof FirmaBiome) {
+
+			FirmaBiome fb = (FirmaBiome) b;
+			TimeData td = ClientProxy.staticDate;
+			return fb.getGrassColour(worldIn, pos, tintIndex, td);
 		}
-		int c = b.getGrassColorAtPos(pos);
-		// TODO Mix in seasonal colours
-		return c;
+		return b.getGrassColorAtPos(pos);
 	}
 }

@@ -11,8 +11,13 @@ import uk.co.aperistudios.firma.ClientProxy;
 import uk.co.aperistudios.firma.CommonProxy;
 import uk.co.aperistudios.firma.TimeData;
 import uk.co.aperistudios.firma.Util;
+import uk.co.aperistudios.firma.renderer.FirmaWeather;
 
 public class FirmaWorldProvider extends WorldProvider {
+
+	public FirmaWorldProvider() {
+		this.setWeatherRenderer(new FirmaWeather());
+	}
 
 	@Override
 	public boolean canRespawnHere() {
@@ -104,5 +109,13 @@ public class FirmaWorldProvider extends WorldProvider {
 			return 0;
 		}
 		return td.getMoonPhase();
+	}
+
+	@Override
+	public void updateWeather() {
+		world.prevRainingStrength = 0f;
+		world.rainingStrength = 0f;
+		world.prevThunderingStrength = 0f;
+		world.thunderingStrength = 0f;
 	}
 }

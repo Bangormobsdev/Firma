@@ -1,6 +1,7 @@
 package uk.co.aperistudios.firma;
 
 import java.util.ArrayList;
+import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
@@ -153,6 +154,7 @@ public class FirmaMod {
 	public static FarmBlock2 farm2;
 	public static FarmBlock farm;
 	public static MiniBlockItem miniBlockItem;
+	public static Block snow;
 
 	public FirmaMod() {
 		instance = this;

@@ -6,13 +6,14 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import uk.co.aperistudios.firma.FirmaMod;
 import uk.co.aperistudios.firma.Util;
+import uk.co.aperistudios.firma.blocks.living.CropBlock;
 
 public class PlanGarden extends Plan {
 	static PlanShape garden;
-	private BlockStateWithProperties plant;
+	private IBlockState plant;
 
 	public PlanGarden(Random r) {
-		this.plant = new BlockStateWithProperties(FirmaMod.crops.getDefaultState(), Util.getRandomPlant(r));
+		this.plant = FirmaMod.crops.getDefaultState().withProperty(CropBlock.crop, Util.getRandomPlant(r));
 	}
 
 	public static void init() {
@@ -27,11 +28,11 @@ public class PlanGarden extends Plan {
 	}
 
 	@Override
-	public HashMap<String, BlockStateWithProperties> getBlocks(IBlockState rock, IBlockState wood) {
-		HashMap<String, BlockStateWithProperties> blocks = new HashMap<String, BlockStateWithProperties>();
-		blocks.put(" ", new BlockStateWithProperties(Blocks.AIR.getDefaultState()));
-		blocks.put("P", new BlockStateWithProperties(Util.getPlank(wood)));
-		blocks.put("D", new BlockStateWithProperties(Util.getFarm(rock)));
+	public HashMap<String, IBlockState> getBlocks(IBlockState rock, IBlockState wood) {
+		HashMap<String, IBlockState> blocks = new HashMap<String, IBlockState>();
+		blocks.put(" ", Blocks.AIR.getDefaultState());
+		blocks.put("P", Util.getPlank(wood));
+		blocks.put("D", Util.getFarm(rock));
 		blocks.put("W", this.plant);
 		return blocks;
 	}
